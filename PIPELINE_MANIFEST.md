@@ -1,7 +1,7 @@
 # TabStress Pipeline Manifest & Changelog
 
 **Manuscript:** TabStress: Nonparametric Robustness Profiling of Tabular Classifiers under Controlled Data Corruption  
-**Authors:** Shashank Mouli Satapathy & Devarsh Patel (Vellore Institute of Technology)  
+**Authors:** Devarsh Patel & Shashank Mouli Satapathy (Vellore Institute of Technology)  
 **Pipeline Version:** 2.1 (second-revision package), built on repository commit `749cc1c` (branch `feature/reviewer-revision`); the second-revision edits listed in Section 3 sit on top of that commit and are identified by the final commit hash recorded in the release tag.
 **Final pipeline entry point:** `experiments/run_final_pipeline.sh` (everything it reads and writes is listed in Sections 1 and 4).
 

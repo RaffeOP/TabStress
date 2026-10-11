@@ -7,7 +7,7 @@
 Official code, data, and reproduction package for the empirical benchmark:  
 **"TabStress: Nonparametric Robustness Profiling of Tabular Classifiers under Controlled Data Corruption"**
 
-*Shashank Mouli Satapathy and Devarsh Patel*  
+*Devarsh Patel and Shashank Mouli Satapathy*  
 School of Computer Science and Engineering, Vellore Institute of Technology (VIT), Vellore, India.
 
 ---
@@ -137,20 +137,28 @@ python3 experiments/run_extended.py
 
 ---
 
-## 7. License
+## 7. Compute Budget
+
+- **Platform:** Experiments were executed on an Apple M3 workstation (8 CPU cores, 8 GB unified memory). TabICL executed via MPS GPU acceleration.
+- **Training Compute:** Approximately 35–40 CPU hours to train all 111,400 Protocol A models from scratch.
+- **Verification & Assembly:** Under 2 minutes using stored evaluation cells.
+
+---
+
+## 8. License
 
 This repository is distributed under the [MIT License](LICENSE).
 
 ---
 
-## 8. Citation
+## 9. Citation
 
 If you use TabStress in your research or benchmarks, please cite:
 
 ```bibtex
-@article{satapathy2026tabstress,
+@article{patel2026tabstress,
   title={{TabStress}: Nonparametric Robustness Profiling of Tabular Classifiers under Controlled Data Corruption},
-  author={Satapathy, Shashank Mouli and Patel, Devarsh},
+  author={Patel, Devarsh and Satapathy, Shashank Mouli},
   year={2026}
 }
 ```
