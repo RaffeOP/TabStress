@@ -1,0 +1,174 @@
+%% TabStress supplementary material (revision 1). Assembled by experiments/assemble_manuscript.py.
+\RequirePackage{tikz}
+\documentclass[pdflatex,sn-mathphys]{sn-jnl}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{array,longtable}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{float}
+\usepackage{subcaption}
+\usepackage{newtxtext,newtxmath}
+\usepackage{pifont}
+\usepackage{xurl}
+\newcommand{\cmark}{\ding{51}}
+\newcommand{\xmark}{\ding{55}}
+\graphicspath{{./}{figures/}}
+\jyear{2026}
+\newcommand{\Acc}{\mathrm{Acc}}
+\newcommand{\AUDC}{\mathrm{AUDC}}
+\newcommand{\MRR}{\mathrm{MRR}}
+\newcommand{\aMRR}{\mathrm{aMRR}}
+\newcommand{\etamax}{\eta_{\max}}
+\newcommand{\etaknee}{\eta_{\mathrm{knee}}}
+\theoremstyle{thmstyleone}
+\newtheorem{supproposition}{Proposition}
+\renewcommand{\thesupproposition}{S\arabic{supproposition}}
+\renewcommand{\thesection}{S\arabic{section}}
+\renewcommand{\thetable}{S\arabic{table}}
+\renewcommand{\thefigure}{S\arabic{figure}}
+\raggedbottom
+% Supplement carries no journal-template header text and no running heads: page number only
+\makeatletter
+\def\ps@headings{\let\@oddhead\@empty\let\@evenhead\@empty\def\@oddfoot{\hfil\thepage\hfil}\let\@evenfoot\@oddfoot\let\@mkboth\@gobbletwo}
+\def\ps@titlepage{\let\@oddhead\@empty\let\@evenhead\@empty\def\@oddfoot{\hfil\thepage\hfil}\let\@evenfoot\@oddfoot}
+\makeatother
+\extrafloats{200}
+
+\begin{document}
+
+\title[Supplementary Material for TabStress]{Supplementary Material for ``TabStress: Nonparametric Robustness Profiling of Tabular Classifiers under Controlled Data Corruption''}
+\author*[1]{\fnm{Shashank Mouli} \sur{Satapathy}}\email{shashankmouli.s@vit.ac.in}
+\author[1]{\fnm{Devarsh} \sur{Patel}}\email{devarsh.patel2024@vitstudent.ac.in}
+\affil*[1]{\orgdiv{School of Computer Science and Engineering}, \orgname{Vellore Institute of Technology}, \orgaddress{\city{Vellore}, \postcode{632014}, \state{Tamil Nadu}, \country{India}}}
+\abstract{This document collects detailed tables, per-condition diagrams and the complete degradation atlas that support the main article; the label-noise derivations are in its Appendix~A and the remaining mathematical derivations in Section~S1. Section and table numbers prefixed with S refer to this document; all other references are to the main article.}
+
+% sn-jnl delimits \abstract by a blank line; without it \maketitle and the next heading are swallowed
+\maketitle
+
+\section{Properties of the corruption operators and of the knee estimator}\label{sup:props}
+The main article keeps the label-noise derivations (Appendix~A, Propositions~A1--A4). This section collects the secondary derivations, Propositions~S1--S4: the natural-spline properties that constrain the knee estimator $\etaknee$, and the Gaussian and MCAR operators. They support interpretation of the experiments; the article does not depend on them for any result. Notation follows the Problem Formulation section of the main article.
+
+\subsection{Knee estimator}
+Let $S$ be the natural cubic spline interpolating $(\eta_t,A_t)_{t=0}^{10}$ on knots $0=\eta_0<\dots<\eta_{10}=\etamax=0.50$, with $h_t=\eta_{t+1}-\eta_t$ and curvature $\kappa=\lvert S''\rvert/(1+S'^{2})^{3/2}$. The natural end conditions are $S''(0)=S''(\etamax)=0$.
+
+\begin{supproposition}[$\etaknee$ is interior]\label{prop:s_interior}
+If $S$ is not affine, then $\etaknee\in(0,\etamax)$.
+\end{supproposition}
+\begin{proof}
+The end conditions give $\kappa(0)=\kappa(\etamax)=0$. On each $[\eta_t,\eta_{t+1}]$, $S$ is cubic, so $S''(\eta)=\frac{\eta_{t+1}-\eta}{h_t}S''(\eta_t)+\frac{\eta-\eta_t}{h_t}S''(\eta_{t+1})$ is continuous and affine. If $S$ is not affine, $S''\not\equiv0$, so $S''$ is non-zero except at isolated points on some interval, and $S'$ is bounded on the compact domain, so $\kappa>0$ at some interior point of the uniform search grid (spacing $\etamax/499$). The grid maximiser is therefore interior.
+\end{proof}
+The interior location is imposed by the boundary conditions, not by classifier behaviour, and it biases the knee inward: a collapse sharpest at the first tier cannot register as maximal curvature at zero.
+
+\begin{supproposition}[The acceleration peaks at a tier]\label{prop:s_peak}
+On each interval $[\eta_t,\eta_{t+1}]$ the acceleration $S''$ is affine, so $\lvert S''\rvert$ attains its maximum over $[0,\etamax]$ at a knot. If $\lvert S'\rvert\le\bar v$, then $\lvert S''(\eta)\rvert(1+\bar v^{2})^{-3/2}\le\kappa(\eta)\le\lvert S''(\eta)\rvert\le\max_t\lvert S''(\eta_t)\rvert$.
+\end{supproposition}
+\begin{proof}
+An affine function on an interval is extremal at an endpoint, and $\lvert\cdot\rvert$ preserves this. The bounds follow from $1\le(1+S'^{2})^{3/2}\le(1+\bar v^{2})^{3/2}$.
+\end{proof}
+Hence $\kappa$ peaks near the sampled tiers; empirically @@{rev.knee_resolution.on_tier_share|pct0}@@\% of the @@{rev.knee_resolution.n_defined|int}@@ defined knees lie within $0.002$ of a tier (knee-reliability section of the main text), so the effective resolution of $\etaknee$ is the tier spacing $0.05$, not that of the 500-point numerical search grid.
+
+\subsection{Feature operators}
+\begin{supproposition}[Reliability of the Gaussian operator]\label{prop:s_gaussian}
+Under Gaussian feature noise the reliability ratio of every non-constant column is $\operatorname{Var}(x_j)/\operatorname{Var}(\tilde x_j)=1/(1+\eta^{2})$, equal to $0.8$ at $\eta=0.5$.
+\end{supproposition}
+\begin{proof}
+$\varepsilon_{ij}$ is independent of $x_{ij}$ with variance $\eta^{2}\sigma_j^{2}$.
+\end{proof}
+
+\begin{supproposition}[MCAR masking with median imputation shrinks dependence]\label{prop:s_mcar}
+Let masks be independent across entries, $\mu_j=\mathbb{E}x_j$, and $m_j$ the imputed median, treated as fixed. Then for $j\neq l$, $\operatorname{Cov}(\tilde x_j,\tilde x_l)=(1-\eta)^{2}\operatorname{Cov}(x_j,x_l)$ and $\operatorname{Var}(\tilde x_j)=(1-\eta)\sigma_j^{2}+\eta(1-\eta)(\mu_j-m_j)^{2}$, so that $\lvert\operatorname{Corr}(\tilde x_j,\tilde x_l)\rvert\le(1-\eta)\lvert\operatorname{Corr}(x_j,x_l)\rvert$.
+\end{supproposition}
+\begin{proof}
+Write $\tilde x_j=(1-B_j)x_j+B_jm_j$ with $B_j\sim\mathrm{Bernoulli}(\eta)$ independent of everything else. Expanding the covariance term by term, all products involving $m_j$ or $m_l$ cancel and $(1-\eta)^{2}\operatorname{Cov}(x_j,x_l)$ remains. The variance follows in the same way, and $\operatorname{Var}(\tilde x_j)\ge(1-\eta)\sigma_j^{2}$ gives the bound.
+\end{proof}
+Under MCAR the absence of a value carries no information about the label, so native handling cannot exploit missingness as a signal. Under the MAR and MNAR operators this is no longer true: the pattern of missing entries depends on the driver column or on the hidden values, and a learner that routes missing values separately can in principle use it.
+
+\section{Supplementary tables}\label{sup:tables}
+
+\input{../results/analysis/revision/tab_search_space.tex}
+
+\input{../results/analysis/latex_primary/tab_inventory.tex}
+
+Pol (OpenML 201) has a target binned into 11 values whose class tokens the loader sorts lexicographically (`0', `10', `100', `20', \dots), so the pair-flip kernel permutes classes along that order. The categorical operators of the main article take the nominal attributes of each dataset from its OpenML feature metadata and map them to the encoded columns (all dummy columns of a one-hot coded attribute, or the single ordinal column of a high-cardinality attribute). Nominal attributes exist in six datasets: nomao (29 attributes, 56 encoded columns), eye\_movements (3), churn (4 attributes, 13 columns), electricity (1 attribute, 6 columns), bank-marketing (9 attributes, 35 columns) and amazon\_access (all 9 attributes, ordinal-coded).
+
+\input{../results/analysis/latex_primary/tab_friedman.tex}
+\input{../results/analysis/latex_primary/tab_ranks.tex}
+\input{../results/analysis/latex_primary/tab_seeds.tex}
+\input{../results/analysis/latex_primary/tab_native.tex}
+\input{../results/analysis/latex_primary/tab_budget.tex}
+
+\input{../results/analysis/revision/tab_protocol_b_tests.tex}
+
+\clearpage
+\section{Critical-difference diagrams per condition}\label{sup:cd}
+
+\begin{figure}[p]
+\centering
+\begin{subfigure}{0.49\linewidth}\centering\includegraphics[width=\linewidth]{cd_mrr_symmetric_label.png}\caption{MRR, symmetric}\end{subfigure}\hfill
+\begin{subfigure}{0.49\linewidth}\centering\includegraphics[width=\linewidth]{cd_audc_symmetric_label.png}\caption{AUDC, symmetric}\end{subfigure}\\[4pt]
+\begin{subfigure}{0.49\linewidth}\centering\includegraphics[width=\linewidth]{cd_mrr_class_conditional.png}\caption{MRR, class-conditional}\end{subfigure}\hfill
+\begin{subfigure}{0.49\linewidth}\centering\includegraphics[width=\linewidth]{cd_audc_class_conditional.png}\caption{AUDC, class-conditional}\end{subfigure}\\[4pt]
+\begin{subfigure}{0.49\linewidth}\centering\includegraphics[width=\linewidth]{cd_mrr_gaussian_feature.png}\caption{MRR, Gaussian}\end{subfigure}\hfill
+\begin{subfigure}{0.49\linewidth}\centering\includegraphics[width=\linewidth]{cd_audc_gaussian_feature.png}\caption{AUDC, Gaussian}\end{subfigure}\\[4pt]
+\begin{subfigure}{0.49\linewidth}\centering\includegraphics[width=\linewidth]{cd_mrr_mcar_imputed.png}\caption{MRR, MCAR imputed}\end{subfigure}\hfill
+\begin{subfigure}{0.49\linewidth}\centering\includegraphics[width=\linewidth]{cd_audc_mcar_imputed.png}\caption{AUDC, MCAR imputed}\end{subfigure}\\[4pt]
+\begin{subfigure}{0.49\linewidth}\centering\includegraphics[width=\linewidth]{cd_mrr_mcar_native.png}\caption{MRR, MCAR native}\end{subfigure}\hfill
+\begin{subfigure}{0.49\linewidth}\centering\includegraphics[width=\linewidth]{cd_audc_mcar_native.png}\caption{AUDC, MCAR native}\end{subfigure}
+\caption{Nemenyi critical-difference diagrams for MRR and AUDC under each primary condition (Protocol~A, seed-averaged, $N=20$, $k=6$, $\alpha=0.05$, $\mathrm{CD}=1.686$). Models joined by a bar are not significantly different.}
+\label{fig:cd_all}
+\end{figure}
+
+\clearpage
+\section{Per-dataset endurance}\label{sup:endurance}
+\input{../results/analysis/latex_primary/tab_endurance.tex}
+
+\clearpage
+\section{Trajectory summaries for every dataset}\label{sup:traj}
+For every dataset, model and primary condition, the tables give clean and terminal accuracy, AUDC, MRR and $\etaknee$ with its 95\% parametric-bootstrap interval, on seed-averaged trajectories. The interval is printed because the knee of a single trajectory is not reliable on its own (Section~5.6 of the main article).
+\input{../results/analysis/latex_primary/tab_trajectories.tex}
+
+\clearpage
+\section{Complete accuracy grid}\label{sup:grids}
+Accuracy of all 6{,}600 seed-averaged cells of the primary grid, in per cent. Per-seed accuracies, fold standard deviations, balanced accuracy and macro-$F_1$ are in the replication package.
+\input{../results/analysis/latex_primary/tab_accuracy_grids.tex}
+
+\clearpage
+\section{Degradation atlas}\label{sup:atlas}
+\input{../results/analysis/latex_primary/atlas_primary.tex}
+
+\clearpage
+\section{Pairwise Wilcoxon tests}\label{sup:wilcoxon}
+\input{../results/analysis/latex_primary/tab_wilcoxon.tex}
+
+\clearpage
+\section{Sensitivity runs and additional statistics}\label{sup:sens}
+Four additions to the analysis in the article, none of which enters the confirmatory family. All tables are generated by \texttt{experiments/analyze\_sensitivity.py}.
+
+\paragraph{TabICL settings.} The main TabICL run uses four estimators and caps the in-context set at 3{,}000 rows. We repeated Protocol~B for seed 42 on @@{sens.tabicl_settings.n_datasets|word}@@ datasets with the library defaults (eight estimators, no cap). Mean clean accuracy changes from $@@{sens.tabicl_settings.clean.mean_main|.3f}@@$ to $@@{sens.tabicl_settings.clean.mean_default|.3f}@@$ (largest per-dataset change $@@{sens.tabicl_settings.clean.max_abs_diff|.3f}@@$). The MRR mean rank of TabICL among the seven models is identical in both runs under all four operators, whereas its balanced-AUDC rank improves or stays equal under every operator, most under MNAR masking, where it moves from @@{sens.tabicl_settings.ranks.audc_bal~mnar_imputed.main.tabicl_rank|r2}@@ to @@{sens.tabicl_settings.ranks.audc_bal~mnar_imputed.default.tabicl_rank|r2}@@ (position @@{sens.tabicl_settings.ranks.audc_bal~mnar_imputed.main.position|ord}@@ to @@{sens.tabicl_settings.ranks.audc_bal~mnar_imputed.default.position|ord}@@). The leader of the seven changes in @@{sens.tabicl_settings.n_leader_changes|word}@@ of the @@{sens.tabicl_settings.n_cells|word}@@ score--operator cells. With six datasets this is a check on the direction of the effect, not an estimate of its size.
+
+\paragraph{Compound corruption.} Label noise or Gaussian noise was applied together with MCAR missingness at the same intensity $\eta$ under Protocol~A, on @@{sens.compound.n_datasets|word}@@ datasets, @@{sens.compound.seeds|seeds}@@ and the six classical families. The compound loss of accuracy is smaller than the sum of the two single-operator losses (median difference $@@{sens.compound.median_additivity_acc.label_mcar|.3f}@@$ for label noise with MCAR and $@@{sens.compound.median_additivity_acc.gauss_mcar|.3f}@@$ for Gaussian noise with MCAR; sub-additive in at least @@{sens.compound.sub_additive_share_min|pct0}@@\% of the dataset--model pairs). The mean-rank order under the compound operator follows the label or Gaussian component (MRR $\tau\ge@@{sens.compound.tau_mrr_dominant_min|.2f}@@$) and agrees much less with the MCAR component ($\tau$ as low as @@{sens.compound.tau_mrr_mcar_min|.2f}@@ for MRR, @@{sens.compound.tau_min|.2f}@@ over both scores). With six models and six datasets these correlations are coarse.
+
+\subsection{Continuous-only Gaussian noise}
+The Gaussian condition of every analysis, in the main article and in this supplement, restricts Gaussian noise to the continuous attributes and leaves nominal attributes clean (the principal Gaussian experiment). It differs from the all-column variant on the six datasets with nominal attributes only; Table~\ref{tab:gaussian_principal} of the main article compares the two. The TabICL comparison and the compound-corruption runs are the exception: they were run with the all-column operator and are labelled as such where they are reported.
+
+\paragraph{Bayesian signed-rank test.} For each confirmatory condition we compared the best and the second-best family on balanced AUDC with the Bayesian signed-rank test of Benavoli et al.~\cite{benavoli2016should} (Dirichlet-process prior of strength @@{sens.bayes.prior_strength|.1f}@@ at zero, ROPE $\pm@@{sens.bayes.rope|.2f}@@$, @@{sens.bayes.n_samples|int}@@ posterior samples). The best family is the winning decision in at most @@{sens.bayes.max_decision_best|pct0}@@\% of the samples under any condition; the practical-equivalence region has the highest posterior probability in @@{sens.bayes.n_rope_decision_largest|word}@@ of the five conditions. The leading families are therefore separated in rank, as the Friedman tests show, but not in the size of the difference: the median gap between the first two families is below one percentage point of balanced AUDC under every condition.
+
+\paragraph{Bootstrap intervals for the TabICL gap.} Table~\ref{tab:sens_gap} gives the median difference in MRR between TabICL and the best classical family with a bootstrap 95\% interval over datasets; every interval lies below zero.
+
+\input{../results/analysis/revision/tab_sensitivity_extra.tex}
+
+\clearpage
+\section{Data cleaning rules and the pol class ordering}\label{sup:cleaning}
+
+\paragraph{Cleaning rules and row counts.} The primary benchmark uses every upload unchanged, apart from the loader's encoding of categorical attributes, median imputation of any stored missing values and, for datasets above 10{,}000 rows, a fixed stratified subsample of 10{,}000 rows (seed 42). Cleaning is applied only to the artifact-sensitivity copies of Section~\ref{sup:sens} and the main article, by three rules that are kept apart: \emph{R1, duplicate removal}: of several rows with an identical feature vector and identical label, the first is kept and the rest are removed; \emph{R2, conflicting-duplicate removal}: when identical feature vectors carry more than one label, \emph{all} rows of that vector are removed, since no label can be kept without choice; \emph{R3, sentinel rows}: rows in which every feature equals $-999$ are removed. R1 and R2 are applied to spambase only; R3 to MiniBooNE only; for churn the identifier column \texttt{phone\_number} is dropped and no row is removed. Table~\ref{tab:cleaning_counts} gives the counts, computed by \texttt{experiments/dataset\_cleaning\_counts.py}. In spambase, 391 duplicate rows (R1) and 6 rows forming 3 conflicting feature vectors (R2) are removed, leaving 4{,}204 of 4{,}601 rows; in MiniBooNE all 468 sentinel rows are also conflicting duplicates, leaving 129{,}596 of 130{,}064.
+
+\input{../results/analysis/revision/tab_cleaning_counts.tex}
+
+\paragraph{Class ordering of pair-flip noise on pol.} The target of pol (OpenML 201) takes eleven values, $0, 10, \dots, 100$, and is ordinal: it is a discretised numeric response. The loader label-encodes targets as strings, so the encoded order is lexicographic ($0, 10, 100, 20, \dots, 90$), and the cyclic pair-flip $i \mapsto (i+1) \bmod K$ of the class-conditional condition therefore moves a label to the next class \emph{in this encoded order}, for example $10 \to 100$ and $100 \to 20$. For a nominal target this is a legitimate, arbitrary pairing; for pol it is not the semantically appropriate neighbouring-class confusion, which would be $10 \to 20$ and $100 \to 0$ (wrap-around). The paper treats pol as nominal under this condition, and we therefore re-ran the class-conditional block on pol with the numeric ordering (\texttt{experiments/run\_pol\_ordering\_sensitivity.py}), with the same models, eleven tiers, five-fold protocol and seeds 42--44 as the main block, and recomputed the cross-dataset test with pol taken from each ordering (Table~\ref{tab:pol_ordering}). The encoded-order scores reproduce the stored primary cells. Changing the ordering moves individual pol scores (the largest change is the MLP, $\AUDC_{\mathrm{bal}}$ from 0.513 to 0.555) but not any cross-dataset conclusion: the mean-rank order of the six families under $\AUDC_{\mathrm{bal}}$ is unchanged in its extremes (LightGBM first, MLP last), the omnibus test stays highly significant ($F_{\mathrm{ID}}=8.99$ versus $8.18$), and the omnibus test of $\MRR_{\mathrm{bal}}$ stays non-significant ($p=0.88$ versus $0.94$).
+
+\input{../results/analysis/revision/tab_pol_ordering.tex}
+
+\bibliography{TabStress}
+
+\end{document}

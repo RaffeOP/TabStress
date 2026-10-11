@@ -1,0 +1,65 @@
+% Requires in preamble: \usepackage{tikz}
+% \usetikzlibrary{positioning,arrows.meta,shapes.geometric,fit}
+\begin{figure}[t]
+\centering
+\resizebox{\linewidth}{!}{%
+\begin{tikzpicture}[
+  node distance=5mm and 7mm,
+  every node/.style={font=\footnotesize, align=center},
+  proc/.style={rectangle, draw, rounded corners=2pt, minimum width=36mm, minimum height=9mm, inner sep=3pt},
+  data/.style={trapezium, trapezium left angle=72, trapezium right angle=108, draw, minimum width=30mm, minimum height=8mm, inner sep=3pt},
+  dec/.style={diamond, draw, aspect=2.6, inner sep=1pt},
+  stage/.style={draw, dashed, rounded corners=4pt, inner sep=5pt},
+  lab/.style={font=\scriptsize\itshape, anchor=south west},
+  arr/.style={-{Stealth[length=2.2mm]}, thick}
+]
+% --- Column 1: data and evaluation protocol
+\node[data] (ingest) {OpenML ingestion\\(20 datasets, cached \texttt{.npz})};
+\node[dec, below=of ingest] (size) {$N > 10^4$?};
+\node[proc, below=of size] (sub) {Stratified subsample\\to $N = 10{,}000$ (seed 42)};
+\node[proc, below=of sub] (kfold) {\texttt{StratifiedKFold}\\(5 folds, shuffled, seed $s$)};
+\node[proc, below=of kfold] (msnie) {Corruption at tier $\eta$ (seed $s$)\\\textbf{Protocol A}: labels of the training fold, or\\features of training \emph{and} evaluation fold\\\textbf{Protocol B}: evaluation features only,\\model fitted once on clean training data};
+
+% --- Column 2: model fitting
+\node[proc, right=17mm of ingest] (imp) {\texttt{SimpleImputer} (median; omitted for\\trees under native handling)\\{}[+ \texttt{StandardScaler} for MLP]};
+\node[proc, below=of imp] (clf) {Classifier (6 families, seed $s$)\\CART, RF, XGBoost,\\LightGBM, CatBoost, MLP};
+\node[proc, below=of clf] (acc) {Accuracy and balanced accuracy\\on the evaluation fold\\(clean labels)};
+\node[proc, below=of acc] (mean) {$\mathrm{Acc}(\eta)$ = mean over 5 folds\\$\eta \in \{0, 0.05, \ldots, 0.50\}$ (11 tiers)};
+\node[proc, below=of mean] (store) {Trajectory per dataset, model,\\operator and protocol,\\averaged over $s\in\{42,43,44\}$};
+
+% --- Column 3: knee geometry and inference
+\node[proc, right=17mm of imp] (spline) {Natural cubic spline $S(\eta)$\\$S''(0) = S''(0.5) = 0$};
+\node[proc, below=of spline] (deriv) {$v = S'$, \ $a = S''$\\$\kappa = \lvert a\rvert / (1 + v^2)^{3/2}$\\on a 500-point grid};
+\node[proc, below=of deriv] (metrics) {AUDC$_{\mathrm{bal}}$ (primary), AUDC, MRR,\\aMRR $=(\mathrm{AUDC}-b)/(\mathrm{Acc}(0)-b)$\\$\eta_{\mathrm{knee}}=\arg\max_\eta\kappa(\eta)$ (tier resolution)};
+\node[proc, below=of metrics] (stats) {Confirmatory family (Holm, 15 tests):\\Friedman / Iman--Davenport,\\Nemenyi CD and Wilcoxon--Holm};
+\node[data, below=of stats] (out) {Robustness profiles, rankings,\\knee distributions};
+
+% --- Flow
+\draw[arr] (ingest) -- (size);
+\draw[arr] (size) -- node[right, font=\scriptsize]{yes} (sub);
+\draw[arr] (size.west) -- (size.west -| msnie.west) -- ++(-1.5mm,0) |- node[pos=0.25, right, font=\scriptsize]{no} (kfold.west);
+\draw[arr] (sub) -- (kfold);
+\draw[arr] (kfold) -- (msnie);
+\draw[arr] (msnie.east) -- ++(4.5mm,0) |- (imp.west);
+\draw[arr] (imp) -- (clf);
+\draw[arr] (clf) -- (acc);
+\draw[arr] (acc) -- (mean);
+\draw[arr] (mean) -- (store);
+\draw[arr] (store.east) -- ++(4.5mm,0) |- (spline.west);
+\draw[arr] (spline) -- (deriv);
+\draw[arr] (deriv) -- (metrics);
+\draw[arr] (metrics) -- (stats);
+\draw[arr] (stats) -- (out);
+
+% --- Stage boxes
+\node[stage, fit=(ingest)(size)(sub)(kfold)(msnie)] (s1) {};
+\node[lab] at (s1.north west) {Data \& protocol};
+\node[stage, fit=(imp)(clf)(acc)(mean)(store)] (s2) {};
+\node[lab] at (s2.north west) {Model fitting};
+\node[stage, fit=(spline)(deriv)(metrics)(stats)(out)] (s3) {};
+\node[lab] at (s3.north west) {Response-curve profiling \& inference};
+\end{tikzpicture}%
+}
+\caption{The TabStress framework. For every cell (dataset, model, operator, $\eta$, seed $s$) the fold split, the corruption and the model are seeded with $s\in\{42,43,44\}$; the 10{,}000-row subsample is drawn once, with seed 42. Under Protocol~A (corruption-aware training robustness) label operators corrupt only the training labels and feature operators corrupt the training and the evaluation features at the same intensity, and the model is refitted at every intensity. Under Protocol~B (deployment robustness) the model is fitted once per fold on clean data and scored on evaluation features corrupted at every intensity. Predictions are always scored against clean labels.}
+\label{fig:pipeline}
+\end{figure}
