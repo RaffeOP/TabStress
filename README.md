@@ -137,21 +137,13 @@ python3 experiments/run_extended.py
 
 ---
 
-## 7. Compute Budget
-
-- **Platform:** Multi-core workstation environment with GPU hardware acceleration for in-context tensor evaluation. Deterministic execution with fixed seeds.
-- **Training Compute:** Approximately 35–40 CPU hours to train all 111,400 Protocol A models from scratch.
-- **Verification & Assembly:** Under 2 minutes using stored evaluation cells.
-
----
-
-## 8. License
+## 7. License
 
 This repository is distributed under the [MIT License](LICENSE).
 
 ---
 
-## 9. Citation
+## 8. Citation
 
 If you use TabStress in your research or benchmarks, please cite:
 
