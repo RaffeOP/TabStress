@@ -1,0 +1,27 @@
+\begin{table*}[t]
+\centering
+\footnotesize
+\setlength{\tabcolsep}{3.5pt}
+\caption{Friedman omnibus tests over $N=20$ datasets and $k=6$ models ($\chi^2_F$ on $5$ degrees of freedom; Iman--Davenport $F_F$ on $(5,95)$). $p_{\mathrm{Holm}}$ adjusts the four modality-wise tests of each metric. The Nemenyi critical difference is $\mathrm{CD}=1.686$ for every row. Mean ranks of the best and worst model are in parentheses (1 = best).}
+\label{tab:friedman}
+\begin{tabular}{@{}llrrllll@{}}
+\toprule
+Metric & Condition & $\chi^2_F$ & $F_F$ & $p$ & $p_{\mathrm{Holm}}$ & Best (rank) & Worst (rank) \\
+\midrule
+MRR & Symmetric label & 69.77 & 43.85 & $3.2\times10^{-23}$ & $9.5\times10^{-23}$ & CatBoost (1.55) & CART (5.75) \\
+ & Pair-flip label & 73.37 & 52.35 & $8.2\times10^{-26}$ & $3.3\times10^{-25}$ & CatBoost (1.65) & CART (5.75) \\
+ & Gaussian feature & 41.46 & 13.46 & $6.4\times10^{-10}$ & $1.3\times10^{-9}$ & CatBoost (2.13) & CART (5.65) \\
+ & MCAR + median imp. & 39.22 & 12.26 & $3.5\times10^{-9}$ & $3.5\times10^{-9}$ & XGBoost (2.65) & CART (5.80) \\
+\midrule
+AUDC & Symmetric label & 45.91 & 16.13 & $1.7\times10^{-11}$ & $1.7\times10^{-11}$ & CatBoost (2.10) & CART (5.85) \\
+ & Pair-flip label & 47.97 & 17.52 & $2.9\times10^{-12}$ & $5.8\times10^{-12}$ & CatBoost (1.85) & CART (5.80) \\
+ & Gaussian feature & 54.68 & 22.92 & $5.0\times10^{-15}$ & $1.5\times10^{-14}$ & LightGBM (2.05) & CART (5.60) \\
+ & MCAR + median imp. & 60.31 & 28.87 & $1.1\times10^{-17}$ & $4.3\times10^{-17}$ & LightGBM (2.05) & CART (5.75) \\
+\midrule
+MRR$_{\mathrm{bal}}$ & Symmetric label & 49.14 & 18.36 & $1.0\times10^{-12}$ & $4.1\times10^{-12}$ & CatBoost (2.05) & CART (5.70) \\
+ & Pair-flip label & 44.71 & 15.37 & $4.7\times10^{-11}$ & $1.4\times10^{-10}$ & CatBoost (2.15) & CART (5.65) \\
+ & Gaussian feature & 22.15 & 5.41 & 0.000 & 0.000 & CatBoost (2.33) & CART (4.70) \\
+ & MCAR + median imp. & 10.34 & 2.19 & 0.062 & 0.062 & XGBoost (3.00) & CART (4.65) \\
+\bottomrule
+\end{tabular}
+\end{table*}

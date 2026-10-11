@@ -1,0 +1,77 @@
+\begin{table}[t]
+\centering
+\footnotesize
+\caption{TabICL settings check (seed 42, Protocol~B, 6 datasets): main run (4 estimators, in-context set capped at 3,000 rows) against default settings (8 estimators, no cap). Mean rank of TabICL among the seven models and, in parentheses, its position.}
+\label{tab:sens_settings}
+\begin{tabular}{@{}llrrrr@{}}
+\toprule
+ & & \multicolumn{2}{c}{MRR} & \multicolumn{2}{c}{AUDC$_{\mathrm{bal}}$} \\
+\cmidrule(lr){3-4}\cmidrule(lr){5-6}
+Operator & & Main & Default & Main & Default \\
+\midrule
+Gaussian & & 6.83 (7) & 6.83 (7) & 5.00 (6) & 5.00 (6) \\
+MCAR & & 5.33 (6) & 5.33 (6) & 2.33 (1) & 2.00 (1) \\
+MAR & & 5.17 (6) & 5.17 (6) & 1.83 (1) & 1.67 (1) \\
+MNAR & & 5.17 (7) & 5.17 (7) & 3.67 (5) & 2.83 (1) \\
+\midrule
+Clean accuracy & & \multicolumn{2}{c}{0.935} & \multicolumn{2}{c}{0.938} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[t]
+\centering
+\footnotesize
+\caption{Compound corruption under Protocol~A (6 datasets, seeds 42, 43, 44, six classical families). $\tau$: Kendall correlation between the mean-rank vector under the compound operator and under each component alone. Additivity: median over dataset--model pairs of the compound AUDC loss (clean value minus AUDC) minus the sum of the two single-operator losses; negative values are sub-additive.}
+\label{tab:sens_compound}
+\begin{tabular}{@{}lllrrr@{}}
+\toprule
+Compound & Score & Component & $\tau$ & Additivity & Sub-additive \\
+\midrule
+Label noise + MCAR & MRR & label noise & 0.96 & $-0.019$ & 97\% \\
+ & MRR & MCAR & 0.28 &  &  \\
+ & AUDC$_{\mathrm{bal}}$ & label noise & 0.50 &  &  \\
+ & AUDC$_{\mathrm{bal}}$ & MCAR & 0.36 &  &  \\
+\midrule
+Gaussian + MCAR & MRR & Gaussian & 0.97 & $-0.002$ & 67\% \\
+ & MRR & MCAR & 0.41 &  &  \\
+ & AUDC$_{\mathrm{bal}}$ & Gaussian & 1.00 &  &  \\
+ & AUDC$_{\mathrm{bal}}$ & MCAR & 0.87 &  &  \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[t]
+\centering
+\footnotesize
+\caption{Bayesian signed-rank test (ROPE $\pm0.01$ on balanced AUDC) between the best and the second-best family under each confirmatory condition: posterior probability that the best family is better (right), practically equivalent (ROPE) or worse (left), and the share of posterior samples in which the best family wins the decision.}
+\label{tab:sens_bayes}
+\begin{tabular}{@{}llrrrr@{}}
+\toprule
+Condition & Best / second & $P(\mathrm{best})$ & $P(\mathrm{ROPE})$ & $P(\mathrm{second})$ & Wins \\
+\midrule
+Symmetric label & CatBoost / XGBoost & 0.31 & 0.36 & 0.33 & 0.28 \\
+Class-conditional & LightGBM / XGBoost & 0.16 & 0.83 & 0.01 & 0.00 \\
+Gaussian & LightGBM / XGBoost & 0.10 & 0.90 & 0.00 & 0.00 \\
+MCAR (imputed) & LightGBM / XGBoost & 0.20 & 0.80 & 0.00 & 0.01 \\
+MCAR (native) & LightGBM / XGBoost & 0.12 & 0.88 & 0.00 & 0.00 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[t]
+\centering
+\footnotesize
+\caption{Median MRR difference between TabICL and the best classical family per dataset{,} with a bootstrap 95\% interval over datasets (10{,}000 resamples).}
+\label{tab:sens_gap}
+\begin{tabular}{@{}lrr@{}}
+\toprule
+Operator & Median & 95\% interval \\
+\midrule
+Gaussian & $-0.093$ & $[-0.193,\,-0.046]$ \\
+MCAR & $-0.021$ & $[-0.044,\,-0.011]$ \\
+MAR & $-0.019$ & $[-0.039,\,-0.006]$ \\
+MNAR & $-0.023$ & $[-0.046,\,-0.010]$ \\
+\bottomrule
+\end{tabular}
+\end{table}

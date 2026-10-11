@@ -1,0 +1,16 @@
+\begin{table}[t]
+\centering
+\footnotesize
+\caption{Categorical corruption on the 6 datasets with nominal attributes (seeds 42--44). Categorical-aware: Gaussian noise on continuous attributes and whole-attribute resampling of nominal attributes; categorical-only: nominal attributes resampled, continuous attributes clean. $\Delta$: median over dataset--model pairs of balanced AUDC minus that of the plain Gaussian operator on the same folds; $p$: Wilcoxon signed-rank test.}
+\label{tab:categorical}
+\begin{tabular}{@{}llrrrll@{}}
+\toprule
+Protocol & Operator & AUDC$_{\mathrm{bal}}$ & $\Delta$ vs.\ Gaussian & $p$ & Best & Worst \\
+\midrule
+A & categorical-aware & 0.657 & $-0.0063$ & $4.7\times10^{-4}$ & LightGBM & CART \\
+ & categorical-only & 0.729 & $+0.0161$ & 0.004 & LightGBM & MLP \\
+B & categorical-aware & 0.668 & $-0.0024$ & 0.114 & LightGBM & CART \\
+ & categorical-only & 0.738 & $+0.0221$ & $3.1\times10^{-4}$ & LightGBM & MLP \\
+\bottomrule
+\end{tabular}
+\end{table}

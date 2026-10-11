@@ -1,0 +1,23 @@
+\begin{table}[t]
+\centering
+\footnotesize
+\caption{TabICL, secondary analysis (inference robustness, Protocol~B, seed 42, 6 datasets): constrained main configuration (4 estimators, in-context set capped at 3,000 rows) against a default-setting sensitivity run (8 estimators, no cap). The two runs use different compute budgets and are not an equal-budget comparison; the default run covers a subset of datasets and one seed. Mean rank of TabICL among the seven models (position in parentheses). Unchanged: TabICL's MRR rank under all four operators and its clean accuracy. Changed: its balanced-AUDC rank under MNAR masking. No claim extends to foundation models as a class.}
+\label{tab:tabicl_configs}
+\begin{tabular}{@{}llrr@{}}
+\toprule
+Score & Operator & Main (constrained) & Default \\
+\midrule
+MRR & Gaussian & 6.83 (7) & 6.83 (7) \\
+ & MCAR & 5.33 (6) & 5.33 (6) \\
+ & MAR & 5.17 (6) & 5.17 (6) \\
+ & MNAR & 5.17 (7) & 5.17 (7) \\
+\midrule
+AUDC$_{\mathrm{bal}}$ & Gaussian & 5.00 (6) & 5.00 (6) \\
+ & MCAR & 2.33 (1) & 2.00 (1) \\
+ & MAR & 1.83 (1) & 1.67 (1) \\
+ & MNAR & 3.67 (5) & 2.83 (1) \\
+\midrule
+Clean accuracy (mean) & -- & 0.935 & 0.938 \\
+\bottomrule
+\end{tabular}
+\end{table}

@@ -1,0 +1,83 @@
+{
+ "Bioresponse": [],
+ "phoneme": [],
+ "nomao": [
+  "V7",
+  "V8",
+  "V15",
+  "V16",
+  "V23",
+  "V24",
+  "V31",
+  "V32",
+  "V39",
+  "V40",
+  "V47",
+  "V48",
+  "V55",
+  "V56",
+  "V63",
+  "V64",
+  "V71",
+  "V72",
+  "V79",
+  "V80",
+  "V87",
+  "V88",
+  "V92",
+  "V96",
+  "V100",
+  "V104",
+  "V108",
+  "V112",
+  "V116"
+ ],
+ "eye_movements": [
+  "P1stFixation",
+  "P2stFixation",
+  "nextWordRegress"
+ ],
+ "churn": [
+  "area_code",
+  "international_plan",
+  "voice_mail_plan",
+  "number_customer_service_calls"
+ ],
+ "steel-plates-fault": [],
+ "qsar-biodeg": [],
+ "pol": [],
+ "jungle_chess": [],
+ "electricity": [
+  "day"
+ ],
+ "bank-marketing": [
+  "V2",
+  "V3",
+  "V4",
+  "V5",
+  "V7",
+  "V8",
+  "V9",
+  "V11",
+  "V16"
+ ],
+ "spambase": [],
+ "vehicle": [],
+ "miniboone": [],
+ "volkert": [],
+ "madelon": [],
+ "amazon_access": [
+  "RESOURCE",
+  "MGR_ID",
+  "ROLE_ROLLUP_1",
+  "ROLE_ROLLUP_2",
+  "ROLE_DEPTNAME",
+  "ROLE_TITLE",
+  "ROLE_FAMILY_DESC",
+  "ROLE_FAMILY",
+  "ROLE_CODE"
+ ],
+ "gesture_phase": [],
+ "ozone_level": [],
+ "hill_valley": []
+}

@@ -1,0 +1,36 @@
+\begin{table}[t]
+\centering
+\small
+\caption{Benchmark corpus as loaded from the cached OpenML matrices. $N$ is the original sample size, $N_{\mathrm{eff}}$ the size after the one-off stratified subsample to $10{,}000$ rows, $D$ the number of columns after encoding, $K$ the number of classes and $\pi_{\max}$ the majority-class rate.}
+\label{tab:inventory}
+\begin{tabular}{@{}lrrrrrr@{}}
+\toprule
+Dataset & OpenML ID & $N$ & $N_{\mathrm{eff}}$ & $D$ & $K$ & $\pi_{\max}$ \\
+\midrule
+\multicolumn{7}{@{}l}{\textit{Science \& sensing}} \\
+Bioresponse & 4134 & 3,751 & 3,751 & 1776 & 2 & 0.54 \\
+qsar-biodeg & 1494 & 1,055 & 1,055 & 41 & 2 & 0.66 \\
+eye\_movements & 1044 & 10,936 & 10,000 & 27 & 3 & 0.39 \\
+gesture\_phase & 4538 & 9,873 & 9,873 & 32 & 5 & 0.30 \\
+ozone\_level & 1487 & 2,534 & 2,534 & 72 & 2 & 0.94 \\
+\multicolumn{7}{@{}l}{\textit{Industrial \& physical}} \\
+steel-plates-fault & 1504 & 1,941 & 1,941 & 33 & 2 & 0.65 \\
+vehicle & 54 & 846 & 846 & 18 & 4 & 0.26 \\
+electricity & 151 & 45,312 & 10,000 & 13 & 2 & 0.58 \\
+pol & 201 & 15,000 & 10,000 & 48 & 11 & 0.62 \\
+miniboone & 41150 & 130,064 & 10,000 & 50 & 2 & 0.72 \\
+\multicolumn{7}{@{}l}{\textit{Business \& web}} \\
+bank-marketing & 1461 & 45,211 & 10,000 & 42 & 2 & 0.88 \\
+churn & 40701 & 5,000 & 5,000 & 29 & 2 & 0.86 \\
+amazon\_access & 4135 & 32,769 & 10,000 & 9 & 2 & 0.94 \\
+nomao & 1486 & 34,465 & 10,000 & 145 & 2 & 0.71 \\
+spambase & 44 & 4,601 & 4,601 & 57 & 2 & 0.61 \\
+\multicolumn{7}{@{}l}{\textit{Synthetic, game \& perceptual}} \\
+madelon & 1485 & 2,600 & 2,600 & 500 & 2 & 0.50 \\
+hill\_valley & 1479 & 1,212 & 1,212 & 100 & 2 & 0.50 \\
+jungle\_chess & 41027 & 44,819 & 10,000 & 6 & 3 & 0.51 \\
+phoneme & 1489 & 5,404 & 5,404 & 5 & 2 & 0.71 \\
+volkert & 41166 & 58,310 & 10,000 & 180 & 10 & 0.22 \\
+\bottomrule
+\end{tabular}
+\end{table}

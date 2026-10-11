@@ -1,0 +1,18 @@
+\begin{table}[htbp]
+\centering\small
+\caption{Rows before and after each cleaning rule, for the datasets on which at least one rule applies (the other 12 datasets are unaffected). R1 and R2 act on feature vectors, R3 on sentinel rows. Only the cleaned copies of spambase (R1 and R2), churn (identifier column) and MiniBooNE (R3) enter the artifact analysis; the other rows are reported for transparency.}\label{tab:cleaning_counts}
+\begin{tabular}{@{}lrrrrrr@{}}
+\toprule
+Dataset & Rows & R1 duplicates & R2 conflicting & After R1+R2 & R3 sentinel & After R3 \\
+\midrule
+phoneme & 5{,}404 & 9 & 0 & 5{,}395 & 0 & 5{,}404 \\
+nomao & 34{,}465 & 2{,}399 & 8 & 32{,}058 & 0 & 34{,}465 \\
+qsar-biodeg & 1{,}055 & 3 & 0 & 1{,}052 & 0 & 1{,}055 \\
+pol & 15{,}000 & 42 & 0 & 14{,}958 & 0 & 15{,}000 \\
+spambase & 4{,}601 & 391 & 6 & 4{,}204 & 0 & 4{,}601 \\
+miniboone & 130{,}064 & 0 & 468 & 129{,}596 & 468 & 129{,}596 \\
+volkert & 58{,}310 & 12 & 0 & 58{,}298 & 0 & 58{,}310 \\
+ozone\_level & 2{,}534 & 8 & 0 & 2{,}526 & 0 & 2{,}534 \\
+\bottomrule
+\end{tabular}
+\end{table}

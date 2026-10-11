@@ -1,0 +1,1447 @@
+{
+ "n_cells": 120,
+ "max_abs_diff": 1.1102230246251565e-16,
+ "n_blocks": 10,
+ "cells": [
+  {
+   "task": [
+    "base",
+    43,
+    "vehicle",
+    "cart",
+    "mcar_missing",
+    0.05
+   ],
+   "stored": 0.6630699617124958,
+   "recomputed": 0.6630699617124958
+  },
+  {
+   "task": [
+    "base",
+    43,
+    "amazon_access",
+    "catboost",
+    "gaussian_feature",
+    0.35
+   ],
+   "stored": 0.9421000000000002,
+   "recomputed": 0.9421000000000002
+  },
+  {
+   "task": [
+    "base",
+    43,
+    "Bioresponse",
+    "lightgbm",
+    "mcar_missing",
+    0.4
+   ],
+   "stored": 0.7488656901908566,
+   "recomputed": 0.7488656901908566
+  },
+  {
+   "task": [
+    "base",
+    43,
+    "electricity",
+    "mlp",
+    "symmetric_label",
+    0.3
+   ],
+   "stored": 0.7591,
+   "recomputed": 0.7591
+  },
+  {
+   "task": [
+    "base",
+    43,
+    "amazon_access",
+    "cart",
+    "symmetric_label",
+    0.15
+   ],
+   "stored": 0.7784000000000001,
+   "recomputed": 0.7784000000000001
+  },
+  {
+   "task": [
+    "base",
+    43,
+    "gesture_phase",
+    "cart",
+    "mcar_missing",
+    0.1
+   ],
+   "stored": 0.4543720518641068,
+   "recomputed": 0.45437205186410684
+  },
+  {
+   "task": [
+    "base",
+    43,
+    "pol",
+    "mlp",
+    "symmetric_label",
+    0.45
+   ],
+   "stored": 0.8196,
+   "recomputed": 0.8196
+  },
+  {
+   "task": [
+    "base",
+    43,
+    "phoneme",
+    "catboost",
+    "gaussian_feature",
+    0.05
+   ],
+   "stored": 0.8645415767293658,
+   "recomputed": 0.8645415767293658
+  },
+  {
+   "task": [
+    "base",
+    43,
+    "eye_movements",
+    "mlp",
+    "asymmetric_label",
+    0.05
+   ],
+   "stored": 0.5593999999999999,
+   "recomputed": 0.5593999999999999
+  },
+  {
+   "task": [
+    "base",
+    43,
+    "jungle_chess",
+    "cart",
+    "symmetric_label",
+    0.15
+   ],
+   "stored": 0.6547000000000001,
+   "recomputed": 0.6547000000000001
+  },
+  {
+   "task": [
+    "base",
+    43,
+    "pol",
+    "lightgbm",
+    "mcar_missing",
+    0.05
+   ],
+   "stored": 0.8635999999999999,
+   "recomputed": 0.8635999999999999
+  },
+  {
+   "task": [
+    "base",
+    43,
+    "vehicle",
+    "randomforest",
+    "asymmetric_label",
+    0.05
+   ],
+   "stored": 0.7494048033414549,
+   "recomputed": 0.7494048033414549
+  },
+  {
+   "task": [
+    "base",
+    44,
+    "vehicle",
+    "xgboost",
+    "gaussian_feature",
+    0.35
+   ],
+   "stored": 0.670170553428472,
+   "recomputed": 0.670170553428472
+  },
+  {
+   "task": [
+    "base",
+    44,
+    "electricity",
+    "catboost",
+    "gaussian_feature",
+    0.15
+   ],
+   "stored": 0.7701,
+   "recomputed": 0.7701
+  },
+  {
+   "task": [
+    "base",
+    44,
+    "jungle_chess",
+    "catboost",
+    "asymmetric_label",
+    0.35
+   ],
+   "stored": 0.7628000000000001,
+   "recomputed": 0.7628000000000001
+  },
+  {
+   "task": [
+    "base",
+    44,
+    "vehicle",
+    "randomforest",
+    "asymmetric_label",
+    0.15
+   ],
+   "stored": 0.7387817612252001,
+   "recomputed": 0.7387817612252001
+  },
+  {
+   "task": [
+    "base",
+    44,
+    "ozone_level",
+    "xgboost",
+    "gaussian_feature",
+    0.1
+   ],
+   "stored": 0.9467245129452486,
+   "recomputed": 0.9467245129452486
+  },
+  {
+   "task": [
+    "base",
+    44,
+    "spambase",
+    "xgboost",
+    "mcar_missing",
+    0.05
+   ],
+   "stored": 0.9476212056838028,
+   "recomputed": 0.9476212056838029
+  },
+  {
+   "task": [
+    "base",
+    44,
+    "nomao",
+    "randomforest",
+    "asymmetric_label",
+    0.2
+   ],
+   "stored": 0.9278,
+   "recomputed": 0.9278000000000001
+  },
+  {
+   "task": [
+    "base",
+    44,
+    "amazon_access",
+    "catboost",
+    "symmetric_label",
+    0.15
+   ],
+   "stored": 0.9422,
+   "recomputed": 0.9422
+  },
+  {
+   "task": [
+    "base",
+    44,
+    "jungle_chess",
+    "lightgbm",
+    "symmetric_label",
+    0.05
+   ],
+   "stored": 0.8402999999999998,
+   "recomputed": 0.8402999999999998
+  },
+  {
+   "task": [
+    "base",
+    44,
+    "spambase",
+    "mlp",
+    "mcar_missing",
+    0.35
+   ],
+   "stored": 0.904588585186234,
+   "recomputed": 0.9045885851862341
+  },
+  {
+   "task": [
+    "base",
+    44,
+    "steel-plates-fault",
+    "xgboost",
+    "symmetric_label",
+    0.1
+   ],
+   "stored": 0.9881536055972228,
+   "recomputed": 0.9881536055972227
+  },
+  {
+   "task": [
+    "base",
+    44,
+    "madelon",
+    "randomforest",
+    "gaussian_feature",
+    0.2
+   ],
+   "stored": 0.6803846153846154,
+   "recomputed": 0.6803846153846154
+  },
+  {
+   "task": [
+    "cc_binary",
+    42,
+    "hill_valley",
+    "catboost",
+    "minority_to_majority",
+    0.3
+   ],
+   "stored": 0.5074584226099377,
+   "recomputed": 0.5074584226099377
+  },
+  {
+   "task": [
+    "cc_binary",
+    42,
+    "ozone_level",
+    "xgboost",
+    "minority_to_majority",
+    0.5
+   ],
+   "stored": 0.9388326277958386,
+   "recomputed": 0.9388326277958386
+  },
+  {
+   "task": [
+    "cc_binary",
+    42,
+    "electricity",
+    "catboost",
+    "minority_to_majority",
+    0.1
+   ],
+   "stored": 0.8076000000000001,
+   "recomputed": 0.8076000000000001
+  },
+  {
+   "task": [
+    "cc_binary",
+    42,
+    "electricity",
+    "xgboost",
+    "minority_to_majority",
+    0.5
+   ],
+   "stored": 0.6418,
+   "recomputed": 0.6418
+  },
+  {
+   "task": [
+    "cc_binary",
+    42,
+    "steel-plates-fault",
+    "lightgbm",
+    "minority_to_majority",
+    0.2
+   ],
+   "stored": 0.9634166379561656,
+   "recomputed": 0.9634166379561657
+  },
+  {
+   "task": [
+    "cc_binary",
+    42,
+    "qsar-biodeg",
+    "cart",
+    "minority_to_majority",
+    0.45
+   ],
+   "stored": 0.7488151658767773,
+   "recomputed": 0.7488151658767773
+  },
+  {
+   "task": [
+    "cc_binary",
+    42,
+    "nomao",
+    "randomforest",
+    "minority_to_majority",
+    0.35
+   ],
+   "stored": 0.9068,
+   "recomputed": 0.9067999999999999
+  },
+  {
+   "task": [
+    "cc_binary",
+    42,
+    "electricity",
+    "cart",
+    "minority_to_majority",
+    0.4
+   ],
+   "stored": 0.7049,
+   "recomputed": 0.7049
+  },
+  {
+   "task": [
+    "cc_binary",
+    42,
+    "Bioresponse",
+    "randomforest",
+    "minority_to_majority",
+    0.15
+   ],
+   "stored": 0.7739238348868176,
+   "recomputed": 0.7739238348868176
+  },
+  {
+   "task": [
+    "cc_binary",
+    42,
+    "spambase",
+    "xgboost",
+    "minority_to_majority",
+    0.1
+   ],
+   "stored": 0.9437093423972052,
+   "recomputed": 0.9437093423972053
+  },
+  {
+   "task": [
+    "cc_binary",
+    42,
+    "electricity",
+    "randomforest",
+    "minority_to_majority",
+    0.15
+   ],
+   "stored": 0.8298,
+   "recomputed": 0.8298
+  },
+  {
+   "task": [
+    "cc_binary",
+    42,
+    "nomao",
+    "catboost",
+    "minority_to_majority",
+    0.05
+   ],
+   "stored": 0.9552000000000002,
+   "recomputed": 0.9552000000000002
+  },
+  {
+   "task": [
+    "cc_binary",
+    43,
+    "spambase",
+    "xgboost",
+    "minority_to_majority",
+    0.05
+   ],
+   "stored": 0.948924845394892,
+   "recomputed": 0.9489248453948921
+  },
+  {
+   "task": [
+    "cc_binary",
+    43,
+    "Bioresponse",
+    "cart",
+    "minority_to_majority",
+    0.2
+   ],
+   "stored": 0.6872866400355082,
+   "recomputed": 0.6872866400355082
+  },
+  {
+   "task": [
+    "cc_binary",
+    43,
+    "electricity",
+    "xgboost",
+    "minority_to_majority",
+    0.35
+   ],
+   "stored": 0.756,
+   "recomputed": 0.756
+  },
+  {
+   "task": [
+    "cc_binary",
+    43,
+    "electricity",
+    "cart",
+    "minority_to_majority",
+    0.2
+   ],
+   "stored": 0.7526999999999999,
+   "recomputed": 0.7526999999999999
+  },
+  {
+   "task": [
+    "cc_binary",
+    43,
+    "qsar-biodeg",
+    "mlp",
+    "minority_to_majority",
+    0.25
+   ],
+   "stored": 0.7924170616113744,
+   "recomputed": 0.7924170616113744
+  },
+  {
+   "task": [
+    "cc_binary",
+    43,
+    "steel-plates-fault",
+    "xgboost",
+    "minority_to_majority",
+    0.4
+   ],
+   "stored": 0.8804574245355525,
+   "recomputed": 0.8804574245355525
+  },
+  {
+   "task": [
+    "cc_binary",
+    43,
+    "qsar-biodeg",
+    "catboost",
+    "minority_to_majority",
+    0.2
+   ],
+   "stored": 0.8322274881516588,
+   "recomputed": 0.8322274881516588
+  },
+  {
+   "task": [
+    "cc_binary",
+    43,
+    "hill_valley",
+    "cart",
+    "minority_to_majority",
+    0.35
+   ],
+   "stored": 0.518171615141312,
+   "recomputed": 0.518171615141312
+  },
+  {
+   "task": [
+    "cc_binary",
+    43,
+    "steel-plates-fault",
+    "catboost",
+    "minority_to_majority",
+    0.35
+   ],
+   "stored": 0.9165306230620412,
+   "recomputed": 0.9165306230620411
+  },
+  {
+   "task": [
+    "cc_binary",
+    43,
+    "ozone_level",
+    "cart",
+    "minority_to_majority",
+    0.3
+   ],
+   "stored": 0.9108122646584184,
+   "recomputed": 0.9108122646584185
+  },
+  {
+   "task": [
+    "cc_binary",
+    43,
+    "bank-marketing",
+    "catboost",
+    "minority_to_majority",
+    0.45
+   ],
+   "stored": 0.8888,
+   "recomputed": 0.8888
+  },
+  {
+   "task": [
+    "cc_binary",
+    43,
+    "madelon",
+    "lightgbm",
+    "minority_to_majority",
+    0.2
+   ],
+   "stored": 0.6988461538461539,
+   "recomputed": 0.6988461538461539
+  },
+  {
+   "task": [
+    "cc_binary",
+    44,
+    "amazon_access",
+    "cart",
+    "minority_to_majority",
+    0.5
+   ],
+   "stored": 0.9271,
+   "recomputed": 0.9271
+  },
+  {
+   "task": [
+    "cc_binary",
+    44,
+    "spambase",
+    "catboost",
+    "minority_to_majority",
+    0.05
+   ],
+   "stored": 0.9517518765047444,
+   "recomputed": 0.9517518765047444
+  },
+  {
+   "task": [
+    "cc_binary",
+    44,
+    "spambase",
+    "cart",
+    "minority_to_majority",
+    0.25
+   ],
+   "stored": 0.8335183873861116,
+   "recomputed": 0.8335183873861116
+  },
+  {
+   "task": [
+    "cc_binary",
+    44,
+    "electricity",
+    "randomforest",
+    "minority_to_majority",
+    0.3
+   ],
+   "stored": 0.7704000000000001,
+   "recomputed": 0.7704000000000001
+  },
+  {
+   "task": [
+    "cc_binary",
+    44,
+    "hill_valley",
+    "mlp",
+    "minority_to_majority",
+    0.4
+   ],
+   "stored": 0.5016596945889875,
+   "recomputed": 0.5016596945889875
+  },
+  {
+   "task": [
+    "cc_binary",
+    44,
+    "electricity",
+    "lightgbm",
+    "minority_to_majority",
+    0.2
+   ],
+   "stored": 0.8244,
+   "recomputed": 0.8244
+  },
+  {
+   "task": [
+    "cc_binary",
+    44,
+    "nomao",
+    "lightgbm",
+    "minority_to_majority",
+    0.4
+   ],
+   "stored": 0.8865999999999999,
+   "recomputed": 0.8865999999999999
+  },
+  {
+   "task": [
+    "cc_binary",
+    44,
+    "hill_valley",
+    "lightgbm",
+    "minority_to_majority",
+    0.15
+   ],
+   "stored": 0.5742815358976975,
+   "recomputed": 0.5742815358976975
+  },
+  {
+   "task": [
+    "cc_binary",
+    44,
+    "Bioresponse",
+    "lightgbm",
+    "minority_to_majority",
+    0.15
+   ],
+   "stored": 0.7867195739014647,
+   "recomputed": 0.7867195739014647
+  },
+  {
+   "task": [
+    "cc_binary",
+    44,
+    "bank-marketing",
+    "randomforest",
+    "minority_to_majority",
+    0.45
+   ],
+   "stored": 0.8853,
+   "recomputed": 0.8853
+  },
+  {
+   "task": [
+    "cc_binary",
+    44,
+    "qsar-biodeg",
+    "randomforest",
+    "minority_to_majority",
+    0.1
+   ],
+   "stored": 0.8635071090047394,
+   "recomputed": 0.8635071090047394
+  },
+  {
+   "task": [
+    "cc_binary",
+    44,
+    "nomao",
+    "cart",
+    "minority_to_majority",
+    0.5
+   ],
+   "stored": 0.8201,
+   "recomputed": 0.8201
+  },
+  {
+   "task": [
+    "native_nan",
+    42,
+    "gesture_phase",
+    "xgboost",
+    "mcar_missing",
+    0.15
+   ],
+   "stored": 0.5806761827812192,
+   "recomputed": 0.5806761827812192
+  },
+  {
+   "task": [
+    "native_nan",
+    42,
+    "qsar-biodeg",
+    "randomforest",
+    "mcar_missing",
+    0.15
+   ],
+   "stored": 0.8578199052132701,
+   "recomputed": 0.8578199052132701
+  },
+  {
+   "task": [
+    "native_nan",
+    42,
+    "electricity",
+    "catboost",
+    "mcar_missing",
+    0.1
+   ],
+   "stored": 0.7899,
+   "recomputed": 0.7899
+  },
+  {
+   "task": [
+    "native_nan",
+    42,
+    "amazon_access",
+    "cart",
+    "mcar_missing",
+    0.25
+   ],
+   "stored": 0.8895,
+   "recomputed": 0.8895
+  },
+  {
+   "task": [
+    "native_nan",
+    42,
+    "electricity",
+    "lightgbm",
+    "mcar_missing",
+    0.05
+   ],
+   "stored": 0.8352,
+   "recomputed": 0.8352
+  },
+  {
+   "task": [
+    "native_nan",
+    42,
+    "pol",
+    "catboost",
+    "mcar_missing",
+    0.1
+   ],
+   "stored": 0.8150000000000001,
+   "recomputed": 0.8150000000000001
+  },
+  {
+   "task": [
+    "native_nan",
+    42,
+    "Bioresponse",
+    "cart",
+    "mcar_missing",
+    0.15
+   ],
+   "stored": 0.6688823790501554,
+   "recomputed": 0.6688823790501554
+  },
+  {
+   "task": [
+    "native_nan",
+    42,
+    "madelon",
+    "randomforest",
+    "mcar_missing",
+    0.15
+   ],
+   "stored": 0.6261538461538462,
+   "recomputed": 0.6261538461538462
+  },
+  {
+   "task": [
+    "native_nan",
+    42,
+    "Bioresponse",
+    "lightgbm",
+    "mcar_missing",
+    0.35
+   ],
+   "stored": 0.7517965379494008,
+   "recomputed": 0.7517965379494008
+  },
+  {
+   "task": [
+    "native_nan",
+    42,
+    "miniboone",
+    "lightgbm",
+    "mcar_missing",
+    0.5
+   ],
+   "stored": 0.8995,
+   "recomputed": 0.8995
+  },
+  {
+   "task": [
+    "native_nan",
+    42,
+    "steel-plates-fault",
+    "lightgbm",
+    "mcar_missing",
+    0.45
+   ],
+   "stored": 0.821736941139056,
+   "recomputed": 0.821736941139056
+  },
+  {
+   "task": [
+    "native_nan",
+    42,
+    "amazon_access",
+    "cart",
+    "mcar_missing",
+    0.3
+   ],
+   "stored": 0.8847999999999999,
+   "recomputed": 0.8847999999999999
+  },
+  {
+   "task": [
+    "native_nan",
+    43,
+    "hill_valley",
+    "randomforest",
+    "mcar_missing",
+    0.2
+   ],
+   "stored": 0.5098731421963746,
+   "recomputed": 0.5098731421963746
+  },
+  {
+   "task": [
+    "native_nan",
+    43,
+    "jungle_chess",
+    "cart",
+    "mcar_missing",
+    0.05
+   ],
+   "stored": 0.7522,
+   "recomputed": 0.7522
+  },
+  {
+   "task": [
+    "native_nan",
+    43,
+    "bank-marketing",
+    "lightgbm",
+    "mcar_missing",
+    0.35
+   ],
+   "stored": 0.8924,
+   "recomputed": 0.8924
+  },
+  {
+   "task": [
+    "native_nan",
+    43,
+    "spambase",
+    "xgboost",
+    "mcar_missing",
+    0.15
+   ],
+   "stored": 0.9371883113817684,
+   "recomputed": 0.9371883113817683
+  },
+  {
+   "task": [
+    "native_nan",
+    43,
+    "madelon",
+    "xgboost",
+    "mcar_missing",
+    0.45
+   ],
+   "stored": 0.6123076923076923,
+   "recomputed": 0.6123076923076923
+  },
+  {
+   "task": [
+    "native_nan",
+    43,
+    "electricity",
+    "catboost",
+    "mcar_missing",
+    0.2
+   ],
+   "stored": 0.7705,
+   "recomputed": 0.7705
+  },
+  {
+   "task": [
+    "native_nan",
+    43,
+    "hill_valley",
+    "cart",
+    "mcar_missing",
+    0.2
+   ],
+   "stored": 0.5033023841104649,
+   "recomputed": 0.5033023841104649
+  },
+  {
+   "task": [
+    "native_nan",
+    43,
+    "miniboone",
+    "catboost",
+    "mcar_missing",
+    0.1
+   ],
+   "stored": 0.9236,
+   "recomputed": 0.9235999999999999
+  },
+  {
+   "task": [
+    "native_nan",
+    43,
+    "steel-plates-fault",
+    "catboost",
+    "mcar_missing",
+    0.25
+   ],
+   "stored": 0.8856398908117562,
+   "recomputed": 0.8856398908117562
+  },
+  {
+   "task": [
+    "native_nan",
+    43,
+    "pol",
+    "cart",
+    "mcar_missing",
+    0.5
+   ],
+   "stored": 0.611,
+   "recomputed": 0.611
+  },
+  {
+   "task": [
+    "native_nan",
+    43,
+    "eye_movements",
+    "xgboost",
+    "mcar_missing",
+    0.45
+   ],
+   "stored": 0.5182,
+   "recomputed": 0.5182
+  },
+  {
+   "task": [
+    "native_nan",
+    43,
+    "gesture_phase",
+    "catboost",
+    "mcar_missing",
+    0.25
+   ],
+   "stored": 0.5069382991548357,
+   "recomputed": 0.5069382991548357
+  },
+  {
+   "task": [
+    "native_nan",
+    44,
+    "gesture_phase",
+    "cart",
+    "mcar_missing",
+    0.35
+   ],
+   "stored": 0.3815465353391558,
+   "recomputed": 0.38154653533915583
+  },
+  {
+   "task": [
+    "native_nan",
+    44,
+    "vehicle",
+    "lightgbm",
+    "mcar_missing",
+    0.15
+   ],
+   "stored": 0.7151409676296555,
+   "recomputed": 0.7151409676296555
+  },
+  {
+   "task": [
+    "native_nan",
+    44,
+    "steel-plates-fault",
+    "randomforest",
+    "mcar_missing",
+    0.25
+   ],
+   "stored": 0.888211909999205,
+   "recomputed": 0.888211909999205
+  },
+  {
+   "task": [
+    "native_nan",
+    44,
+    "phoneme",
+    "randomforest",
+    "mcar_missing",
+    0.15
+   ],
+   "stored": 0.8610292253400486,
+   "recomputed": 0.8610292253400486
+  },
+  {
+   "task": [
+    "native_nan",
+    44,
+    "phoneme",
+    "catboost",
+    "mcar_missing",
+    0.45
+   ],
+   "stored": 0.7771975537054168,
+   "recomputed": 0.7771975537054168
+  },
+  {
+   "task": [
+    "native_nan",
+    44,
+    "ozone_level",
+    "lightgbm",
+    "mcar_missing",
+    0.35
+   ],
+   "stored": 0.938834186994722,
+   "recomputed": 0.9388341869947221
+  },
+  {
+   "task": [
+    "native_nan",
+    44,
+    "qsar-biodeg",
+    "catboost",
+    "mcar_missing",
+    0.4
+   ],
+   "stored": 0.8227488151658768,
+   "recomputed": 0.8227488151658768
+  },
+  {
+   "task": [
+    "native_nan",
+    44,
+    "Bioresponse",
+    "randomforest",
+    "mcar_missing",
+    0.15
+   ],
+   "stored": 0.7595298712827342,
+   "recomputed": 0.7595298712827342
+  },
+  {
+   "task": [
+    "native_nan",
+    44,
+    "pol",
+    "catboost",
+    "mcar_missing",
+    0.5
+   ],
+   "stored": 0.7150000000000001,
+   "recomputed": 0.7150000000000001
+  },
+  {
+   "task": [
+    "native_nan",
+    44,
+    "spambase",
+    "xgboost",
+    "mcar_missing",
+    0.2
+   ],
+   "stored": 0.9371899636500968,
+   "recomputed": 0.9371899636500967
+  },
+  {
+   "task": [
+    "native_nan",
+    44,
+    "phoneme",
+    "catboost",
+    "mcar_missing",
+    0.05
+   ],
+   "stored": 0.8641754890876076,
+   "recomputed": 0.8641754890876076
+  },
+  {
+   "task": [
+    "native_nan",
+    44,
+    "phoneme",
+    "lightgbm",
+    "mcar_missing",
+    0.25
+   ],
+   "stored": 0.8366010552643299,
+   "recomputed": 0.8366010552643299
+  },
+  {
+   "task": [
+    "xgb_default",
+    42,
+    "phoneme",
+    "xgboost",
+    "gaussian_feature",
+    0.45
+   ],
+   "stored": 0.7722044060711962,
+   "recomputed": 0.7722044060711962
+  },
+  {
+   "task": [
+    "xgb_default",
+    42,
+    "vehicle",
+    "xgboost",
+    "symmetric_label",
+    0.4
+   ],
+   "stored": 0.5649843369300382,
+   "recomputed": 0.5649843369300382
+  },
+  {
+   "task": [
+    "xgb_default",
+    42,
+    "ozone_level",
+    "xgboost",
+    "gaussian_feature",
+    0.35
+   ],
+   "stored": 0.9447490079597104,
+   "recomputed": 0.9447490079597103
+  },
+  {
+   "task": [
+    "xgb_default",
+    42,
+    "madelon",
+    "xgboost",
+    "mcar_missing",
+    0.2
+   ],
+   "stored": 0.7034615384615386,
+   "recomputed": 0.7034615384615386
+  },
+  {
+   "task": [
+    "xgb_default",
+    42,
+    "steel-plates-fault",
+    "xgboost",
+    "asymmetric_label",
+    0.5
+   ],
+   "stored": 0.489452203641375,
+   "recomputed": 0.489452203641375
+  },
+  {
+   "task": [
+    "xgb_default",
+    42,
+    "madelon",
+    "xgboost",
+    "mcar_missing",
+    0.25
+   ],
+   "stored": 0.6761538461538461,
+   "recomputed": 0.6761538461538461
+  },
+  {
+   "task": [
+    "xgb_default",
+    42,
+    "spambase",
+    "xgboost",
+    "gaussian_feature",
+    0.15
+   ],
+   "stored": 0.9258872680923382,
+   "recomputed": 0.9258872680923382
+  },
+  {
+   "task": [
+    "xgb_default",
+    42,
+    "phoneme",
+    "xgboost",
+    "gaussian_feature",
+    0.1
+   ],
+   "stored": 0.8586243875698084,
+   "recomputed": 0.8586243875698084
+  },
+  {
+   "task": [
+    "xgb_default",
+    42,
+    "miniboone",
+    "xgboost",
+    "symmetric_label",
+    0.5
+   ],
+   "stored": 0.5134,
+   "recomputed": 0.5134
+  },
+  {
+   "task": [
+    "xgb_default",
+    42,
+    "miniboone",
+    "xgboost",
+    "gaussian_feature",
+    0.4
+   ],
+   "stored": 0.8298,
+   "recomputed": 0.8298
+  },
+  {
+   "task": [
+    "xgb_default",
+    42,
+    "steel-plates-fault",
+    "xgboost",
+    "asymmetric_label",
+    0.15
+   ],
+   "stored": 0.9520817321707792,
+   "recomputed": 0.9520817321707791
+  },
+  {
+   "task": [
+    "xgb_default",
+    42,
+    "ozone_level",
+    "xgboost",
+    "asymmetric_label",
+    0.4
+   ],
+   "stored": 0.6870492940727054,
+   "recomputed": 0.6870492940727054
+  },
+  {
+   "task": [
+    "base",
+    42,
+    "nomao",
+    "randomforest",
+    "asymmetric_label",
+    0.15
+   ],
+   "stored": 0.9391,
+   "recomputed": 0.9391
+  },
+  {
+   "task": [
+    "base",
+    42,
+    "gesture_phase",
+    "mlp",
+    "symmetric_label",
+    0.25
+   ],
+   "stored": 0.5323631000474524,
+   "recomputed": 0.5323631000474524
+  },
+  {
+   "task": [
+    "base",
+    42,
+    "bank-marketing",
+    "catboost",
+    "gaussian_feature",
+    0.0
+   ],
+   "stored": 0.9054,
+   "recomputed": 0.9053999999999999
+  },
+  {
+   "task": [
+    "base",
+    42,
+    "nomao",
+    "mlp",
+    "gaussian_feature",
+    0.25
+   ],
+   "stored": 0.9439,
+   "recomputed": 0.9439
+  },
+  {
+   "task": [
+    "base",
+    42,
+    "spambase",
+    "randomforest",
+    "gaussian_feature",
+    0.3
+   ],
+   "stored": 0.9111058395883492,
+   "recomputed": 0.9111058395883491
+  },
+  {
+   "task": [
+    "base",
+    42,
+    "amazon_access",
+    "randomforest",
+    "gaussian_feature",
+    0.45
+   ],
+   "stored": 0.942,
+   "recomputed": 0.942
+  },
+  {
+   "task": [
+    "base",
+    42,
+    "steel-plates-fault",
+    "mlp",
+    "gaussian_feature",
+    0.45
+   ],
+   "stored": 0.9757930723769646,
+   "recomputed": 0.9757930723769646
+  },
+  {
+   "task": [
+    "base",
+    42,
+    "pol",
+    "lightgbm",
+    "symmetric_label",
+    0.35
+   ],
+   "stored": 0.8408000000000001,
+   "recomputed": 0.8408000000000001
+  },
+  {
+   "task": [
+    "base",
+    42,
+    "eye_movements",
+    "xgboost",
+    "asymmetric_label",
+    0.25
+   ],
+   "stored": 0.6031000000000001,
+   "recomputed": 0.6031000000000001
+  },
+  {
+   "task": [
+    "base",
+    42,
+    "nomao",
+    "lightgbm",
+    "symmetric_label",
+    0.2
+   ],
+   "stored": 0.9381,
+   "recomputed": 0.9381
+  },
+  {
+   "task": [
+    "base",
+    42,
+    "hill_valley",
+    "lightgbm",
+    "mcar_missing",
+    0.15
+   ],
+   "stored": 0.5115702479338843,
+   "recomputed": 0.5115702479338843
+  },
+  {
+   "task": [
+    "base",
+    42,
+    "gesture_phase",
+    "xgboost",
+    "symmetric_label",
+    0.2
+   ],
+   "stored": 0.6197732035448169,
+   "recomputed": 0.6197732035448169
+  }
+ ]
+}

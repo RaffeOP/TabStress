@@ -1,0 +1,45 @@
+\begin{table*}[t]
+\centering
+\footnotesize
+\caption{Cross-model comparison on the primary grid (Protocol~A, $N=20$ datasets, $k=6$ models, seed-averaged). Best and worst: lowest and highest mean Friedman rank (in parentheses). $p$: Iman--Davenport $p$-value (omnibus: do mean ranks differ?), Holm-adjusted over the confirmatory family of 15 tests (upper block) or over the sensitivity family, i.e.\ jointly over all 30 tests (lower block). $W$: Kendall's coefficient of concordance, the effect size of the Friedman test (0: no agreement among datasets, 1: identical ranking on every dataset). Pairs: model pairs separated by Holm-adjusted Wilcoxon / Nemenyi (CD$=1.686$) out of 15 (pairwise support). $W$ is the practical magnitude of the ordering; a small $p$ with low $W$ and few separated pairs is not a stable ordering. Metric interpretations: $\AUDC_{\mathrm{bal}}$ (primary) measures absolute endurance under class imbalance; $\AUDC$ measures raw area under the degradation curve; $\MRR$ measures relative accuracy retention normalised by clean performance ($A_0$); $\MRR_{\mathrm{bal}}$, $\aMRR$ and $\aMRR_{\mathrm{bal}}$ are complementary views, not primary outcomes.}
+\label{tab:combined}
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{@{}llllrrr@{}}
+\toprule
+Metric & Corruption & Best (rank) & Worst (rank) & adj.\ $p$ & $W$ & Pairs W/N \\
+\midrule
+AUDC$_{\mathrm{bal}}$ & Symmetric & CatBoost (2.60) & CART (5.50) & $1.6\times10^{-8}$ & 0.39 & 5/4 \\
+ & Class-cond. & LightGBM (2.15) & MLP (4.65) & $1.5\times10^{-6}$ & 0.32 & 8/5 \\
+ & Gaussian & LightGBM (1.95) & CART (4.85) & $2.1\times10^{-6}$ & 0.31 & 6/5 \\
+ & MCAR imp. & LightGBM (1.60) & CART (5.00) & $6.1\times10^{-11}$ & 0.47 & 8/6 \\
+ & MCAR nat. & LightGBM (1.50) & CART (4.90) & $3.7\times10^{-12}$ & 0.50 & 9/7 \\
+AUDC & Symmetric & CatBoost (2.15) & CART (5.85) & $2.8\times10^{-10}$ & 0.45 & 5/5 \\
+ & Class-cond. & XGBoost (2.20) & CART (5.55) & $6.0\times10^{-13}$ & 0.52 & 8/6 \\
+ & Gaussian & LightGBM (1.90) & CART (5.65) & $1.2\times10^{-12}$ & 0.52 & 9/6 \\
+ & MCAR imp. & LightGBM (1.75) & CART (5.95) & $4.0\times10^{-21}$ & 0.68 & 13/7 \\
+ & MCAR nat. & LightGBM (1.30) & CART (5.90) & $1.4\times10^{-26}$ & 0.76 & 14/8 \\
+MRR & Symmetric & CatBoost (1.50) & CART (5.75) & $4.4\times10^{-21}$ & 0.68 & 12/8 \\
+ & Class-cond. & MLP (2.60) & RF (4.45) & 0.026 & 0.12 & 1/1 \\
+ & Gaussian & MLP (2.23) & CART (5.62) & $2.6\times10^{-10}$ & 0.45 & 9/6 \\
+ & MCAR imp. & CatBoost (2.55) & CART (5.85) & $4.8\times10^{-9}$ & 0.41 & 5/5 \\
+ & MCAR nat. & XGBoost (2.60) & CART (5.80) & $4.8\times10^{-9}$ & 0.41 & 5/5 \\
+\midrule
+\multicolumn{7}{@{}l}{\emph{Sensitivity metrics (not confirmatory)}}\\
+MRR$_{\mathrm{bal}}$ & Symmetric & CatBoost (1.80) & CART (5.65) & $5.0\times10^{-11}$ & 0.48 & 8/5 \\
+ & Class-cond. & XGBoost (3.15) & RF (3.85) & 0.879 & 0.02 & 0/0 \\
+ & Gaussian & MLP (2.23) & CART (4.67) & $5.5\times10^{-5}$ & 0.28 & 4/5 \\
+ & MCAR imp. & CatBoost (2.80) & CART (4.75) & 0.088 & 0.13 & 1/1 \\
+ & MCAR nat. & XGBoost (2.70) & CART (4.65) & 0.023 & 0.16 & 0/2 \\
+aMRR & Symmetric & CatBoost (1.60) & CART (5.40) & $2.7\times10^{-11}$ & 0.49 & 10/6 \\
+ & Class-cond. & XGBoost (2.45) & CART (4.50) & 0.012 & 0.18 & 0/2 \\
+ & Gaussian & CatBoost (2.40) & CART (5.45) & $1.4\times10^{-7}$ & 0.38 & 8/4 \\
+ & MCAR imp. & CatBoost (2.55) & CART (5.75) & $1.4\times10^{-7}$ & 0.38 & 5/5 \\
+ & MCAR nat. & XGBoost (2.20) & CART (5.70) & $1.1\times10^{-9}$ & 0.44 & 8/5 \\
+aMRR$_{\mathrm{bal}}$ & Symmetric & CatBoost (2.08) & CART (5.65) & $2.7\times10^{-9}$ & 0.43 & 5/5 \\
+ & Class-cond. & XGBoost (2.60) & MLP (4.22) & 0.088 & 0.11 & 1/0 \\
+ & Gaussian & MLP (2.42) & CART (4.78) & 0.002 & 0.22 & 0/4 \\
+ & MCAR imp. & LightGBM (2.65) & CART (4.85) & 0.011 & 0.18 & 0/2 \\
+ & MCAR nat. & XGBoost (2.25) & CART (4.65) & $3.4\times10^{-5}$ & 0.29 & 4/4 \\
+\bottomrule
+\end{tabular}
+\end{table*}

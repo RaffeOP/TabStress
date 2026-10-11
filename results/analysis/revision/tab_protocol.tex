@@ -1,0 +1,28 @@
+\begin{table*}[t]
+\centering
+\footnotesize
+\caption{Training robustness (Protocol~A, corrupted training and test data) against inference robustness (Protocol~B, clean training, corrupted test data) on matched conditions. $\Delta$: median over the 120 dataset--model pairs of the score under B minus the score under A (negative values indicate performance degradation under deployment corruption); B$<$A: share of pairs with a lower score under B; $p$: Wilcoxon signed-rank test of the paired differences; leaders: model with the lowest mean rank under A / B; $\tau$: Kendall correlation of the two mean-rank vectors (lower values signify ranking reordering across protocols). Upper block: seeds 42--44, twenty datasets; lower block: seeds 42--44, the same twenty datasets, for both protocols.}
+\label{tab:protocol}
+\begin{tabular}{@{}llrrrlr@{}}
+\toprule
+Condition & Score & $\Delta$ (B$-$A) & B$<$A (\%) & $p$ & Leader A / B & $\tau$ \\
+\midrule
+Gaussian & AUDC$_{\mathrm{bal}}$ & $-0.0001$ & 50 & 0.051 & LightGBM / MLP & $0.14$ \\
+ & AUDC & $-0.0058$ & 75 & $1.6\times10^{-10}$ & LightGBM / RF & $0.20$ \\
+ & MRR & $-0.0076$ & 74 & $1.4\times10^{-10}$ & MLP / MLP & $0.87$ \\
+MCAR, imputed & AUDC$_{\mathrm{bal}}$ & $-0.0062$ & 62 & 0.006 & LightGBM / LightGBM & $1.00$ \\
+ & AUDC & $-0.0063$ & 70 & $1.5\times10^{-6}$ & LightGBM / RF & $0.60$ \\
+ & MRR & $-0.0067$ & 69 & $4.0\times10^{-6}$ & CatBoost / MLP & $0.60$ \\
+MCAR, native & AUDC$_{\mathrm{bal}}$ & $-0.0037$ & 55 & 0.007 & LightGBM / RF & $0.20$ \\
+ & AUDC & $-0.0109$ & 62 & $1.1\times10^{-6}$ & LightGBM / RF & $0.07$ \\
+ & MRR & $-0.0115$ & 62 & $3.3\times10^{-6}$ & XGBoost / RF & $-0.47$ \\
+\midrule
+MAR, imputed & AUDC$_{\mathrm{bal}}$ & $-0.0064$ & 65 & $2.4\times10^{-4}$ & LightGBM / LightGBM & $1.00$ \\
+ & AUDC & $-0.0058$ & 68 & $1.0\times10^{-7}$ & LightGBM / LightGBM & $0.73$ \\
+ & MRR & $-0.0067$ & 68 & $3.0\times10^{-7}$ & CatBoost / CatBoost & $0.73$ \\
+MNAR, imputed & AUDC$_{\mathrm{bal}}$ & $-0.0072$ & 62 & $1.7\times10^{-5}$ & LightGBM / LightGBM & $0.87$ \\
+ & AUDC & $-0.0100$ & 77 & $6.5\times10^{-10}$ & LightGBM / LightGBM & $0.87$ \\
+ & MRR & $-0.0120$ & 77 & $1.7\times10^{-9}$ & XGBoost / CatBoost & $0.33$ \\
+\bottomrule
+\end{tabular}
+\end{table*}

@@ -1,0 +1,79 @@
+\begin{table}[p]
+\centering
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\caption{Per-dataset MRR, averaged over the four modalities (bold = best in row). The average is descriptive only: the modalities sit on different intensity scales (Remark~\ref{rem:scale}), and on binary datasets the two label modalities are one corruption law (Proposition~\ref{prop:k2}), which therefore enters the average twice. Per-modality values are in Appendix~\ref{app:traj}.}
+\label{tab:endurance_mrr}
+\begin{tabular}{@{}lrrrrrr@{}}
+\toprule
+Dataset & CART & RF & XGBoost & LightGBM & CatBoost & MLP \\
+\midrule
+\multicolumn{7}{@{}l}{\textit{Biomedical \& chemical}} \\
+Bioresponse & 88.1 & 90.7 & 92.0 & 91.3 & \textbf{93.3} & 89.8 \\
+qsar-biodeg & 86.4 & 91.5 & 90.9 & 89.9 & 92.0 & \textbf{92.9} \\
+eye\_movements & 80.4 & 84.9 & 86.9 & 84.5 & 89.6 & \textbf{91.3} \\
+gesture\_phase & 81.3 & 86.9 & 88.0 & 85.8 & \textbf{92.7} & 90.6 \\
+ozone\_level & 88.0 & 96.0 & 94.3 & 94.0 & 96.0 & \textbf{97.0} \\
+\multicolumn{7}{@{}l}{\textit{Industrial \& physical}} \\
+steel-plates-fault & 82.4 & 88.7 & 88.7 & 88.0 & 89.8 & \textbf{91.5} \\
+vehicle & 83.1 & \textbf{93.9} & 90.8 & 89.1 & 91.1 & 89.4 \\
+electricity & 82.7 & 88.1 & 89.7 & 88.8 & 93.0 & \textbf{93.8} \\
+pol & 80.2 & 93.1 & 93.2 & 92.2 & \textbf{95.2} & 89.7 \\
+miniboone & 86.1 & 94.2 & 92.8 & 92.8 & 94.1 & \textbf{95.3} \\
+\multicolumn{7}{@{}l}{\textit{Financial \& economic}} \\
+bank-marketing & 88.1 & 96.0 & 96.3 & 96.0 & \textbf{97.2} & 97.1 \\
+churn & 84.2 & 93.7 & 92.9 & 92.1 & \textbf{93.8} & 90.8 \\
+amazon\_access & 87.3 & 92.1 & 96.0 & 95.7 & 98.1 & \textbf{98.3} \\
+nomao & 85.8 & 93.1 & 95.4 & 94.9 & \textbf{96.5} & 93.1 \\
+spambase & 85.9 & 91.7 & 92.8 & 91.6 & \textbf{94.6} & 93.5 \\
+\multicolumn{7}{@{}l}{\textit{Synthetic \& topological}} \\
+madelon & 82.5 & 87.3 & 82.6 & 82.3 & 82.8 & \textbf{94.5} \\
+hill\_valley & 95.6 & 93.3 & 98.2 & 92.1 & 97.6 & \textbf{98.8} \\
+jungle\_chess & 79.6 & 88.1 & 89.6 & 90.0 & \textbf{91.2} & 89.3 \\
+phoneme & 83.5 & 87.9 & 90.5 & 89.9 & \textbf{93.7} & 93.0 \\
+volkert & 83.0 & 93.9 & 92.4 & 91.3 & \textbf{95.8} & 93.7 \\
+\midrule
+Mean over datasets & 84.7 & 91.2 & 91.7 & 90.6 & \textbf{93.4} & 93.2 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[p]
+\centering
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\caption{Per-dataset AUDC, averaged over the four modalities (bold = best in row). The average is descriptive only: the modalities sit on different intensity scales (Remark~\ref{rem:scale}), and on binary datasets the two label modalities are one corruption law (Proposition~\ref{prop:k2}), which therefore enters the average twice. Per-modality values are in Appendix~\ref{app:traj}.}
+\label{tab:endurance_audc}
+\begin{tabular}{@{}lrrrrrr@{}}
+\toprule
+Dataset & CART & RF & XGBoost & LightGBM & CatBoost & MLP \\
+\midrule
+\multicolumn{7}{@{}l}{\textit{Biomedical \& chemical}} \\
+Bioresponse & 62.7 & 72.3 & 73.3 & 73.1 & \textbf{73.5} & 69.0 \\
+qsar-biodeg & 70.6 & 80.0 & 79.1 & 78.8 & 80.4 & \textbf{80.7} \\
+eye\_movements & 47.2 & 58.2 & 58.9 & \textbf{59.6} & 56.3 & 51.7 \\
+gesture\_phase & 41.0 & \textbf{58.1} & 56.4 & 57.3 & 53.5 & 51.4 \\
+ozone\_level & 80.0 & 90.5 & 89.1 & 88.7 & 90.6 & \textbf{91.2} \\
+\multicolumn{7}{@{}l}{\textit{Industrial \& physical}} \\
+steel-plates-fault & 82.4 & 88.1 & 88.7 & 88.0 & 89.8 & \textbf{90.7} \\
+vehicle & 57.5 & 68.7 & 67.8 & 67.2 & \textbf{69.1} & 65.7 \\
+electricity & 67.3 & 75.4 & 76.3 & \textbf{76.4} & 76.3 & 74.1 \\
+pol & 69.1 & 80.8 & 81.3 & 81.1 & 80.2 & \textbf{82.8} \\
+miniboone & 75.0 & 87.0 & 86.9 & 87.0 & \textbf{88.1} & 86.4 \\
+\multicolumn{7}{@{}l}{\textit{Financial \& economic}} \\
+bank-marketing & 76.3 & 86.2 & 86.9 & 86.5 & \textbf{88.0} & 87.3 \\
+churn & 77.0 & 89.0 & 88.4 & 87.8 & \textbf{89.5} & 84.8 \\
+amazon\_access & 79.4 & 87.1 & 90.7 & 90.4 & 92.4 & \textbf{92.6} \\
+nomao & 79.7 & 89.2 & 91.2 & 91.1 & \textbf{92.4} & 88.5 \\
+spambase & 77.9 & 87.4 & 88.4 & 87.6 & \textbf{89.9} & 88.1 \\
+\multicolumn{7}{@{}l}{\textit{Synthetic \& topological}} \\
+madelon & 61.4 & 61.9 & 68.7 & 68.1 & \textbf{69.5} & 54.3 \\
+hill\_valley & 51.8 & \textbf{52.8} & 52.1 & 52.7 & 51.5 & 50.6 \\
+jungle\_chess & 62.8 & 71.6 & 76.0 & 76.5 & \textbf{76.7} & 75.4 \\
+phoneme & 72.9 & 79.9 & 80.9 & 80.5 & \textbf{81.9} & 80.3 \\
+volkert & 38.0 & 56.0 & \textbf{57.2} & 57.2 & 55.8 & 54.4 \\
+\midrule
+Mean over datasets & 66.5 & 76.0 & 76.9 & 76.8 & \textbf{77.3} & 75.0 \\
+\bottomrule
+\end{tabular}
+\end{table}

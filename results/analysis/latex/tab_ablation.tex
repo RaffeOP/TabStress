@@ -1,0 +1,16 @@
+\begin{table}[t]
+\centering
+\small
+\caption{Sensitivity of $\eta_{\mathrm{knee}}$ to the estimator, over all 480 trajectories. Each row is compared with the reference estimator (interpolating natural cubic spline, 11 tiers, $\arg\max\kappa$ on a 500-point grid), whose estimates sit on the boundary in 0.8\% of trajectories. ``Edge'' counts estimates within $0.01$ of $0$ or $0.5$.}
+\label{tab:ablation}
+\begin{tabular}{@{}p{4.3cm}rrrr@{}}
+\toprule
+Estimator & med.\ $\lvert\Delta\eta_{\mathrm{knee}}\rvert$ & $\le 0.05$ (\%) & Spearman & Edge (\%) \\
+\midrule
+Smoothing spline, $s=10^{-3}$, $\arg\max\lvert S''\rvert$ (legacy) & 0.200 & 1.9 & 0.28 & 99.8 \\
+Interpolating cubic, not-a-knot ends & 0.005 & 61.3 & 0.68 & 33.8 \\
+Natural cubic on 6 tiers ($\Delta\eta=0.10$) & 0.050 & 35.4 & 0.37 & 0.8 \\
+Penalised cubic smoothing spline, GCV & 0.035 & 52.3 & 0.49 & 0.0 \\
+\bottomrule
+\end{tabular}
+\end{table}

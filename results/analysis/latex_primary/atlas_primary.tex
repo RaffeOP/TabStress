@@ -1,0 +1,181 @@
+\subsection{The empirical atlas}\label{sec:atlas}\label{app:atlas}
+
+This section shows the complete degradation trajectory of every benchmark dataset, so that no dataset-specific behaviour is hidden behind the rank statistics of Section~5 of the main article. Each figure plots accuracy, averaged over the three seeds, against intensity for the six model families, with one panel per corruption condition. The shaded band is $\pm1$ sample standard deviation across the three seeds, the dashed horizontal line is the majority-class rate $\pi_{\max}$ (the accuracy of a constant prediction) and, where it lies clearly below $\pi_{\max}$, the dotted line is the uniform-guess accuracy $1/K$; the sixth panel gives the legend and the size of the dataset. The datasets are grouped by application domain: chemistry, biology, atmospheric and human-motion sensing (Figure~\ref{fig:atlas_g1}), industrial, physical and network measurements (Figure~\ref{fig:atlas_g2}), business, marketing and web data (Figure~\ref{fig:atlas_g3}) and synthetic, game, speech and image-derived tasks (Figure~\ref{fig:atlas_g4}). The caption of each group gives the median MRR of its $5\times 6=30$ trajectories under each condition and the range of mean AUDC over the six families. Conditions sit on different intensity scales (Section~3.2 of the main article), so these numbers are descriptive and do not rank corruption types.
+
+\begin{figure}[tbp]
+
+\centering
+\begin{subfigure}{\linewidth}
+  \centering
+  \includegraphics[width=\linewidth]{curves_Bioresponse.png}
+  \caption{Bioresponse}\label{fig:atlas_Bioresponse}
+\end{subfigure}\\[4pt]
+\begin{subfigure}{\linewidth}
+  \centering
+  \includegraphics[width=\linewidth]{curves_qsar-biodeg.png}
+  \caption{qsar-biodeg}\label{fig:atlas_qsar-biodeg}
+\end{subfigure}
+\caption{Degradation atlas for chemistry, biology, atmospheric and human-motion sensing. Median MRR of the group: $0.874$ (symmetric label noise), $0.916$ (class-conditional label noise), $0.949$ (Gaussian feature noise), $0.954$ (imputed masking) and $0.937$ (native masking); mean AUDC over its datasets and all five conditions from $0.628$ (CART) to $0.728$ (LightGBM). Band: $\pm1$ sample SD across three seeds; dashed line: $\pi_{\max}$.}
+\label{fig:atlas_g1}
+\end{figure}
+
+\begin{figure}[tbp]
+\ContinuedFloat
+\centering
+\begin{subfigure}{\linewidth}
+  \centering
+  \includegraphics[width=\linewidth]{curves_eye_movements.png}
+  \caption{eye\_movements}\label{fig:atlas_eye_movements}
+\end{subfigure}\\[4pt]
+\begin{subfigure}{\linewidth}
+  \centering
+  \includegraphics[width=\linewidth]{curves_gesture_phase.png}
+  \caption{gesture\_phase}\label{fig:atlas_gesture_phase}
+\end{subfigure}
+\caption{Degradation atlas for chemistry, biology, atmospheric and human-motion sensing (continued). Band: $\pm1$ sample SD across three seeds; dashed line: $\pi_{\max}$.}
+\end{figure}
+
+\begin{figure}[tbp]
+\ContinuedFloat
+\centering
+\begin{subfigure}{\linewidth}
+  \centering
+  \includegraphics[width=\linewidth]{curves_ozone_level.png}
+  \caption{ozone\_level}\label{fig:atlas_ozone_level}
+\end{subfigure}
+\caption{Degradation atlas for chemistry, biology, atmospheric and human-motion sensing (continued). Band: $\pm1$ sample SD across three seeds; dashed line: $\pi_{\max}$.}
+\end{figure}
+
+\begin{figure}[tbp]
+
+\centering
+\begin{subfigure}{\linewidth}
+  \centering
+  \includegraphics[width=\linewidth]{curves_steel-plates-fault.png}
+  \caption{steel-plates-fault}\label{fig:atlas_steel-plates-fault}
+\end{subfigure}\\[4pt]
+\begin{subfigure}{\linewidth}
+  \centering
+  \includegraphics[width=\linewidth]{curves_vehicle.png}
+  \caption{vehicle}\label{fig:atlas_vehicle}
+\end{subfigure}
+\caption{Degradation atlas for industrial, physical and network measurements. Median MRR of the group: $0.904$ (symmetric label noise), $0.921$ (class-conditional label noise), $0.926$ (Gaussian feature noise), $0.910$ (imputed masking) and $0.914$ (native masking); mean AUDC over its datasets and all five conditions from $0.729$ (CART) to $0.813$ (XGBoost). Band: $\pm1$ sample SD across three seeds; dashed line: $\pi_{\max}$.}
+\label{fig:atlas_g2}
+\end{figure}
+
+\begin{figure}[tbp]
+\ContinuedFloat
+\centering
+\begin{subfigure}{\linewidth}
+  \centering
+  \includegraphics[width=\linewidth]{curves_electricity.png}
+  \caption{electricity}\label{fig:atlas_electricity}
+\end{subfigure}\\[4pt]
+\begin{subfigure}{\linewidth}
+  \centering
+  \includegraphics[width=\linewidth]{curves_pol.png}
+  \caption{pol}\label{fig:atlas_pol}
+\end{subfigure}
+\caption{Degradation atlas for industrial, physical and network measurements (continued). Band: $\pm1$ sample SD across three seeds; dashed line: $\pi_{\max}$.}
+\end{figure}
+
+\begin{figure}[tbp]
+\ContinuedFloat
+\centering
+\begin{subfigure}{\linewidth}
+  \centering
+  \includegraphics[width=\linewidth]{curves_miniboone.png}
+  \caption{miniboone}\label{fig:atlas_miniboone}
+\end{subfigure}
+\caption{Degradation atlas for industrial, physical and network measurements (continued). Band: $\pm1$ sample SD across three seeds; dashed line: $\pi_{\max}$.}
+\end{figure}
+
+\begin{figure}[tbp]
+
+\centering
+\begin{subfigure}{\linewidth}
+  \centering
+  \includegraphics[width=\linewidth]{curves_bank-marketing.png}
+  \caption{bank-marketing}\label{fig:atlas_bank-marketing}
+\end{subfigure}\\[4pt]
+\begin{subfigure}{\linewidth}
+  \centering
+  \includegraphics[width=\linewidth]{curves_churn.png}
+  \caption{churn}\label{fig:atlas_churn}
+\end{subfigure}
+\caption{Degradation atlas for business, marketing and web data. Median MRR of the group: $0.908$ (symmetric label noise), $0.970$ (class-conditional label noise), $0.988$ (Gaussian feature noise), $0.981$ (imputed masking) and $0.980$ (native masking); mean AUDC over its datasets and all five conditions from $0.839$ (CART) to $0.915$ (CatBoost). Band: $\pm1$ sample SD across three seeds; dashed line: $\pi_{\max}$.}
+\label{fig:atlas_g3}
+\end{figure}
+
+\begin{figure}[tbp]
+\ContinuedFloat
+\centering
+\begin{subfigure}{\linewidth}
+  \centering
+  \includegraphics[width=\linewidth]{curves_amazon_access.png}
+  \caption{amazon\_access}\label{fig:atlas_amazon_access}
+\end{subfigure}\\[4pt]
+\begin{subfigure}{\linewidth}
+  \centering
+  \includegraphics[width=\linewidth]{curves_nomao.png}
+  \caption{nomao}\label{fig:atlas_nomao}
+\end{subfigure}
+\caption{Degradation atlas for business, marketing and web data (continued). Band: $\pm1$ sample SD across three seeds; dashed line: $\pi_{\max}$.}
+\end{figure}
+
+\begin{figure}[tbp]
+\ContinuedFloat
+\centering
+\begin{subfigure}{\linewidth}
+  \centering
+  \includegraphics[width=\linewidth]{curves_spambase.png}
+  \caption{spambase}\label{fig:atlas_spambase}
+\end{subfigure}
+\caption{Degradation atlas for business, marketing and web data (continued). Band: $\pm1$ sample SD across three seeds; dashed line: $\pi_{\max}$.}
+\end{figure}
+
+\begin{figure}[tbp]
+
+\centering
+\begin{subfigure}{\linewidth}
+  \centering
+  \includegraphics[width=\linewidth]{curves_madelon.png}
+  \caption{madelon}\label{fig:atlas_madelon}
+\end{subfigure}\\[4pt]
+\begin{subfigure}{\linewidth}
+  \centering
+  \includegraphics[width=\linewidth]{curves_hill_valley.png}
+  \caption{hill\_valley}\label{fig:atlas_hill_valley}
+\end{subfigure}
+\caption{Degradation atlas for synthetic, game, speech and image-derived tasks. Median MRR of the group: $0.933$ (symmetric label noise), $0.910$ (class-conditional label noise), $0.936$ (Gaussian feature noise), $0.912$ (imputed masking) and $0.910$ (native masking); mean AUDC over its datasets and all five conditions from $0.586$ (CART) to $0.676$ (LightGBM). Band: $\pm1$ sample SD across three seeds; dashed line: $\pi_{\max}$.}
+\label{fig:atlas_g4}
+\end{figure}
+
+\begin{figure}[tbp]
+\ContinuedFloat
+\centering
+\begin{subfigure}{\linewidth}
+  \centering
+  \includegraphics[width=\linewidth]{curves_jungle_chess.png}
+  \caption{jungle\_chess}\label{fig:atlas_jungle_chess}
+\end{subfigure}\\[4pt]
+\begin{subfigure}{\linewidth}
+  \centering
+  \includegraphics[width=\linewidth]{curves_phoneme.png}
+  \caption{phoneme}\label{fig:atlas_phoneme}
+\end{subfigure}
+\caption{Degradation atlas for synthetic, game, speech and image-derived tasks (continued). Band: $\pm1$ sample SD across three seeds; dashed line: $\pi_{\max}$.}
+\end{figure}
+
+\begin{figure}[tbp]
+\ContinuedFloat
+\centering
+\begin{subfigure}{\linewidth}
+  \centering
+  \includegraphics[width=\linewidth]{curves_volkert.png}
+  \caption{volkert}\label{fig:atlas_volkert}
+\end{subfigure}
+\caption{Degradation atlas for synthetic, game, speech and image-derived tasks (continued). Band: $\pm1$ sample SD across three seeds; dashed line: $\pi_{\max}$.}
+\end{figure}
+
+\clearpage

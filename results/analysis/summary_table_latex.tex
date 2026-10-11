@@ -1,0 +1,45 @@
+% ==========================================================================
+% Table: Aggregate Empirical Robustness Profiles across 20 Benchmark Datasets
+% ==========================================================================
+\begin{table*}[t]
+\centering
+\small
+\caption{Aggregate Knee and Endurance Statistics across the 20-Dataset Gold Standard Tabular Benchmark. Evaluated across 4 Synthetic Noise Modalities (Mean $\pm$ Standard Deviation).}
+\label{tab:aggregate_knee_results}
+\begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}llcccc@{}}
+\toprule
+Model Family & Modality & Baseline Acc ($\eta=0$) & Terminal Acc ($\eta=0.5$) & $\eta_{\mathrm{knee}}$ Knee & MRR (\%) \\
+\midrule
+CART & Asymmetric Label & 0.785$\pm$0.155 & 0.467$\pm$0.073 & 0.288$\pm$0.134 & 79.2\%$\pm$5.0\% \\
+CART & Gaussian Feature & 0.785$\pm$0.155 & 0.674$\pm$0.178 & 0.204$\pm$0.140 & 90.4\%$\pm$6.1\% \\
+CART & Mcar Missing & 0.785$\pm$0.155 & 0.665$\pm$0.174 & 0.293$\pm$0.116 & 90.8\%$\pm$6.0\% \\
+CART & Symmetric Label & 0.785$\pm$0.155 & 0.460$\pm$0.075 & 0.295$\pm$0.117 & 78.6\%$\pm$4.8\% \\
+\midrule
+CATBOOST & Asymmetric Label & 0.827$\pm$0.142 & 0.475$\pm$0.055 & 0.314$\pm$0.098 & 91.4\%$\pm$4.7\% \\
+CATBOOST & Gaussian Feature & 0.827$\pm$0.142 & 0.763$\pm$0.160 & 0.208$\pm$0.154 & 95.6\%$\pm$3.6\% \\
+CATBOOST & Mcar Missing & 0.827$\pm$0.142 & 0.737$\pm$0.162 & 0.198$\pm$0.116 & 94.0\%$\pm$4.7\% \\
+CATBOOST & Symmetric Label & 0.827$\pm$0.142 & 0.547$\pm$0.088 & 0.330$\pm$0.087 & 92.6\%$\pm$5.2\% \\
+\midrule
+LIGHTGBM & Asymmetric Label & 0.846$\pm$0.122 & 0.480$\pm$0.049 & 0.257$\pm$0.096 & 87.2\%$\pm$4.1\% \\
+LIGHTGBM & Gaussian Feature & 0.846$\pm$0.122 & 0.761$\pm$0.161 & 0.163$\pm$0.148 & 93.6\%$\pm$5.3\% \\
+LIGHTGBM & Mcar Missing & 0.846$\pm$0.122 & 0.744$\pm$0.157 & 0.290$\pm$0.090 & 93.1\%$\pm$5.3\% \\
+LIGHTGBM & Symmetric Label & 0.846$\pm$0.122 & 0.527$\pm$0.078 & 0.300$\pm$0.096 & 88.6\%$\pm$5.0\% \\
+\midrule
+MLP & Asymmetric Label & 0.805$\pm$0.159 & 0.467$\pm$0.066 & 0.311$\pm$0.089 & 91.9\%$\pm$3.2\% \\
+MLP & Gaussian Feature & 0.805$\pm$0.159 & 0.720$\pm$0.161 & 0.183$\pm$0.122 & 94.1\%$\pm$4.6\% \\
+MLP & Mcar Missing & 0.805$\pm$0.159 & 0.718$\pm$0.171 & 0.245$\pm$0.140 & 94.0\%$\pm$5.1\% \\
+MLP & Symmetric Label & 0.805$\pm$0.159 & 0.526$\pm$0.092 & 0.256$\pm$0.134 & 92.7\%$\pm$2.7\% \\
+\midrule
+RANDOMFOREST & Asymmetric Label & 0.832$\pm$0.130 & 0.483$\pm$0.049 & 0.195$\pm$0.105 & 88.2\%$\pm$3.5\% \\
+RANDOMFOREST & Gaussian Feature & 0.832$\pm$0.130 & 0.756$\pm$0.164 & 0.171$\pm$0.133 & 94.0\%$\pm$5.2\% \\
+RANDOMFOREST & Mcar Missing & 0.832$\pm$0.130 & 0.735$\pm$0.161 & 0.233$\pm$0.116 & 93.3\%$\pm$5.3\% \\
+RANDOMFOREST & Symmetric Label & 0.832$\pm$0.130 & 0.532$\pm$0.065 & 0.265$\pm$0.098 & 89.5\%$\pm$4.8\% \\
+\midrule
+XGBOOST & Asymmetric Label & 0.839$\pm$0.131 & 0.479$\pm$0.048 & 0.267$\pm$0.074 & 88.6\%$\pm$4.3\% \\
+XGBOOST & Gaussian Feature & 0.839$\pm$0.131 & 0.762$\pm$0.159 & 0.128$\pm$0.116 & 94.5\%$\pm$4.7\% \\
+XGBOOST & Mcar Missing & 0.839$\pm$0.131 & 0.745$\pm$0.156 & 0.270$\pm$0.149 & 93.6\%$\pm$5.0\% \\
+XGBOOST & Symmetric Label & 0.839$\pm$0.131 & 0.533$\pm$0.079 & 0.275$\pm$0.108 & 90.0\%$\pm$5.3\% \\
+\midrule
+\bottomrule
+\end{tabular*}
+\end{table*}

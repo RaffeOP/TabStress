@@ -1,0 +1,102 @@
+{
+ "Bioresponse": {
+  "openml_id": 4134,
+  "missing_values": 0.0,
+  "instances_with_missing": 0.0
+ },
+ "amazon_access": {
+  "openml_id": 4135,
+  "missing_values": 0.0,
+  "instances_with_missing": 0.0
+ },
+ "bank-marketing": {
+  "openml_id": 1461,
+  "missing_values": 0.0,
+  "instances_with_missing": 0.0
+ },
+ "churn": {
+  "openml_id": 40701,
+  "missing_values": 0.0,
+  "instances_with_missing": 0.0
+ },
+ "electricity": {
+  "openml_id": 151,
+  "missing_values": 0.0,
+  "instances_with_missing": 0.0
+ },
+ "eye_movements": {
+  "openml_id": 1044,
+  "missing_values": 0.0,
+  "instances_with_missing": 0.0
+ },
+ "gesture_phase": {
+  "openml_id": 4538,
+  "missing_values": 0.0,
+  "instances_with_missing": 0.0
+ },
+ "hill_valley": {
+  "openml_id": 1479,
+  "missing_values": 0.0,
+  "instances_with_missing": 0.0
+ },
+ "jungle_chess": {
+  "openml_id": 41027,
+  "missing_values": 0.0,
+  "instances_with_missing": 0.0
+ },
+ "madelon": {
+  "openml_id": 1485,
+  "missing_values": 0.0,
+  "instances_with_missing": 0.0
+ },
+ "miniboone": {
+  "openml_id": 41150,
+  "missing_values": 0.0,
+  "instances_with_missing": 0.0
+ },
+ "nomao": {
+  "openml_id": 1486,
+  "missing_values": 0.0,
+  "instances_with_missing": 0.0
+ },
+ "ozone_level": {
+  "openml_id": 1487,
+  "missing_values": 0.0,
+  "instances_with_missing": 0.0
+ },
+ "phoneme": {
+  "openml_id": 1489,
+  "missing_values": 0.0,
+  "instances_with_missing": 0.0
+ },
+ "pol": {
+  "openml_id": 201,
+  "missing_values": 0.0,
+  "instances_with_missing": 0.0
+ },
+ "qsar-biodeg": {
+  "openml_id": 1494,
+  "missing_values": 0.0,
+  "instances_with_missing": 0.0
+ },
+ "spambase": {
+  "openml_id": 44,
+  "missing_values": 0.0,
+  "instances_with_missing": 0.0
+ },
+ "steel-plates-fault": {
+  "openml_id": 1504,
+  "missing_values": 0.0,
+  "instances_with_missing": 0.0
+ },
+ "vehicle": {
+  "openml_id": 54,
+  "missing_values": 0.0,
+  "instances_with_missing": 0.0
+ },
+ "volkert": {
+  "openml_id": 41166,
+  "missing_values": 0.0,
+  "instances_with_missing": 0.0
+ }
+}

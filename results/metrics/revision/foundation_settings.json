@@ -1,0 +1,13 @@
+{
+ "model": "tabicl",
+ "n_estimators": 4,
+ "max_train": 3000,
+ "device": "mps",
+ "batched": true,
+ "kv_cache": "kv",
+ "chunk_rows": 2000,
+ "memory_safety_factor": 0.05,
+ "torch": "2.14.1",
+ "torch_threads": 2,
+ "tabicl_version": "2.2.0"
+}

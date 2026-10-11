@@ -1,0 +1,959 @@
+\begin{table}[p]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{3.5pt}
+\caption{Trajectory summaries for \texttt{Bioresponse}, accuracy averaged over seeds 42, 43 and 44. $\eta_{\mathrm{knee}}$ and its 95\% parametric-bootstrap interval ($B=200$; the standard error of each tier is $\max(\mathrm{SD}_{\mathrm{seed}},\,\mathrm{SD}_{\mathrm{fold}}/2)/\sqrt3$); ``flat'' marks a trajectory with $\kappa\equiv 0$, for which $\eta_{\mathrm{knee}}$ is undefined. Values are rounded to the nearest of the eleven experimental tiers (spacing $0.05$); the knee is a coarse, secondary population-level descriptor.}
+\label{tab:traj_Bioresponse}
+\begin{tabular}{@{}llrrrrl@{}}
+\toprule
+Condition & Model & $\mathrm{Acc}(0)$ & $\mathrm{Acc}(0.5)$ & AUDC & MRR & $\eta_{\mathrm{knee}}$ [95\% CI] \\
+\midrule
+Symmetric label & CART & 0.726 & 0.498 & 0.609 & 0.839 & 0.25 [0.05, 0.45] \\
+ & RF & 0.801 & 0.496 & 0.687 & 0.858 & 0.25 [0.05, 0.40] \\
+ & XGBoost & 0.801 & 0.501 & 0.697 & 0.870 & 0.35 [0.05, 0.40] \\
+ & LightGBM & 0.800 & 0.493 & 0.691 & 0.863 & 0.05 [0.05, 0.40] \\
+ & CatBoost & 0.789 & 0.497 & 0.715 & 0.906 & 0.25 [0.05, 0.35] \\
+ & MLP & 0.776 & 0.491 & 0.676 & 0.871 & 0.25 [0.05, 0.40] \\
+\midrule
+Class-cond.\ label & CART & 0.726 & 0.635 & 0.680 & 0.936 & 0.20 [0.05, 0.45] \\
+ & RF & 0.801 & 0.606 & 0.720 & 0.899 & 0.15 [0.05, 0.45] \\
+ & XGBoost & 0.801 & 0.622 & 0.734 & 0.916 & 0.05 [0.05, 0.45] \\
+ & LightGBM & 0.800 & 0.630 & 0.734 & 0.917 & 0.15 [0.05, 0.45] \\
+ & CatBoost & 0.789 & 0.581 & 0.717 & 0.908 & 0.25 [0.05, 0.45] \\
+ & MLP & 0.776 & 0.582 & 0.713 & 0.919 & 0.45 [0.10, 0.45] \\
+\midrule
+Gaussian feature & CART & 0.726 & 0.637 & 0.651 & 0.897 & 0.05 [0.05, 0.45] \\
+ & RF & 0.801 & 0.734 & 0.750 & 0.936 & 0.05 [0.05, 0.30] \\
+ & XGBoost & 0.801 & 0.758 & 0.768 & 0.958 & 0.05 [0.05, 0.45] \\
+ & LightGBM & 0.800 & 0.759 & 0.769 & 0.960 & 0.05 [0.05, 0.45] \\
+ & CatBoost & 0.789 & 0.749 & 0.757 & 0.959 & 0.05 [0.05, 0.45] \\
+ & MLP & 0.776 & 0.742 & 0.762 & 0.982 & 0.40 [0.05, 0.45] \\
+\midrule
+MCAR, imputed & CART & 0.726 & 0.615 & 0.666 & 0.918 & 0.35 [0.05, 0.45] \\
+ & RF & 0.801 & 0.724 & 0.766 & 0.956 & 0.10 [0.05, 0.45] \\
+ & XGBoost & 0.801 & 0.728 & 0.766 & 0.956 & 0.25 [0.05, 0.45] \\
+ & LightGBM & 0.800 & 0.734 & 0.768 & 0.960 & 0.20 [0.10, 0.45] \\
+ & CatBoost & 0.789 & 0.723 & 0.756 & 0.957 & 0.25 [0.05, 0.45] \\
+ & MLP & 0.776 & 0.717 & 0.749 & 0.965 & 0.15 [0.05, 0.45] \\
+\midrule
+MCAR, native & CART & 0.726 & 0.617 & 0.652 & 0.898 & 0.40 [0.05, 0.45] \\
+ & RF & 0.801 & 0.700 & 0.743 & 0.928 & 0.40 [0.05, 0.40] \\
+ & XGBoost & 0.801 & 0.725 & 0.758 & 0.946 & 0.05 [0.05, 0.45] \\
+ & LightGBM & 0.800 & 0.729 & 0.758 & 0.947 & 0.25 [0.05, 0.45] \\
+ & CatBoost & 0.789 & 0.717 & 0.747 & 0.946 & 0.05 [0.05, 0.45] \\
+ & MLP & 0.776 & 0.717 & 0.749 & 0.965 & 0.15 [0.05, 0.45] \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[p]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{3.5pt}
+\caption{Trajectory summaries for \texttt{qsar-biodeg}, accuracy averaged over seeds 42, 43 and 44. $\eta_{\mathrm{knee}}$ and its 95\% parametric-bootstrap interval ($B=200$; the standard error of each tier is $\max(\mathrm{SD}_{\mathrm{seed}},\,\mathrm{SD}_{\mathrm{fold}}/2)/\sqrt3$); ``flat'' marks a trajectory with $\kappa\equiv 0$, for which $\eta_{\mathrm{knee}}$ is undefined. Values are rounded to the nearest of the eleven experimental tiers (spacing $0.05$); the knee is a coarse, secondary population-level descriptor.}
+\label{tab:traj_qsar_biodeg}
+\begin{tabular}{@{}llrrrrl@{}}
+\toprule
+Condition & Model & $\mathrm{Acc}(0)$ & $\mathrm{Acc}(0.5)$ & AUDC & MRR & $\eta_{\mathrm{knee}}$ [95\% CI] \\
+\midrule
+Symmetric label & CART & 0.815 & 0.494 & 0.654 & 0.802 & 0.45 [0.15, 0.45] \\
+ & RF & 0.873 & 0.517 & 0.746 & 0.854 & 0.15 [0.05, 0.45] \\
+ & XGBoost & 0.866 & 0.486 & 0.726 & 0.839 & 0.15 [0.05, 0.45] \\
+ & LightGBM & 0.867 & 0.493 & 0.718 & 0.829 & 0.15 [0.05, 0.45] \\
+ & CatBoost & 0.872 & 0.497 & 0.755 & 0.865 & 0.25 [0.05, 0.40] \\
+ & MLP & 0.876 & 0.551 & 0.781 & 0.892 & 0.20 [0.10, 0.45] \\
+\midrule
+Class-cond.\ label & CART & 0.815 & 0.737 & 0.771 & 0.947 & 0.35 [0.05, 0.40] \\
+ & RF & 0.873 & 0.734 & 0.810 & 0.928 & 0.30 [0.10, 0.45] \\
+ & XGBoost & 0.866 & 0.747 & 0.817 & 0.943 & 0.15 [0.05, 0.45] \\
+ & LightGBM & 0.867 & 0.743 & 0.814 & 0.939 & 0.10 [0.10, 0.45] \\
+ & CatBoost & 0.872 & 0.737 & 0.818 & 0.938 & 0.15 [0.05, 0.45] \\
+ & MLP & 0.876 & 0.682 & 0.801 & 0.914 & 0.30 [0.15, 0.45] \\
+\midrule
+Gaussian feature & CART & 0.815 & 0.720 & 0.760 & 0.933 & 0.20 [0.05, 0.45] \\
+ & RF & 0.873 & 0.822 & 0.845 & 0.968 & 0.05 [0.05, 0.45] \\
+ & XGBoost & 0.866 & 0.829 & 0.844 & 0.975 & 0.10 [0.05, 0.45] \\
+ & LightGBM & 0.867 & 0.824 & 0.845 & 0.975 & 0.20 [0.05, 0.45] \\
+ & CatBoost & 0.872 & 0.824 & 0.845 & 0.969 & 0.35 [0.10, 0.45] \\
+ & MLP & 0.876 & 0.819 & 0.848 & 0.968 & 0.10 [0.05, 0.45] \\
+\midrule
+MCAR, imputed & CART & 0.815 & 0.713 & 0.765 & 0.939 & 0.40 [0.15, 0.45] \\
+ & RF & 0.873 & 0.810 & 0.845 & 0.967 & 0.35 [0.05, 0.45] \\
+ & XGBoost & 0.866 & 0.817 & 0.844 & 0.975 & 0.05 [0.05, 0.45] \\
+ & LightGBM & 0.867 & 0.815 & 0.844 & 0.974 & 0.05 [0.05, 0.45] \\
+ & CatBoost & 0.872 & 0.810 & 0.847 & 0.971 & 0.35 [0.05, 0.45] \\
+ & MLP & 0.876 & 0.801 & 0.835 & 0.953 & 0.05 [0.05, 0.45] \\
+\midrule
+MCAR, native & CART & 0.815 & 0.714 & 0.755 & 0.926 & 0.30 [0.10, 0.45] \\
+ & RF & 0.873 & 0.797 & 0.839 & 0.961 & 0.25 [0.05, 0.45] \\
+ & XGBoost & 0.866 & 0.811 & 0.841 & 0.971 & 0.30 [0.05, 0.45] \\
+ & LightGBM & 0.867 & 0.809 & 0.842 & 0.972 & 0.05 [0.05, 0.45] \\
+ & CatBoost & 0.872 & 0.803 & 0.839 & 0.962 & 0.40 [0.05, 0.40] \\
+ & MLP & 0.876 & 0.801 & 0.835 & 0.953 & 0.05 [0.05, 0.45] \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[p]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{3.5pt}
+\caption{Trajectory summaries for \texttt{eye\_movements}, accuracy averaged over seeds 42, 43 and 44. $\eta_{\mathrm{knee}}$ and its 95\% parametric-bootstrap interval ($B=200$; the standard error of each tier is $\max(\mathrm{SD}_{\mathrm{seed}},\,\mathrm{SD}_{\mathrm{fold}}/2)/\sqrt3$); ``flat'' marks a trajectory with $\kappa\equiv 0$, for which $\eta_{\mathrm{knee}}$ is undefined. Values are rounded to the nearest of the eleven experimental tiers (spacing $0.05$); the knee is a coarse, secondary population-level descriptor.}
+\label{tab:traj_eye_movements}
+\begin{tabular}{@{}llrrrrl@{}}
+\toprule
+Condition & Model & $\mathrm{Acc}(0)$ & $\mathrm{Acc}(0.5)$ & AUDC & MRR & $\eta_{\mathrm{knee}}$ [95\% CI] \\
+\midrule
+Symmetric label & CART & 0.581 & 0.371 & 0.464 & 0.798 & 0.05 [0.05, 0.45] \\
+ & RF & 0.683 & 0.472 & 0.595 & 0.871 & 0.40 [0.05, 0.45] \\
+ & XGBoost & 0.680 & 0.482 & 0.600 & 0.883 & 0.15 [0.10, 0.35] \\
+ & LightGBM & 0.705 & 0.470 & 0.607 & 0.861 & 0.15 [0.10, 0.45] \\
+ & CatBoost & 0.625 & 0.502 & 0.577 & 0.924 & 0.40 [0.10, 0.45] \\
+ & MLP & 0.570 & 0.444 & 0.519 & 0.910 & 0.10 [0.05, 0.45] \\
+\midrule
+Class-cond.\ label & CART & 0.581 & 0.378 & 0.468 & 0.805 & 0.15 [0.05, 0.40] \\
+ & RF & 0.683 & 0.446 & 0.587 & 0.860 & 0.20 [0.05, 0.45] \\
+ & XGBoost & 0.680 & 0.443 & 0.589 & 0.866 & 0.15 [0.05, 0.45] \\
+ & LightGBM & 0.705 & 0.441 & 0.596 & 0.845 & 0.15 [0.05, 0.45] \\
+ & CatBoost & 0.625 & 0.453 & 0.560 & 0.897 & 0.15 [0.05, 0.45] \\
+ & MLP & 0.570 & 0.432 & 0.513 & 0.901 & 0.10 [0.05, 0.45] \\
+\midrule
+Gaussian feature & CART & 0.581 & 0.425 & 0.477 & 0.821 & 0.05 [0.05, 0.45] \\
+ & RF & 0.683 & 0.509 & 0.574 & 0.841 & 0.05 [0.05, 0.45] \\
+ & XGBoost & 0.680 & 0.516 & 0.582 & 0.856 & 0.05 [0.05, 0.45] \\
+ & LightGBM & 0.705 & 0.515 & 0.587 & 0.833 & 0.05 [0.05, 0.45] \\
+ & CatBoost & 0.625 & 0.512 & 0.560 & 0.897 & 0.05 [0.05, 0.45] \\
+ & MLP & 0.570 & 0.503 & 0.536 & 0.940 & 0.10 [0.05, 0.45] \\
+\midrule
+MCAR, imputed & CART & 0.581 & 0.420 & 0.478 & 0.823 & 0.35 [0.05, 0.45] \\
+ & RF & 0.683 & 0.494 & 0.568 & 0.832 & 0.15 [0.05, 0.45] \\
+ & XGBoost & 0.680 & 0.508 & 0.580 & 0.853 & 0.10 [0.05, 0.45] \\
+ & LightGBM & 0.705 & 0.507 & 0.589 & 0.835 & 0.25 [0.05, 0.45] \\
+ & CatBoost & 0.625 & 0.493 & 0.551 & 0.883 & 0.10 [0.05, 0.45] \\
+ & MLP & 0.570 & 0.461 & 0.505 & 0.886 & 0.40 [0.05, 0.45] \\
+\midrule
+MCAR, native & CART & 0.581 & 0.413 & 0.468 & 0.805 & 0.20 [0.05, 0.45] \\
+ & RF & 0.683 & 0.484 & 0.560 & 0.821 & 0.10 [0.05, 0.45] \\
+ & XGBoost & 0.680 & 0.510 & 0.583 & 0.858 & 0.10 [0.05, 0.40] \\
+ & LightGBM & 0.705 & 0.506 & 0.591 & 0.838 & 0.45 [0.10, 0.45] \\
+ & CatBoost & 0.625 & 0.479 & 0.539 & 0.863 & 0.25 [0.05, 0.45] \\
+ & MLP & 0.570 & 0.461 & 0.505 & 0.886 & 0.40 [0.05, 0.45] \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[p]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{3.5pt}
+\caption{Trajectory summaries for \texttt{gesture\_phase}, accuracy averaged over seeds 42, 43 and 44. $\eta_{\mathrm{knee}}$ and its 95\% parametric-bootstrap interval ($B=200$; the standard error of each tier is $\max(\mathrm{SD}_{\mathrm{seed}},\,\mathrm{SD}_{\mathrm{fold}}/2)/\sqrt3$); ``flat'' marks a trajectory with $\kappa\equiv 0$, for which $\eta_{\mathrm{knee}}$ is undefined. Values are rounded to the nearest of the eleven experimental tiers (spacing $0.05$); the knee is a coarse, secondary population-level descriptor.}
+\label{tab:traj_gesture_phase}
+\begin{tabular}{@{}llrrrrl@{}}
+\toprule
+Condition & Model & $\mathrm{Acc}(0)$ & $\mathrm{Acc}(0.5)$ & AUDC & MRR & $\eta_{\mathrm{knee}}$ [95\% CI] \\
+\midrule
+Symmetric label & CART & 0.507 & 0.307 & 0.407 & 0.802 & 0.35 [0.10, 0.45] \\
+ & RF & 0.666 & 0.544 & 0.627 & 0.942 & 0.25 [0.05, 0.45] \\
+ & XGBoost & 0.639 & 0.520 & 0.597 & 0.934 & 0.30 [0.05, 0.40] \\
+ & LightGBM & 0.666 & 0.509 & 0.605 & 0.909 & 0.35 [0.05, 0.45] \\
+ & CatBoost & 0.578 & 0.530 & 0.559 & 0.968 & 0.45 [0.05, 0.45] \\
+ & MLP & 0.567 & 0.475 & 0.525 & 0.926 & 0.10 [0.05, 0.40] \\
+\midrule
+Class-cond.\ label & CART & 0.507 & 0.314 & 0.408 & 0.804 & 0.15 [0.05, 0.45] \\
+ & RF & 0.666 & 0.386 & 0.587 & 0.882 & 0.30 [0.05, 0.35] \\
+ & XGBoost & 0.639 & 0.368 & 0.557 & 0.871 & 0.30 [0.05, 0.35] \\
+ & LightGBM & 0.666 & 0.372 & 0.564 & 0.847 & 0.30 [0.05, 0.40] \\
+ & CatBoost & 0.578 & 0.352 & 0.531 & 0.919 & 0.40 [0.05, 0.40] \\
+ & MLP & 0.567 & 0.319 & 0.495 & 0.873 & 0.40 [0.05, 0.45] \\
+\midrule
+Gaussian feature & CART & 0.507 & 0.348 & 0.393 & 0.775 & 0.05 [0.05, 0.45] \\
+ & RF & 0.666 & 0.481 & 0.539 & 0.810 & 0.05 [0.05, 0.45] \\
+ & XGBoost & 0.639 & 0.485 & 0.537 & 0.841 & 0.05 [0.05, 0.45] \\
+ & LightGBM & 0.666 & 0.483 & 0.539 & 0.810 & 0.05 [0.05, 0.40] \\
+ & CatBoost & 0.578 & 0.481 & 0.520 & 0.901 & 0.10 [0.05, 0.45] \\
+ & MLP & 0.567 & 0.479 & 0.519 & 0.916 & 0.25 [0.05, 0.45] \\
+\midrule
+MCAR, imputed & CART & 0.507 & 0.378 & 0.426 & 0.840 & 0.10 [0.10, 0.45] \\
+ & RF & 0.666 & 0.500 & 0.567 & 0.851 & 0.30 [0.05, 0.40] \\
+ & XGBoost & 0.639 & 0.506 & 0.563 & 0.881 & 0.25 [0.15, 0.45] \\
+ & LightGBM & 0.666 & 0.513 & 0.579 & 0.870 & 0.30 [0.10, 0.45] \\
+ & CatBoost & 0.578 & 0.491 & 0.528 & 0.915 & 0.35 [0.05, 0.45] \\
+ & MLP & 0.567 & 0.475 & 0.514 & 0.907 & 0.10 [0.05, 0.45] \\
+\midrule
+MCAR, native & CART & 0.507 & 0.366 & 0.415 & 0.818 & 0.20 [0.05, 0.45] \\
+ & RF & 0.666 & 0.493 & 0.555 & 0.833 & 0.40 [0.10, 0.45] \\
+ & XGBoost & 0.639 & 0.504 & 0.560 & 0.877 & 0.35 [0.05, 0.45] \\
+ & LightGBM & 0.666 & 0.506 & 0.572 & 0.859 & 0.35 [0.05, 0.45] \\
+ & CatBoost & 0.578 & 0.468 & 0.511 & 0.886 & 0.15 [0.05, 0.40] \\
+ & MLP & 0.567 & 0.475 & 0.514 & 0.907 & 0.10 [0.05, 0.45] \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[p]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{3.5pt}
+\caption{Trajectory summaries for \texttt{ozone\_level}, accuracy averaged over seeds 42, 43 and 44. $\eta_{\mathrm{knee}}$ and its 95\% parametric-bootstrap interval ($B=200$; the standard error of each tier is $\max(\mathrm{SD}_{\mathrm{seed}},\,\mathrm{SD}_{\mathrm{fold}}/2)/\sqrt3$); ``flat'' marks a trajectory with $\kappa\equiv 0$, for which $\eta_{\mathrm{knee}}$ is undefined. Values are rounded to the nearest of the eleven experimental tiers (spacing $0.05$); the knee is a coarse, secondary population-level descriptor.}
+\label{tab:traj_ozone_level}
+\begin{tabular}{@{}llrrrrl@{}}
+\toprule
+Condition & Model & $\mathrm{Acc}(0)$ & $\mathrm{Acc}(0.5)$ & AUDC & MRR & $\eta_{\mathrm{knee}}$ [95\% CI] \\
+\midrule
+Symmetric label & CART & 0.910 & 0.499 & 0.694 & 0.762 & 0.30 [0.05, 0.45] \\
+ & RF & 0.943 & 0.518 & 0.867 & 0.919 & 0.35 [0.20, 0.35] \\
+ & XGBoost & 0.944 & 0.499 & 0.838 & 0.888 & 0.20 [0.10, 0.35] \\
+ & LightGBM & 0.944 & 0.495 & 0.827 & 0.876 & 0.20 [0.10, 0.35] \\
+ & CatBoost & 0.943 & 0.486 & 0.867 & 0.919 & 0.35 [0.20, 0.35] \\
+ & MLP & 0.942 & 0.513 & 0.887 & 0.942 & 0.35 [0.25, 0.40] \\
+\midrule
+Class-cond.\ label & CART & 0.910 & 0.922 & 0.916 & 1.006 & 0.30 [0.05, 0.40] \\
+ & RF & 0.943 & 0.938 & 0.940 & 0.997 & 0.10 [0.05, 0.40] \\
+ & XGBoost & 0.944 & 0.939 & 0.941 & 0.997 & 0.25 [0.05, 0.45] \\
+ & LightGBM & 0.944 & 0.939 & 0.942 & 0.998 & 0.15 [0.05, 0.45] \\
+ & CatBoost & 0.943 & 0.938 & 0.940 & 0.997 & 0.05 [0.05, 0.40] \\
+ & MLP & 0.942 & 0.937 & 0.939 & 0.997 & 0.25 [0.05, 0.35] \\
+\midrule
+Gaussian feature & CART & 0.910 & 0.898 & 0.905 & 0.994 & 0.20 [0.05, 0.45] \\
+ & RF & 0.943 & 0.938 & 0.940 & 0.997 & 0.35 [0.05, 0.40] \\
+ & XGBoost & 0.944 & 0.940 & 0.942 & 0.998 & 0.30 [0.05, 0.45] \\
+ & LightGBM & 0.944 & 0.937 & 0.942 & 0.999 & 0.45 [0.05, 0.45] \\
+ & CatBoost & 0.943 & 0.939 & 0.942 & 0.999 & 0.20 [0.05, 0.45] \\
+ & MLP & 0.942 & 0.938 & 0.940 & 0.998 & 0.35 [0.10, 0.45] \\
+\midrule
+MCAR, imputed & CART & 0.910 & 0.896 & 0.903 & 0.992 & 0.10 [0.10, 0.40] \\
+ & RF & 0.943 & 0.938 & 0.939 & 0.996 & 0.10 [0.05, 0.40] \\
+ & XGBoost & 0.944 & 0.937 & 0.940 & 0.996 & 0.25 [0.05, 0.40] \\
+ & LightGBM & 0.944 & 0.940 & 0.941 & 0.997 & 0.35 [0.05, 0.45] \\
+ & CatBoost & 0.943 & 0.938 & 0.940 & 0.996 & 0.30 [0.05, 0.40] \\
+ & MLP & 0.942 & 0.936 & 0.939 & 0.997 & 0.05 [0.05, 0.45] \\
+\midrule
+MCAR, native & CART & 0.910 & 0.896 & 0.903 & 0.991 & 0.35 [0.05, 0.45] \\
+ & RF & 0.943 & 0.937 & 0.939 & 0.996 & 0.10 [0.05, 0.40] \\
+ & XGBoost & 0.944 & 0.939 & 0.940 & 0.996 & 0.15 [0.05, 0.45] \\
+ & LightGBM & 0.944 & 0.939 & 0.940 & 0.996 & 0.10 [0.05, 0.45] \\
+ & CatBoost & 0.943 & 0.937 & 0.939 & 0.996 & 0.45 [0.05, 0.45] \\
+ & MLP & 0.942 & 0.936 & 0.939 & 0.997 & 0.05 [0.05, 0.45] \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[p]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{3.5pt}
+\caption{Trajectory summaries for \texttt{steel-plates-fault}, accuracy averaged over seeds 42, 43 and 44. $\eta_{\mathrm{knee}}$ and its 95\% parametric-bootstrap interval ($B=200$; the standard error of each tier is $\max(\mathrm{SD}_{\mathrm{seed}},\,\mathrm{SD}_{\mathrm{fold}}/2)/\sqrt3$); ``flat'' marks a trajectory with $\kappa\equiv 0$, for which $\eta_{\mathrm{knee}}$ is undefined. Values are rounded to the nearest of the eleven experimental tiers (spacing $0.05$); the knee is a coarse, secondary population-level descriptor.}
+\label{tab:traj_steel_plates_fault}
+\begin{tabular}{@{}llrrrrl@{}}
+\toprule
+Condition & Model & $\mathrm{Acc}(0)$ & $\mathrm{Acc}(0.5)$ & AUDC & MRR & $\eta_{\mathrm{knee}}$ [95\% CI] \\
+\midrule
+Symmetric label & CART & 1.000 & 0.507 & 0.727 & 0.727 & 0.45 [0.10, 0.45] \\
+ & RF & 0.993 & 0.503 & 0.824 & 0.830 & 0.15 [0.10, 0.45] \\
+ & XGBoost & 1.000 & 0.507 & 0.836 & 0.836 & 0.20 [0.10, 0.50] \\
+ & LightGBM & 1.000 & 0.506 & 0.824 & 0.824 & 0.15 [0.10, 0.45] \\
+ & CatBoost & 1.000 & 0.493 & 0.858 & 0.858 & 0.15 [0.15, 0.45] \\
+ & MLP & 0.993 & 0.513 & 0.902 & 0.907 & 0.30 [0.20, 0.50] \\
+\midrule
+Class-cond.\ label & CART & 1.000 & 0.828 & 0.907 & 0.907 & 0.40 [0.10, 0.45] \\
+ & RF & 0.993 & 0.733 & 0.898 & 0.904 & 0.15 [0.10, 0.45] \\
+ & XGBoost & 1.000 & 0.802 & 0.941 & 0.941 & 0.25 [0.15, 0.45] \\
+ & LightGBM & 1.000 & 0.806 & 0.933 & 0.933 & 0.25 [0.10, 0.45] \\
+ & CatBoost & 1.000 & 0.766 & 0.935 & 0.935 & 0.25 [0.15, 0.45] \\
+ & MLP & 0.993 & 0.713 & 0.932 & 0.938 & 0.30 [0.15, 0.45] \\
+\midrule
+Gaussian feature & CART & 1.000 & 0.986 & 0.996 & 0.996 & 0.45 [0.05, 0.45] \\
+ & RF & 0.993 & 0.990 & 0.993 & 1.000 & 0.40 [0.05, 0.45] \\
+ & XGBoost & 1.000 & 0.991 & 0.994 & 0.994 & 0.05 [0.05, 0.40] \\
+ & LightGBM & 1.000 & 0.991 & 0.995 & 0.995 & 0.05 [0.05, 0.45] \\
+ & CatBoost & 1.000 & 0.992 & 0.996 & 0.996 & 0.05 [0.05, 0.45] \\
+ & MLP & 0.993 & 0.964 & 0.986 & 0.992 & 0.35 [0.10, 0.45] \\
+\midrule
+MCAR, imputed & CART & 1.000 & 0.742 & 0.843 & 0.843 & 0.25 [0.05, 0.45] \\
+ & RF & 0.993 & 0.780 & 0.880 & 0.886 & 0.20 [0.10, 0.45] \\
+ & XGBoost & 1.000 & 0.782 & 0.884 & 0.884 & 0.20 [0.10, 0.45] \\
+ & LightGBM & 1.000 & 0.776 & 0.882 & 0.882 & 0.40 [0.10, 0.45] \\
+ & CatBoost & 1.000 & 0.780 & 0.884 & 0.884 & 0.15 [0.10, 0.45] \\
+ & MLP & 0.993 & 0.758 & 0.869 & 0.875 & 0.30 [0.10, 0.45] \\
+\midrule
+MCAR, native & CART & 1.000 & 0.742 & 0.863 & 0.863 & 0.35 [0.10, 0.45] \\
+ & RF & 0.993 & 0.791 & 0.893 & 0.899 & 0.20 [0.10, 0.45] \\
+ & XGBoost & 1.000 & 0.806 & 0.903 & 0.903 & 0.10 [0.10, 0.45] \\
+ & LightGBM & 1.000 & 0.803 & 0.904 & 0.904 & 0.30 [0.05, 0.45] \\
+ & CatBoost & 1.000 & 0.786 & 0.894 & 0.894 & 0.10 [0.10, 0.45] \\
+ & MLP & 0.993 & 0.758 & 0.869 & 0.875 & 0.30 [0.15, 0.45] \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[p]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{3.5pt}
+\caption{Trajectory summaries for \texttt{vehicle}, accuracy averaged over seeds 42, 43 and 44. $\eta_{\mathrm{knee}}$ and its 95\% parametric-bootstrap interval ($B=200$; the standard error of each tier is $\max(\mathrm{SD}_{\mathrm{seed}},\,\mathrm{SD}_{\mathrm{fold}}/2)/\sqrt3$); ``flat'' marks a trajectory with $\kappa\equiv 0$, for which $\eta_{\mathrm{knee}}$ is undefined. Values are rounded to the nearest of the eleven experimental tiers (spacing $0.05$); the knee is a coarse, secondary population-level descriptor.}
+\label{tab:traj_vehicle}
+\begin{tabular}{@{}llrrrrl@{}}
+\toprule
+Condition & Model & $\mathrm{Acc}(0)$ & $\mathrm{Acc}(0.5)$ & AUDC & MRR & $\eta_{\mathrm{knee}}$ [95\% CI] \\
+\midrule
+Symmetric label & CART & 0.698 & 0.396 & 0.543 & 0.778 & 0.30 [0.10, 0.45] \\
+ & RF & 0.746 & 0.551 & 0.699 & 0.936 & 0.25 [0.15, 0.45] \\
+ & XGBoost & 0.758 & 0.517 & 0.674 & 0.889 & 0.30 [0.05, 0.45] \\
+ & LightGBM & 0.768 & 0.483 & 0.663 & 0.862 & 0.25 [0.05, 0.45] \\
+ & CatBoost & 0.757 & 0.615 & 0.717 & 0.948 & 0.25 [0.15, 0.45] \\
+ & MLP & 0.745 & 0.494 & 0.677 & 0.909 & 0.40 [0.05, 0.45] \\
+\midrule
+Class-cond.\ label & CART & 0.698 & 0.412 & 0.552 & 0.791 & 0.35 [0.05, 0.45] \\
+ & RF & 0.746 & 0.459 & 0.667 & 0.894 & 0.30 [0.05, 0.45] \\
+ & XGBoost & 0.758 & 0.466 & 0.654 & 0.862 & 0.20 [0.05, 0.45] \\
+ & LightGBM & 0.768 & 0.455 & 0.649 & 0.844 & 0.35 [0.05, 0.45] \\
+ & CatBoost & 0.757 & 0.465 & 0.676 & 0.894 & 0.05 [0.05, 0.40] \\
+ & MLP & 0.745 & 0.435 & 0.648 & 0.869 & 0.15 [0.05, 0.45] \\
+\midrule
+Gaussian feature & CART & 0.698 & 0.501 & 0.599 & 0.859 & 0.20 [0.10, 0.40] \\
+ & RF & 0.746 & 0.639 & 0.701 & 0.939 & 0.45 [0.05, 0.45] \\
+ & XGBoost & 0.758 & 0.623 & 0.697 & 0.919 & 0.25 [0.10, 0.45] \\
+ & LightGBM & 0.768 & 0.634 & 0.707 & 0.920 & 0.05 [0.05, 0.45] \\
+ & CatBoost & 0.757 & 0.641 & 0.700 & 0.926 & 0.30 [0.05, 0.45] \\
+ & MLP & 0.745 & 0.602 & 0.687 & 0.922 & 0.25 [0.05, 0.45] \\
+\midrule
+MCAR, imputed & CART & 0.698 & 0.508 & 0.599 & 0.858 & 0.20 [0.10, 0.45] \\
+ & RF & 0.746 & 0.636 & 0.695 & 0.931 & 0.15 [0.05, 0.40] \\
+ & XGBoost & 0.758 & 0.629 & 0.690 & 0.910 & 0.30 [0.10, 0.45] \\
+ & LightGBM & 0.768 & 0.626 & 0.693 & 0.902 & 0.35 [0.10, 0.45] \\
+ & CatBoost & 0.757 & 0.610 & 0.684 & 0.904 & 0.10 [0.05, 0.45] \\
+ & MLP & 0.745 & 0.525 & 0.636 & 0.854 & 0.45 [0.05, 0.45] \\
+\midrule
+MCAR, native & CART & 0.698 & 0.495 & 0.597 & 0.856 & 0.30 [0.05, 0.45] \\
+ & RF & 0.746 & 0.636 & 0.696 & 0.932 & 0.25 [0.05, 0.45] \\
+ & XGBoost & 0.758 & 0.630 & 0.697 & 0.920 & 0.45 [0.05, 0.45] \\
+ & LightGBM & 0.768 & 0.630 & 0.702 & 0.913 & 0.20 [0.05, 0.45] \\
+ & CatBoost & 0.757 & 0.562 & 0.650 & 0.859 & 0.10 [0.05, 0.45] \\
+ & MLP & 0.745 & 0.525 & 0.636 & 0.854 & 0.45 [0.05, 0.45] \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[p]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{3.5pt}
+\caption{Trajectory summaries for \texttt{electricity}, accuracy averaged over seeds 42, 43 and 44. $\eta_{\mathrm{knee}}$ and its 95\% parametric-bootstrap interval ($B=200$; the standard error of each tier is $\max(\mathrm{SD}_{\mathrm{seed}},\,\mathrm{SD}_{\mathrm{fold}}/2)/\sqrt3$); ``flat'' marks a trajectory with $\kappa\equiv 0$, for which $\eta_{\mathrm{knee}}$ is undefined. Values are rounded to the nearest of the eleven experimental tiers (spacing $0.05$); the knee is a coarse, secondary population-level descriptor.}
+\label{tab:traj_electricity}
+\begin{tabular}{@{}llrrrrl@{}}
+\toprule
+Condition & Model & $\mathrm{Acc}(0)$ & $\mathrm{Acc}(0.5)$ & AUDC & MRR & $\eta_{\mathrm{knee}}$ [95\% CI] \\
+\midrule
+Symmetric label & CART & 0.809 & 0.497 & 0.646 & 0.798 & 0.30 [0.15, 0.40] \\
+ & RF & 0.854 & 0.497 & 0.739 & 0.865 & 0.35 [0.05, 0.35] \\
+ & XGBoost & 0.851 & 0.498 & 0.758 & 0.891 & 0.10 [0.05, 0.35] \\
+ & LightGBM & 0.859 & 0.500 & 0.758 & 0.883 & 0.25 [0.05, 0.35] \\
+ & CatBoost & 0.819 & 0.496 & 0.766 & 0.936 & 0.35 [0.05, 0.40] \\
+ & MLP & 0.792 & 0.496 & 0.736 & 0.930 & 0.40 [0.15, 0.40] \\
+\midrule
+Class-cond.\ label & CART & 0.809 & 0.683 & 0.746 & 0.922 & 0.40 [0.05, 0.45] \\
+ & RF & 0.854 & 0.662 & 0.781 & 0.914 & 0.05 [0.05, 0.45] \\
+ & XGBoost & 0.851 & 0.645 & 0.783 & 0.920 & 0.20 [0.05, 0.40] \\
+ & LightGBM & 0.859 & 0.652 & 0.791 & 0.921 & 0.35 [0.05, 0.40] \\
+ & CatBoost & 0.819 & 0.617 & 0.758 & 0.926 & 0.40 [0.10, 0.40] \\
+ & MLP & 0.792 & 0.594 & 0.741 & 0.936 & 0.25 [0.05, 0.45] \\
+\midrule
+Gaussian feature & CART & 0.809 & 0.618 & 0.678 & 0.838 & 0.05 [0.05, 0.40] \\
+ & RF & 0.854 & 0.711 & 0.761 & 0.891 & 0.05 [0.05, 0.20] \\
+ & XGBoost & 0.851 & 0.710 & 0.759 & 0.892 & 0.05 [0.05, 0.35] \\
+ & LightGBM & 0.859 & 0.712 & 0.761 & 0.886 & 0.05 [0.05, 0.35] \\
+ & CatBoost & 0.819 & 0.719 & 0.760 & 0.928 & 0.05 [0.05, 0.45] \\
+ & MLP & 0.792 & 0.718 & 0.757 & 0.956 & 0.30 [0.10, 0.45] \\
+\midrule
+MCAR, imputed & CART & 0.809 & 0.652 & 0.721 & 0.892 & 0.15 [0.05, 0.40] \\
+ & RF & 0.854 & 0.707 & 0.778 & 0.910 & 0.40 [0.05, 0.45] \\
+ & XGBoost & 0.851 & 0.717 & 0.777 & 0.913 & 0.05 [0.05, 0.45] \\
+ & LightGBM & 0.859 & 0.719 & 0.782 & 0.910 & 0.45 [0.05, 0.45] \\
+ & CatBoost & 0.819 & 0.711 & 0.760 & 0.928 & 0.05 [0.05, 0.40] \\
+ & MLP & 0.792 & 0.689 & 0.735 & 0.929 & 0.45 [0.05, 0.45] \\
+\midrule
+MCAR, native & CART & 0.809 & 0.647 & 0.715 & 0.884 & 0.40 [0.05, 0.45] \\
+ & RF & 0.854 & 0.712 & 0.776 & 0.908 & 0.25 [0.05, 0.45] \\
+ & XGBoost & 0.851 & 0.718 & 0.780 & 0.917 & 0.30 [0.05, 0.40] \\
+ & LightGBM & 0.859 & 0.719 & 0.782 & 0.910 & 0.15 [0.05, 0.40] \\
+ & CatBoost & 0.819 & 0.710 & 0.761 & 0.930 & 0.05 [0.05, 0.40] \\
+ & MLP & 0.792 & 0.689 & 0.735 & 0.929 & 0.45 [0.05, 0.45] \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[p]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{3.5pt}
+\caption{Trajectory summaries for \texttt{pol}, accuracy averaged over seeds 42, 43 and 44. $\eta_{\mathrm{knee}}$ and its 95\% parametric-bootstrap interval ($B=200$; the standard error of each tier is $\max(\mathrm{SD}_{\mathrm{seed}},\,\mathrm{SD}_{\mathrm{fold}}/2)/\sqrt3$); ``flat'' marks a trajectory with $\kappa\equiv 0$, for which $\eta_{\mathrm{knee}}$ is undefined. Values are rounded to the nearest of the eleven experimental tiers (spacing $0.05$); the knee is a coarse, secondary population-level descriptor.}
+\label{tab:traj_pol}
+\begin{tabular}{@{}llrrrrl@{}}
+\toprule
+Condition & Model & $\mathrm{Acc}(0)$ & $\mathrm{Acc}(0.5)$ & AUDC & MRR & $\eta_{\mathrm{knee}}$ [95\% CI] \\
+\midrule
+Symmetric label & CART & 0.859 & 0.420 & 0.631 & 0.735 & 0.35 [0.10, 0.45] \\
+ & RF & 0.866 & 0.795 & 0.847 & 0.978 & 0.45 [0.15, 0.45] \\
+ & XGBoost & 0.874 & 0.829 & 0.853 & 0.976 & 0.35 [0.10, 0.45] \\
+ & LightGBM & 0.879 & 0.800 & 0.848 & 0.965 & 0.10 [0.05, 0.45] \\
+ & CatBoost & 0.842 & 0.822 & 0.828 & 0.983 & 0.25 [0.05, 0.40] \\
+ & MLP & 0.922 & 0.820 & 0.848 & 0.920 & 0.20 [0.05, 0.30] \\
+\midrule
+Class-cond.\ label & CART & 0.859 & 0.450 & 0.645 & 0.751 & 0.25 [0.10, 0.45] \\
+ & RF & 0.866 & 0.462 & 0.773 & 0.892 & 0.25 [0.05, 0.30] \\
+ & XGBoost & 0.874 & 0.441 & 0.790 & 0.904 & 0.30 [0.10, 0.35] \\
+ & LightGBM & 0.879 & 0.453 & 0.769 & 0.874 & 0.30 [0.05, 0.35] \\
+ & CatBoost & 0.842 & 0.407 & 0.798 & 0.947 & 0.40 [0.40, 0.40] \\
+ & MLP & 0.922 & 0.422 & 0.837 & 0.907 & 0.40 [0.05, 0.40] \\
+\midrule
+Gaussian feature & CART & 0.859 & 0.669 & 0.744 & 0.866 & 0.05 [0.05, 0.45] \\
+ & RF & 0.866 & 0.779 & 0.811 & 0.937 & 0.05 [0.05, 0.05] \\
+ & XGBoost & 0.874 & 0.783 & 0.814 & 0.932 & 0.05 [0.05, 0.10] \\
+ & LightGBM & 0.879 & 0.790 & 0.818 & 0.931 & 0.05 [0.05, 0.10] \\
+ & CatBoost & 0.842 & 0.772 & 0.806 & 0.958 & 0.05 [0.05, 0.45] \\
+ & MLP & 0.922 & 0.788 & 0.827 & 0.897 & 0.05 [0.05, 0.40] \\
+\midrule
+MCAR, imputed & CART & 0.859 & 0.635 & 0.748 & 0.870 & 0.10 [0.05, 0.45] \\
+ & RF & 0.866 & 0.718 & 0.802 & 0.926 & 0.05 [0.05, 0.45] \\
+ & XGBoost & 0.874 & 0.720 & 0.799 & 0.914 & 0.05 [0.05, 0.40] \\
+ & LightGBM & 0.879 & 0.728 & 0.809 & 0.921 & 0.05 [0.05, 0.45] \\
+ & CatBoost & 0.842 & 0.714 & 0.779 & 0.926 & 0.05 [0.05, 0.45] \\
+ & MLP & 0.922 & 0.710 & 0.805 & 0.873 & 0.05 [0.05, 0.35] \\
+\midrule
+MCAR, native & CART & 0.859 & 0.614 & 0.734 & 0.854 & 0.45 [0.05, 0.45] \\
+ & RF & 0.866 & 0.721 & 0.794 & 0.917 & 0.05 [0.05, 0.45] \\
+ & XGBoost & 0.874 & 0.725 & 0.798 & 0.914 & 0.05 [0.05, 0.45] \\
+ & LightGBM & 0.879 & 0.734 & 0.808 & 0.919 & 0.05 [0.05, 0.45] \\
+ & CatBoost & 0.842 & 0.715 & 0.780 & 0.927 & 0.05 [0.05, 0.45] \\
+ & MLP & 0.922 & 0.710 & 0.805 & 0.873 & 0.05 [0.05, 0.30] \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[p]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{3.5pt}
+\caption{Trajectory summaries for \texttt{miniboone}, accuracy averaged over seeds 42, 43 and 44. $\eta_{\mathrm{knee}}$ and its 95\% parametric-bootstrap interval ($B=200$; the standard error of each tier is $\max(\mathrm{SD}_{\mathrm{seed}},\,\mathrm{SD}_{\mathrm{fold}}/2)/\sqrt3$); ``flat'' marks a trajectory with $\kappa\equiv 0$, for which $\eta_{\mathrm{knee}}$ is undefined. Values are rounded to the nearest of the eleven experimental tiers (spacing $0.05$); the knee is a coarse, secondary population-level descriptor.}
+\label{tab:traj_miniboone}
+\begin{tabular}{@{}llrrrrl@{}}
+\toprule
+Condition & Model & $\mathrm{Acc}(0)$ & $\mathrm{Acc}(0.5)$ & AUDC & MRR & $\eta_{\mathrm{knee}}$ [95\% CI] \\
+\midrule
+Symmetric label & CART & 0.876 & 0.501 & 0.682 & 0.778 & 0.25 [0.05, 0.45] \\
+ & RF & 0.925 & 0.512 & 0.859 & 0.928 & 0.30 [0.15, 0.35] \\
+ & XGBoost & 0.936 & 0.500 & 0.847 & 0.905 & 0.30 [0.15, 0.35] \\
+ & LightGBM & 0.936 & 0.499 & 0.847 & 0.904 & 0.35 [0.15, 0.35] \\
+ & CatBoost & 0.934 & 0.495 & 0.872 & 0.933 & 0.35 [0.15, 0.40] \\
+ & MLP & 0.907 & 0.517 & 0.858 & 0.946 & 0.40 [0.35, 0.45] \\
+\midrule
+Class-cond.\ label & CART & 0.876 & 0.797 & 0.837 & 0.955 & 0.25 [0.05, 0.45] \\
+ & RF & 0.925 & 0.767 & 0.874 & 0.945 & 0.35 [0.10, 0.45] \\
+ & XGBoost & 0.936 & 0.800 & 0.893 & 0.954 & 0.35 [0.10, 0.45] \\
+ & LightGBM & 0.936 & 0.802 & 0.893 & 0.954 & 0.40 [0.10, 0.40] \\
+ & CatBoost & 0.934 & 0.789 & 0.892 & 0.955 & 0.20 [0.10, 0.45] \\
+ & MLP & 0.907 & 0.746 & 0.868 & 0.957 & 0.40 [0.10, 0.45] \\
+\midrule
+Gaussian feature & CART & 0.876 & 0.740 & 0.788 & 0.899 & 0.05 [0.05, 0.45] \\
+ & RF & 0.925 & 0.821 & 0.856 & 0.926 & 0.05 [0.05, 0.40] \\
+ & XGBoost & 0.936 & 0.824 & 0.861 & 0.920 & 0.05 [0.05, 0.35] \\
+ & LightGBM & 0.936 & 0.823 & 0.861 & 0.920 & 0.05 [0.05, 0.40] \\
+ & CatBoost & 0.934 & 0.826 & 0.862 & 0.923 & 0.05 [0.05, 0.45] \\
+ & MLP & 0.907 & 0.820 & 0.857 & 0.945 & 0.15 [0.10, 0.45] \\
+\midrule
+MCAR, imputed & CART & 0.876 & 0.820 & 0.844 & 0.963 & 0.20 [0.05, 0.45] \\
+ & RF & 0.925 & 0.884 & 0.904 & 0.977 & 0.05 [0.05, 0.45] \\
+ & XGBoost & 0.936 & 0.894 & 0.915 & 0.978 & 0.30 [0.10, 0.45] \\
+ & LightGBM & 0.936 & 0.897 & 0.917 & 0.979 & 0.35 [0.05, 0.45] \\
+ & CatBoost & 0.934 & 0.887 & 0.912 & 0.976 & 0.10 [0.05, 0.45] \\
+ & MLP & 0.907 & 0.860 & 0.884 & 0.975 & 0.05 [0.05, 0.45] \\
+\midrule
+MCAR, native & CART & 0.876 & 0.818 & 0.842 & 0.961 & 0.45 [0.05, 0.45] \\
+ & RF & 0.925 & 0.883 & 0.903 & 0.977 & 0.15 [0.05, 0.45] \\
+ & XGBoost & 0.936 & 0.896 & 0.916 & 0.979 & 0.15 [0.05, 0.45] \\
+ & LightGBM & 0.936 & 0.898 & 0.918 & 0.980 & 0.40 [0.05, 0.45] \\
+ & CatBoost & 0.934 & 0.881 & 0.908 & 0.971 & 0.05 [0.05, 0.45] \\
+ & MLP & 0.907 & 0.860 & 0.884 & 0.975 & 0.05 [0.05, 0.45] \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[p]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{3.5pt}
+\caption{Trajectory summaries for \texttt{bank-marketing}, accuracy averaged over seeds 42, 43 and 44. $\eta_{\mathrm{knee}}$ and its 95\% parametric-bootstrap interval ($B=200$; the standard error of each tier is $\max(\mathrm{SD}_{\mathrm{seed}},\,\mathrm{SD}_{\mathrm{fold}}/2)/\sqrt3$); ``flat'' marks a trajectory with $\kappa\equiv 0$, for which $\eta_{\mathrm{knee}}$ is undefined. Values are rounded to the nearest of the eleven experimental tiers (spacing $0.05$); the knee is a coarse, secondary population-level descriptor.}
+\label{tab:traj_bank_marketing}
+\begin{tabular}{@{}llrrrrl@{}}
+\toprule
+Condition & Model & $\mathrm{Acc}(0)$ & $\mathrm{Acc}(0.5)$ & AUDC & MRR & $\eta_{\mathrm{knee}}$ [95\% CI] \\
+\midrule
+Symmetric label & CART & 0.866 & 0.499 & 0.674 & 0.778 & 0.30 [0.10, 0.45] \\
+ & RF & 0.900 & 0.517 & 0.827 & 0.919 & 0.25 [0.10, 0.35] \\
+ & XGBoost & 0.902 & 0.496 & 0.840 & 0.931 & 0.40 [0.25, 0.40] \\
+ & LightGBM & 0.902 & 0.499 & 0.833 & 0.924 & 0.40 [0.10, 0.40] \\
+ & CatBoost & 0.904 & 0.492 & 0.861 & 0.952 & 0.40 [0.40, 0.40] \\
+ & MLP & 0.898 & 0.475 & 0.851 & 0.948 & 0.35 [0.25, 0.40] \\
+\midrule
+Class-cond.\ label & CART & 0.866 & 0.875 & 0.871 & 1.006 & 0.20 [0.05, 0.45] \\
+ & RF & 0.900 & 0.884 & 0.892 & 0.991 & 0.35 [0.05, 0.35] \\
+ & XGBoost & 0.902 & 0.888 & 0.895 & 0.992 & 0.15 [0.05, 0.45] \\
+ & LightGBM & 0.902 & 0.887 & 0.895 & 0.992 & 0.10 [0.05, 0.45] \\
+ & CatBoost & 0.904 & 0.886 & 0.895 & 0.989 & 0.15 [0.10, 0.40] \\
+ & MLP & 0.898 & 0.884 & 0.890 & 0.991 & 0.35 [0.05, 0.40] \\
+\midrule
+Gaussian feature & CART & 0.866 & 0.853 & 0.860 & 0.993 & 0.35 [0.10, 0.45] \\
+ & RF & 0.900 & 0.895 & 0.897 & 0.997 & 0.40 [0.05, 0.40] \\
+ & XGBoost & 0.902 & 0.894 & 0.898 & 0.996 & 0.45 [0.05, 0.45] \\
+ & LightGBM & 0.902 & 0.894 & 0.898 & 0.995 & 0.10 [0.05, 0.40] \\
+ & CatBoost & 0.904 & 0.897 & 0.900 & 0.996 & 0.10 [0.05, 0.45] \\
+ & MLP & 0.898 & 0.896 & 0.897 & 0.999 & 0.15 [0.05, 0.45] \\
+\midrule
+MCAR, imputed & CART & 0.866 & 0.832 & 0.846 & 0.977 & 0.45 [0.10, 0.45] \\
+ & RF & 0.900 & 0.887 & 0.894 & 0.994 & 0.15 [0.05, 0.45] \\
+ & XGBoost & 0.902 & 0.890 & 0.895 & 0.992 & 0.35 [0.05, 0.45] \\
+ & LightGBM & 0.902 & 0.889 & 0.895 & 0.992 & 0.40 [0.10, 0.45] \\
+ & CatBoost & 0.904 & 0.893 & 0.897 & 0.992 & 0.30 [0.05, 0.45] \\
+ & MLP & 0.898 & 0.889 & 0.892 & 0.994 & 0.15 [0.05, 0.45] \\
+\midrule
+MCAR, native & CART & 0.866 & 0.819 & 0.843 & 0.974 & 0.30 [0.05, 0.45] \\
+ & RF & 0.900 & 0.889 & 0.894 & 0.994 & 0.40 [0.05, 0.45] \\
+ & XGBoost & 0.902 & 0.889 & 0.895 & 0.992 & 0.30 [0.05, 0.40] \\
+ & LightGBM & 0.902 & 0.890 & 0.895 & 0.993 & 0.15 [0.10, 0.45] \\
+ & CatBoost & 0.904 & 0.889 & 0.896 & 0.990 & 0.10 [0.05, 0.45] \\
+ & MLP & 0.898 & 0.889 & 0.892 & 0.994 & 0.15 [0.05, 0.40] \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[p]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{3.5pt}
+\caption{Trajectory summaries for \texttt{churn}, accuracy averaged over seeds 42, 43 and 44. $\eta_{\mathrm{knee}}$ and its 95\% parametric-bootstrap interval ($B=200$; the standard error of each tier is $\max(\mathrm{SD}_{\mathrm{seed}},\,\mathrm{SD}_{\mathrm{fold}}/2)/\sqrt3$); ``flat'' marks a trajectory with $\kappa\equiv 0$, for which $\eta_{\mathrm{knee}}$ is undefined. Values are rounded to the nearest of the eleven experimental tiers (spacing $0.05$); the knee is a coarse, secondary population-level descriptor.}
+\label{tab:traj_churn}
+\begin{tabular}{@{}llrrrrl@{}}
+\toprule
+Condition & Model & $\mathrm{Acc}(0)$ & $\mathrm{Acc}(0.5)$ & AUDC & MRR & $\eta_{\mathrm{knee}}$ [95\% CI] \\
+\midrule
+Symmetric label & CART & 0.915 & 0.509 & 0.692 & 0.756 & 0.15 [0.10, 0.45] \\
+ & RF & 0.950 & 0.527 & 0.857 & 0.902 & 0.40 [0.05, 0.40] \\
+ & XGBoost & 0.951 & 0.506 & 0.844 & 0.887 & 0.25 [0.05, 0.35] \\
+ & LightGBM & 0.953 & 0.508 & 0.834 & 0.875 & 0.20 [0.10, 0.35] \\
+ & CatBoost & 0.957 & 0.515 & 0.868 & 0.907 & 0.40 [0.10, 0.40] \\
+ & MLP & 0.932 & 0.493 & 0.847 & 0.909 & 0.35 [0.15, 0.40] \\
+\midrule
+Class-cond.\ label & CART & 0.915 & 0.881 & 0.897 & 0.980 & 0.10 [0.05, 0.40] \\
+ & RF & 0.950 & 0.872 & 0.914 & 0.962 & 0.35 [0.05, 0.45] \\
+ & XGBoost & 0.951 & 0.886 & 0.923 & 0.970 & 0.10 [0.05, 0.45] \\
+ & LightGBM & 0.953 & 0.883 & 0.922 & 0.967 & 0.40 [0.05, 0.45] \\
+ & CatBoost & 0.957 & 0.878 & 0.920 & 0.962 & 0.10 [0.05, 0.45] \\
+ & MLP & 0.932 & 0.864 & 0.907 & 0.974 & 0.35 [0.20, 0.45] \\
+\midrule
+Gaussian feature & CART & 0.915 & 0.869 & 0.893 & 0.976 & 0.35 [0.10, 0.45] \\
+ & RF & 0.950 & 0.909 & 0.932 & 0.981 & 0.40 [0.05, 0.45] \\
+ & XGBoost & 0.951 & 0.912 & 0.934 & 0.982 & 0.10 [0.05, 0.45] \\
+ & LightGBM & 0.953 & 0.912 & 0.935 & 0.981 & 0.05 [0.05, 0.45] \\
+ & CatBoost & 0.957 & 0.914 & 0.937 & 0.980 & 0.10 [0.05, 0.45] \\
+ & MLP & 0.932 & 0.906 & 0.921 & 0.988 & 0.40 [0.05, 0.45] \\
+\midrule
+MCAR, imputed & CART & 0.915 & 0.819 & 0.863 & 0.943 & 0.40 [0.10, 0.45] \\
+ & RF & 0.950 & 0.890 & 0.920 & 0.968 & 0.20 [0.05, 0.45] \\
+ & XGBoost & 0.951 & 0.889 & 0.921 & 0.968 & 0.30 [0.05, 0.45] \\
+ & LightGBM & 0.953 & 0.883 & 0.920 & 0.965 & 0.30 [0.05, 0.45] \\
+ & CatBoost & 0.957 & 0.888 & 0.921 & 0.962 & 0.15 [0.05, 0.45] \\
+ & MLP & 0.932 & 0.876 & 0.899 & 0.965 & 0.45 [0.10, 0.45] \\
+\midrule
+MCAR, native & CART & 0.915 & 0.812 & 0.861 & 0.941 & 0.35 [0.10, 0.40] \\
+ & RF & 0.950 & 0.886 & 0.916 & 0.964 & 0.20 [0.05, 0.45] \\
+ & XGBoost & 0.951 & 0.886 & 0.919 & 0.966 & 0.35 [0.05, 0.45] \\
+ & LightGBM & 0.953 & 0.885 & 0.919 & 0.965 & 0.20 [0.05, 0.45] \\
+ & CatBoost & 0.957 & 0.882 & 0.915 & 0.957 & 0.35 [0.05, 0.45] \\
+ & MLP & 0.932 & 0.876 & 0.899 & 0.965 & 0.45 [0.10, 0.45] \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[p]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{3.5pt}
+\caption{Trajectory summaries for \texttt{amazon\_access}, accuracy averaged over seeds 42, 43 and 44. $\eta_{\mathrm{knee}}$ and its 95\% parametric-bootstrap interval ($B=200$; the standard error of each tier is $\max(\mathrm{SD}_{\mathrm{seed}},\,\mathrm{SD}_{\mathrm{fold}}/2)/\sqrt3$); ``flat'' marks a trajectory with $\kappa\equiv 0$, for which $\eta_{\mathrm{knee}}$ is undefined. Values are rounded to the nearest of the eleven experimental tiers (spacing $0.05$); the knee is a coarse, secondary population-level descriptor.}
+\label{tab:traj_amazon_access}
+\begin{tabular}{@{}llrrrrl@{}}
+\toprule
+Condition & Model & $\mathrm{Acc}(0)$ & $\mathrm{Acc}(0.5)$ & AUDC & MRR & $\eta_{\mathrm{knee}}$ [95\% CI] \\
+\midrule
+Symmetric label & CART & 0.912 & 0.501 & 0.696 & 0.763 & 0.35 [0.10, 0.45] \\
+ & RF & 0.945 & 0.493 & 0.797 & 0.843 & 0.15 [0.10, 0.35] \\
+ & XGBoost & 0.945 & 0.502 & 0.870 & 0.921 & 0.35 [0.25, 0.40] \\
+ & LightGBM & 0.945 & 0.501 & 0.865 & 0.915 & 0.30 [0.25, 0.35] \\
+ & CatBoost & 0.942 & 0.505 & 0.905 & 0.961 & 0.40 [0.40, 0.40] \\
+ & MLP & 0.942 & 0.533 & 0.915 & 0.971 & 0.40 [0.40, 0.45] \\
+\midrule
+Class-cond.\ label & CART & 0.912 & 0.925 & 0.917 & 1.006 & 0.35 [0.10, 0.45] \\
+ & RF & 0.945 & 0.943 & 0.944 & 0.999 & 0.05 [0.05, 0.45] \\
+ & XGBoost & 0.945 & 0.943 & 0.944 & 0.999 & 0.10 [0.05, 0.45] \\
+ & LightGBM & 0.945 & 0.942 & 0.944 & 0.999 & 0.10 [0.05, 0.45] \\
+ & CatBoost & 0.942 & 0.942 & 0.942 & 1.000 & 0.20 [0.05, 0.45] \\
+ & MLP & 0.942 & 0.942 & 0.942 & 1.000 & flat \\
+\midrule
+Gaussian feature & CART & 0.912 & 0.912 & 0.912 & 1.000 & flat \\
+ & RF & 0.945 & 0.945 & 0.945 & 1.000 & flat \\
+ & XGBoost & 0.945 & 0.945 & 0.945 & 1.000 & flat \\
+ & LightGBM & 0.945 & 0.945 & 0.945 & 1.000 & flat \\
+ & CatBoost & 0.942 & 0.942 & 0.942 & 1.000 & flat \\
+ & MLP & 0.942 & 0.942 & 0.942 & 1.000 & flat \\
+\midrule
+MCAR, imputed & CART & 0.912 & 0.890 & 0.895 & 0.982 & 0.35 [0.10, 0.45] \\
+ & RF & 0.945 & 0.940 & 0.943 & 0.997 & 0.15 [0.05, 0.45] \\
+ & XGBoost & 0.945 & 0.942 & 0.943 & 0.998 & 0.10 [0.05, 0.40] \\
+ & LightGBM & 0.945 & 0.942 & 0.943 & 0.997 & 0.30 [0.05, 0.45] \\
+ & CatBoost & 0.942 & 0.942 & 0.942 & 1.000 & 0.05 [0.05, 0.45] \\
+ & MLP & 0.942 & 0.942 & 0.942 & 1.000 & flat \\
+\midrule
+MCAR, native & CART & 0.912 & 0.885 & 0.893 & 0.979 & 0.35 [0.05, 0.45] \\
+ & RF & 0.945 & 0.941 & 0.943 & 0.997 & 0.10 [0.05, 0.45] \\
+ & XGBoost & 0.945 & 0.942 & 0.943 & 0.998 & 0.35 [0.05, 0.40] \\
+ & LightGBM & 0.945 & 0.942 & 0.942 & 0.997 & 0.15 [0.05, 0.45] \\
+ & CatBoost & 0.942 & 0.942 & 0.942 & 1.000 & 0.05 [0.05, 0.45] \\
+ & MLP & 0.942 & 0.942 & 0.942 & 1.000 & flat \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[p]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{3.5pt}
+\caption{Trajectory summaries for \texttt{nomao}, accuracy averaged over seeds 42, 43 and 44. $\eta_{\mathrm{knee}}$ and its 95\% parametric-bootstrap interval ($B=200$; the standard error of each tier is $\max(\mathrm{SD}_{\mathrm{seed}},\,\mathrm{SD}_{\mathrm{fold}}/2)/\sqrt3$); ``flat'' marks a trajectory with $\kappa\equiv 0$, for which $\eta_{\mathrm{knee}}$ is undefined. Values are rounded to the nearest of the eleven experimental tiers (spacing $0.05$); the knee is a coarse, secondary population-level descriptor.}
+\label{tab:traj_nomao}
+\begin{tabular}{@{}llrrrrl@{}}
+\toprule
+Condition & Model & $\mathrm{Acc}(0)$ & $\mathrm{Acc}(0.5)$ & AUDC & MRR & $\eta_{\mathrm{knee}}$ [95\% CI] \\
+\midrule
+Symmetric label & CART & 0.931 & 0.495 & 0.704 & 0.756 & 0.35 [0.10, 0.40] \\
+ & RF & 0.957 & 0.497 & 0.840 & 0.877 & 0.25 [0.10, 0.35] \\
+ & XGBoost & 0.957 & 0.496 & 0.879 & 0.919 & 0.30 [0.20, 0.40] \\
+ & LightGBM & 0.961 & 0.501 & 0.873 & 0.909 & 0.30 [0.20, 0.40] \\
+ & CatBoost & 0.957 & 0.496 & 0.902 & 0.942 & 0.40 [0.40, 0.40] \\
+ & MLP & 0.951 & 0.522 & 0.885 & 0.931 & 0.35 [0.10, 0.45] \\
+\midrule
+Class-cond.\ label & CART & 0.931 & 0.826 & 0.876 & 0.941 & 0.30 [0.05, 0.45] \\
+ & RF & 0.957 & 0.821 & 0.920 & 0.961 & 0.35 [0.05, 0.45] \\
+ & XGBoost & 0.957 & 0.822 & 0.923 & 0.965 & 0.35 [0.10, 0.45] \\
+ & LightGBM & 0.961 & 0.825 & 0.922 & 0.960 & 0.35 [0.10, 0.45] \\
+ & CatBoost & 0.957 & 0.816 & 0.919 & 0.961 & 0.35 [0.10, 0.45] \\
+ & MLP & 0.951 & 0.803 & 0.921 & 0.969 & 0.45 [0.20, 0.45] \\
+\midrule
+Gaussian feature & CART & 0.931 & 0.896 & 0.904 & 0.971 & 0.05 [0.05, 0.45] \\
+ & RF & 0.957 & 0.938 & 0.944 & 0.985 & 0.05 [0.05, 0.45] \\
+ & XGBoost & 0.957 & 0.940 & 0.946 & 0.988 & 0.05 [0.05, 0.45] \\
+ & LightGBM & 0.961 & 0.942 & 0.947 & 0.986 & 0.05 [0.05, 0.45] \\
+ & CatBoost & 0.957 & 0.943 & 0.947 & 0.989 & 0.05 [0.05, 0.45] \\
+ & MLP & 0.951 & 0.939 & 0.945 & 0.995 & 0.20 [0.05, 0.45] \\
+\midrule
+MCAR, imputed & CART & 0.931 & 0.881 & 0.903 & 0.969 & 0.30 [0.10, 0.45] \\
+ & RF & 0.957 & 0.929 & 0.944 & 0.986 & 0.20 [0.05, 0.45] \\
+ & XGBoost & 0.957 & 0.930 & 0.945 & 0.987 & 0.45 [0.05, 0.45] \\
+ & LightGBM & 0.961 & 0.934 & 0.948 & 0.987 & 0.30 [0.05, 0.45] \\
+ & CatBoost & 0.957 & 0.926 & 0.942 & 0.985 & 0.35 [0.05, 0.45] \\
+ & MLP & 0.951 & 0.911 & 0.931 & 0.980 & 0.30 [0.05, 0.45] \\
+\midrule
+MCAR, native & CART & 0.931 & 0.878 & 0.899 & 0.966 & 0.10 [0.05, 0.45] \\
+ & RF & 0.957 & 0.926 & 0.941 & 0.983 & 0.35 [0.05, 0.45] \\
+ & XGBoost & 0.957 & 0.931 & 0.945 & 0.988 & 0.45 [0.05, 0.45] \\
+ & LightGBM & 0.961 & 0.935 & 0.947 & 0.986 & 0.45 [0.05, 0.45] \\
+ & CatBoost & 0.957 & 0.924 & 0.941 & 0.983 & 0.30 [0.05, 0.45] \\
+ & MLP & 0.951 & 0.911 & 0.931 & 0.980 & 0.30 [0.05, 0.45] \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[p]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{3.5pt}
+\caption{Trajectory summaries for \texttt{spambase}, accuracy averaged over seeds 42, 43 and 44. $\eta_{\mathrm{knee}}$ and its 95\% parametric-bootstrap interval ($B=200$; the standard error of each tier is $\max(\mathrm{SD}_{\mathrm{seed}},\,\mathrm{SD}_{\mathrm{fold}}/2)/\sqrt3$); ``flat'' marks a trajectory with $\kappa\equiv 0$, for which $\eta_{\mathrm{knee}}$ is undefined. Values are rounded to the nearest of the eleven experimental tiers (spacing $0.05$); the knee is a coarse, secondary population-level descriptor.}
+\label{tab:traj_spambase}
+\begin{tabular}{@{}llrrrrl@{}}
+\toprule
+Condition & Model & $\mathrm{Acc}(0)$ & $\mathrm{Acc}(0.5)$ & AUDC & MRR & $\eta_{\mathrm{knee}}$ [95\% CI] \\
+\midrule
+Symmetric label & CART & 0.910 & 0.496 & 0.704 & 0.773 & 0.20 [0.10, 0.45] \\
+ & RF & 0.954 & 0.499 & 0.820 & 0.860 & 0.15 [0.05, 0.35] \\
+ & XGBoost & 0.953 & 0.491 & 0.842 & 0.884 & 0.30 [0.10, 0.40] \\
+ & LightGBM & 0.957 & 0.494 & 0.823 & 0.860 & 0.25 [0.10, 0.40] \\
+ & CatBoost & 0.952 & 0.491 & 0.872 & 0.916 & 0.30 [0.10, 0.40] \\
+ & MLP & 0.941 & 0.498 & 0.847 & 0.900 & 0.35 [0.10, 0.35] \\
+\midrule
+Class-cond.\ label & CART & 0.910 & 0.748 & 0.826 & 0.908 & 0.35 [0.05, 0.45] \\
+ & RF & 0.954 & 0.742 & 0.875 & 0.917 & 0.25 [0.05, 0.45] \\
+ & XGBoost & 0.953 & 0.756 & 0.895 & 0.939 & 0.30 [0.10, 0.45] \\
+ & LightGBM & 0.957 & 0.761 & 0.886 & 0.926 & 0.20 [0.05, 0.45] \\
+ & CatBoost & 0.952 & 0.741 & 0.892 & 0.937 & 0.35 [0.05, 0.45] \\
+ & MLP & 0.941 & 0.686 & 0.881 & 0.937 & 0.40 [0.10, 0.45] \\
+\midrule
+Gaussian feature & CART & 0.910 & 0.767 & 0.824 & 0.906 & 0.05 [0.05, 0.45] \\
+ & RF & 0.954 & 0.877 & 0.912 & 0.956 & 0.05 [0.05, 0.45] \\
+ & XGBoost & 0.953 & 0.881 & 0.914 & 0.960 & 0.40 [0.05, 0.45] \\
+ & LightGBM & 0.957 & 0.883 & 0.917 & 0.958 & 0.05 [0.05, 0.45] \\
+ & CatBoost & 0.952 & 0.879 & 0.915 & 0.961 & 0.05 [0.05, 0.45] \\
+ & MLP & 0.941 & 0.877 & 0.912 & 0.969 & 0.05 [0.05, 0.45] \\
+\midrule
+MCAR, imputed & CART & 0.910 & 0.815 & 0.867 & 0.953 & 0.40 [0.10, 0.45] \\
+ & RF & 0.954 & 0.891 & 0.928 & 0.972 & 0.45 [0.05, 0.45] \\
+ & XGBoost & 0.953 & 0.895 & 0.927 & 0.973 & 0.10 [0.10, 0.45] \\
+ & LightGBM & 0.957 & 0.898 & 0.931 & 0.973 & 0.30 [0.05, 0.45] \\
+ & CatBoost & 0.952 & 0.897 & 0.930 & 0.976 & 0.10 [0.05, 0.45] \\
+ & MLP & 0.941 & 0.885 & 0.916 & 0.974 & 0.20 [0.05, 0.45] \\
+\midrule
+MCAR, native & CART & 0.910 & 0.800 & 0.858 & 0.943 & 0.35 [0.10, 0.45] \\
+ & RF & 0.954 & 0.892 & 0.925 & 0.969 & 0.25 [0.05, 0.45] \\
+ & XGBoost & 0.953 & 0.898 & 0.930 & 0.976 & 0.15 [0.05, 0.45] \\
+ & LightGBM & 0.957 & 0.900 & 0.932 & 0.974 & 0.40 [0.05, 0.45] \\
+ & CatBoost & 0.952 & 0.899 & 0.928 & 0.975 & 0.40 [0.05, 0.45] \\
+ & MLP & 0.941 & 0.885 & 0.916 & 0.974 & 0.20 [0.05, 0.45] \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[p]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{3.5pt}
+\caption{Trajectory summaries for \texttt{madelon}, accuracy averaged over seeds 42, 43 and 44. $\eta_{\mathrm{knee}}$ and its 95\% parametric-bootstrap interval ($B=200$; the standard error of each tier is $\max(\mathrm{SD}_{\mathrm{seed}},\,\mathrm{SD}_{\mathrm{fold}}/2)/\sqrt3$); ``flat'' marks a trajectory with $\kappa\equiv 0$, for which $\eta_{\mathrm{knee}}$ is undefined. Values are rounded to the nearest of the eleven experimental tiers (spacing $0.05$); the knee is a coarse, secondary population-level descriptor.}
+\label{tab:traj_madelon}
+\begin{tabular}{@{}llrrrrl@{}}
+\toprule
+Condition & Model & $\mathrm{Acc}(0)$ & $\mathrm{Acc}(0.5)$ & AUDC & MRR & $\eta_{\mathrm{knee}}$ [95\% CI] \\
+\midrule
+Symmetric label & CART & 0.738 & 0.489 & 0.579 & 0.785 & 0.45 [0.10, 0.45] \\
+ & RF & 0.707 & 0.502 & 0.588 & 0.832 & 0.45 [0.05, 0.45] \\
+ & XGBoost & 0.830 & 0.498 & 0.622 & 0.749 & 0.45 [0.05, 0.45] \\
+ & LightGBM & 0.824 & 0.496 & 0.618 & 0.750 & 0.30 [0.20, 0.45] \\
+ & CatBoost & 0.842 & 0.509 & 0.635 & 0.754 & 0.40 [0.05, 0.45] \\
+ & MLP & 0.559 & 0.500 & 0.526 & 0.940 & 0.05 [0.05, 0.45] \\
+\midrule
+Class-cond.\ label & CART & 0.738 & 0.568 & 0.643 & 0.871 & 0.40 [0.10, 0.40] \\
+ & RF & 0.707 & 0.500 & 0.569 & 0.805 & 0.30 [0.05, 0.35] \\
+ & XGBoost & 0.830 & 0.511 & 0.663 & 0.798 & 0.10 [0.05, 0.40] \\
+ & LightGBM & 0.824 & 0.511 & 0.659 & 0.799 & 0.25 [0.05, 0.45] \\
+ & CatBoost & 0.842 & 0.506 & 0.665 & 0.790 & 0.10 [0.05, 0.45] \\
+ & MLP & 0.559 & 0.501 & 0.523 & 0.934 & 0.10 [0.05, 0.40] \\
+\midrule
+Gaussian feature & CART & 0.738 & 0.599 & 0.676 & 0.917 & 0.40 [0.10, 0.45] \\
+ & RF & 0.707 & 0.622 & 0.666 & 0.942 & 0.10 [0.05, 0.45] \\
+ & XGBoost & 0.830 & 0.688 & 0.778 & 0.937 & 0.15 [0.05, 0.45] \\
+ & LightGBM & 0.824 & 0.682 & 0.771 & 0.936 & 0.10 [0.05, 0.45] \\
+ & CatBoost & 0.842 & 0.708 & 0.796 & 0.946 & 0.45 [0.05, 0.45] \\
+ & MLP & 0.559 & 0.542 & 0.553 & 0.989 & 0.10 [0.05, 0.40] \\
+\midrule
+MCAR, imputed & CART & 0.738 & 0.543 & 0.618 & 0.838 & 0.40 [0.10, 0.45] \\
+ & RF & 0.707 & 0.582 & 0.635 & 0.898 & 0.40 [0.05, 0.45] \\
+ & XGBoost & 0.830 & 0.615 & 0.707 & 0.851 & 0.30 [0.10, 0.45] \\
+ & LightGBM & 0.824 & 0.605 & 0.703 & 0.853 & 0.40 [0.05, 0.45] \\
+ & CatBoost & 0.842 & 0.602 & 0.711 & 0.845 & 0.45 [0.05, 0.45] \\
+ & MLP & 0.559 & 0.532 & 0.548 & 0.980 & 0.25 [0.05, 0.45] \\
+\midrule
+MCAR, native & CART & 0.738 & 0.545 & 0.616 & 0.835 & 0.05 [0.05, 0.40] \\
+ & RF & 0.707 & 0.562 & 0.626 & 0.885 & 0.30 [0.10, 0.45] \\
+ & XGBoost & 0.830 & 0.603 & 0.700 & 0.842 & 0.05 [0.05, 0.45] \\
+ & LightGBM & 0.824 & 0.608 & 0.698 & 0.847 & 0.20 [0.05, 0.45] \\
+ & CatBoost & 0.842 & 0.581 & 0.687 & 0.816 & 0.45 [0.10, 0.45] \\
+ & MLP & 0.559 & 0.532 & 0.548 & 0.980 & 0.25 [0.05, 0.45] \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[p]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{3.5pt}
+\caption{Trajectory summaries for \texttt{hill\_valley}, accuracy averaged over seeds 42, 43 and 44. $\eta_{\mathrm{knee}}$ and its 95\% parametric-bootstrap interval ($B=200$; the standard error of each tier is $\max(\mathrm{SD}_{\mathrm{seed}},\,\mathrm{SD}_{\mathrm{fold}}/2)/\sqrt3$); ``flat'' marks a trajectory with $\kappa\equiv 0$, for which $\eta_{\mathrm{knee}}$ is undefined. Values are rounded to the nearest of the eleven experimental tiers (spacing $0.05$); the knee is a coarse, secondary population-level descriptor.}
+\label{tab:traj_hill_valley}
+\begin{tabular}{@{}llrrrrl@{}}
+\toprule
+Condition & Model & $\mathrm{Acc}(0)$ & $\mathrm{Acc}(0.5)$ & AUDC & MRR & $\eta_{\mathrm{knee}}$ [95\% CI] \\
+\midrule
+Symmetric label & CART & 0.542 & 0.506 & 0.520 & 0.960 & 0.20 [0.10, 0.45] \\
+ & RF & 0.572 & 0.496 & 0.536 & 0.936 & 0.30 [0.05, 0.45] \\
+ & XGBoost & 0.542 & 0.509 & 0.527 & 0.972 & 0.20 [0.05, 0.40] \\
+ & LightGBM & 0.579 & 0.499 & 0.536 & 0.926 & 0.30 [0.05, 0.45] \\
+ & CatBoost & 0.530 & 0.502 & 0.516 & 0.973 & 0.30 [0.10, 0.45] \\
+ & MLP & 0.536 & 0.502 & 0.516 & 0.964 & 0.10 [0.05, 0.45] \\
+\midrule
+Class-cond.\ label & CART & 0.542 & 0.519 & 0.535 & 0.987 & 0.40 [0.05, 0.40] \\
+ & RF & 0.572 & 0.516 & 0.545 & 0.952 & 0.35 [0.05, 0.40] \\
+ & XGBoost & 0.542 & 0.520 & 0.530 & 0.979 & 0.10 [0.05, 0.40] \\
+ & LightGBM & 0.579 & 0.523 & 0.550 & 0.951 & 0.40 [0.05, 0.45] \\
+ & CatBoost & 0.530 & 0.503 & 0.516 & 0.974 & 0.15 [0.05, 0.45] \\
+ & MLP & 0.536 & 0.499 & 0.509 & 0.950 & 0.10 [0.05, 0.30] \\
+\midrule
+Gaussian feature & CART & 0.542 & 0.523 & 0.517 & 0.955 & 0.20 [0.10, 0.40] \\
+ & RF & 0.572 & 0.513 & 0.528 & 0.923 & 0.20 [0.05, 0.45] \\
+ & XGBoost & 0.542 & 0.511 & 0.523 & 0.965 & 0.15 [0.05, 0.45] \\
+ & LightGBM & 0.579 & 0.512 & 0.527 & 0.910 & 0.40 [0.05, 0.40] \\
+ & CatBoost & 0.530 & 0.518 & 0.517 & 0.977 & 0.15 [0.05, 0.45] \\
+ & MLP & 0.536 & 0.505 & 0.512 & 0.955 & 0.25 [0.05, 0.40] \\
+\midrule
+MCAR, imputed & CART & 0.542 & 0.494 & 0.508 & 0.938 & 0.25 [0.10, 0.45] \\
+ & RF & 0.572 & 0.501 & 0.515 & 0.901 & 0.30 [0.05, 0.45] \\
+ & XGBoost & 0.542 & 0.509 & 0.513 & 0.947 & 0.45 [0.10, 0.45] \\
+ & LightGBM & 0.579 & 0.496 & 0.523 & 0.903 & 0.25 [0.05, 0.45] \\
+ & CatBoost & 0.530 & 0.511 & 0.511 & 0.964 & 0.30 [0.05, 0.45] \\
+ & MLP & 0.536 & 0.520 & 0.518 & 0.966 & 0.35 [0.05, 0.40] \\
+\midrule
+MCAR, native & CART & 0.542 & 0.506 & 0.508 & 0.938 & 0.05 [0.05, 0.40] \\
+ & RF & 0.572 & 0.509 & 0.514 & 0.899 & 0.15 [0.05, 0.45] \\
+ & XGBoost & 0.542 & 0.497 & 0.510 & 0.941 & 0.40 [0.05, 0.45] \\
+ & LightGBM & 0.579 & 0.500 & 0.517 & 0.893 & 0.05 [0.05, 0.40] \\
+ & CatBoost & 0.530 & 0.494 & 0.504 & 0.951 & 0.35 [0.05, 0.40] \\
+ & MLP & 0.536 & 0.520 & 0.518 & 0.966 & 0.35 [0.05, 0.40] \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[p]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{3.5pt}
+\caption{Trajectory summaries for \texttt{jungle\_chess}, accuracy averaged over seeds 42, 43 and 44. $\eta_{\mathrm{knee}}$ and its 95\% parametric-bootstrap interval ($B=200$; the standard error of each tier is $\max(\mathrm{SD}_{\mathrm{seed}},\,\mathrm{SD}_{\mathrm{fold}}/2)/\sqrt3$); ``flat'' marks a trajectory with $\kappa\equiv 0$, for which $\eta_{\mathrm{knee}}$ is undefined. Values are rounded to the nearest of the eleven experimental tiers (spacing $0.05$); the knee is a coarse, secondary population-level descriptor.}
+\label{tab:traj_jungle_chess}
+\begin{tabular}{@{}llrrrrl@{}}
+\toprule
+Condition & Model & $\mathrm{Acc}(0)$ & $\mathrm{Acc}(0.5)$ & AUDC & MRR & $\eta_{\mathrm{knee}}$ [95\% CI] \\
+\midrule
+Symmetric label & CART & 0.791 & 0.430 & 0.596 & 0.753 & 0.25 [0.10, 0.45] \\
+ & RF & 0.814 & 0.545 & 0.728 & 0.893 & 0.25 [0.05, 0.45] \\
+ & XGBoost & 0.846 & 0.662 & 0.795 & 0.939 & 0.35 [0.05, 0.45] \\
+ & LightGBM & 0.851 & 0.684 & 0.803 & 0.944 & 0.25 [0.05, 0.45] \\
+ & CatBoost & 0.841 & 0.741 & 0.812 & 0.965 & 0.45 [0.10, 0.45] \\
+ & MLP & 0.845 & 0.731 & 0.792 & 0.937 & 0.05 [0.05, 0.45] \\
+\midrule
+Class-cond.\ label & CART & 0.791 & 0.442 & 0.604 & 0.763 & 0.05 [0.05, 0.45] \\
+ & RF & 0.814 & 0.467 & 0.699 & 0.858 & 0.05 [0.05, 0.35] \\
+ & XGBoost & 0.846 & 0.485 & 0.755 & 0.892 & 0.35 [0.10, 0.35] \\
+ & LightGBM & 0.851 & 0.493 & 0.767 & 0.901 & 0.35 [0.05, 0.35] \\
+ & CatBoost & 0.841 & 0.489 & 0.766 & 0.910 & 0.35 [0.05, 0.40] \\
+ & MLP & 0.845 & 0.492 & 0.762 & 0.901 & 0.35 [0.05, 0.40] \\
+\midrule
+Gaussian feature & CART & 0.791 & 0.591 & 0.680 & 0.860 & 0.05 [0.05, 0.45] \\
+ & RF & 0.814 & 0.683 & 0.754 & 0.926 & 0.10 [0.05, 0.40] \\
+ & XGBoost & 0.846 & 0.687 & 0.765 & 0.903 & 0.10 [0.10, 0.45] \\
+ & LightGBM & 0.851 & 0.687 & 0.765 & 0.899 & 0.10 [0.10, 0.45] \\
+ & CatBoost & 0.841 & 0.694 & 0.766 & 0.910 & 0.10 [0.05, 0.40] \\
+ & MLP & 0.845 & 0.686 & 0.759 & 0.898 & 0.30 [0.05, 0.45] \\
+\midrule
+MCAR, imputed & CART & 0.791 & 0.571 & 0.640 & 0.809 & 0.25 [0.05, 0.45] \\
+ & RF & 0.814 & 0.603 & 0.686 & 0.842 & 0.25 [0.05, 0.45] \\
+ & XGBoost & 0.846 & 0.646 & 0.725 & 0.856 & 0.05 [0.05, 0.45] \\
+ & LightGBM & 0.851 & 0.643 & 0.725 & 0.852 & 0.05 [0.05, 0.45] \\
+ & CatBoost & 0.841 & 0.644 & 0.724 & 0.861 & 0.05 [0.05, 0.45] \\
+ & MLP & 0.845 & 0.631 & 0.708 & 0.838 & 0.05 [0.05, 0.40] \\
+\midrule
+MCAR, native & CART & 0.791 & 0.566 & 0.650 & 0.822 & 0.25 [0.10, 0.45] \\
+ & RF & 0.814 & 0.615 & 0.708 & 0.869 & 0.40 [0.10, 0.45] \\
+ & XGBoost & 0.846 & 0.655 & 0.738 & 0.872 & 0.25 [0.05, 0.45] \\
+ & LightGBM & 0.851 & 0.654 & 0.738 & 0.868 & 0.20 [0.05, 0.45] \\
+ & CatBoost & 0.841 & 0.653 & 0.729 & 0.867 & 0.05 [0.05, 0.45] \\
+ & MLP & 0.845 & 0.631 & 0.708 & 0.838 & 0.05 [0.05, 0.45] \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[p]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{3.5pt}
+\caption{Trajectory summaries for \texttt{phoneme}, accuracy averaged over seeds 42, 43 and 44. $\eta_{\mathrm{knee}}$ and its 95\% parametric-bootstrap interval ($B=200$; the standard error of each tier is $\max(\mathrm{SD}_{\mathrm{seed}},\,\mathrm{SD}_{\mathrm{fold}}/2)/\sqrt3$); ``flat'' marks a trajectory with $\kappa\equiv 0$, for which $\eta_{\mathrm{knee}}$ is undefined. Values are rounded to the nearest of the eleven experimental tiers (spacing $0.05$); the knee is a coarse, secondary population-level descriptor.}
+\label{tab:traj_phoneme}
+\begin{tabular}{@{}llrrrrl@{}}
+\toprule
+Condition & Model & $\mathrm{Acc}(0)$ & $\mathrm{Acc}(0.5)$ & AUDC & MRR & $\eta_{\mathrm{knee}}$ [95\% CI] \\
+\midrule
+Symmetric label & CART & 0.869 & 0.502 & 0.677 & 0.779 & 0.20 [0.10, 0.45] \\
+ & RF & 0.910 & 0.501 & 0.771 & 0.848 & 0.10 [0.05, 0.35] \\
+ & XGBoost & 0.892 & 0.504 & 0.791 & 0.886 & 0.15 [0.05, 0.35] \\
+ & LightGBM & 0.895 & 0.505 & 0.783 & 0.875 & 0.20 [0.05, 0.40] \\
+ & CatBoost & 0.876 & 0.513 & 0.815 & 0.931 & 0.35 [0.10, 0.40] \\
+ & MLP & 0.859 & 0.510 & 0.797 & 0.929 & 0.40 [0.20, 0.45] \\
+\midrule
+Class-cond.\ label & CART & 0.869 & 0.785 & 0.825 & 0.949 & 0.45 [0.05, 0.45] \\
+ & RF & 0.910 & 0.772 & 0.853 & 0.938 & 0.25 [0.05, 0.45] \\
+ & XGBoost & 0.892 & 0.762 & 0.842 & 0.944 & 0.25 [0.05, 0.40] \\
+ & LightGBM & 0.895 & 0.777 & 0.849 & 0.948 & 0.45 [0.05, 0.45] \\
+ & CatBoost & 0.876 & 0.735 & 0.824 & 0.941 & 0.25 [0.05, 0.45] \\
+ & MLP & 0.859 & 0.715 & 0.810 & 0.943 & 0.25 [0.10, 0.45] \\
+\midrule
+Gaussian feature & CART & 0.869 & 0.718 & 0.774 & 0.890 & 0.45 [0.05, 0.45] \\
+ & RF & 0.910 & 0.771 & 0.823 & 0.905 & 0.35 [0.10, 0.45] \\
+ & XGBoost & 0.892 & 0.769 & 0.820 & 0.919 & 0.45 [0.05, 0.45] \\
+ & LightGBM & 0.895 & 0.769 & 0.819 & 0.915 & 0.40 [0.05, 0.45] \\
+ & CatBoost & 0.876 & 0.779 & 0.822 & 0.939 & 0.20 [0.10, 0.45] \\
+ & MLP & 0.859 & 0.773 & 0.815 & 0.950 & 0.05 [0.05, 0.45] \\
+\midrule
+MCAR, imputed & CART & 0.869 & 0.735 & 0.788 & 0.907 & 0.25 [0.10, 0.45] \\
+ & RF & 0.910 & 0.773 & 0.835 & 0.918 & 0.20 [0.05, 0.45] \\
+ & XGBoost & 0.892 & 0.784 & 0.833 & 0.933 & 0.15 [0.05, 0.45] \\
+ & LightGBM & 0.895 & 0.782 & 0.833 & 0.930 & 0.25 [0.05, 0.45] \\
+ & CatBoost & 0.876 & 0.780 & 0.822 & 0.939 & 0.20 [0.05, 0.45] \\
+ & MLP & 0.859 & 0.762 & 0.801 & 0.933 & 0.35 [0.05, 0.45] \\
+\midrule
+MCAR, native & CART & 0.869 & 0.729 & 0.785 & 0.903 & 0.20 [0.05, 0.45] \\
+ & RF & 0.910 & 0.774 & 0.837 & 0.920 & 0.30 [0.05, 0.45] \\
+ & XGBoost & 0.892 & 0.784 & 0.834 & 0.934 & 0.35 [0.05, 0.45] \\
+ & LightGBM & 0.895 & 0.783 & 0.835 & 0.933 & 0.25 [0.05, 0.45] \\
+ & CatBoost & 0.876 & 0.777 & 0.821 & 0.938 & 0.40 [0.05, 0.45] \\
+ & MLP & 0.859 & 0.762 & 0.801 & 0.933 & 0.35 [0.05, 0.40] \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[p]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{3.5pt}
+\caption{Trajectory summaries for \texttt{volkert}, accuracy averaged over seeds 42, 43 and 44. $\eta_{\mathrm{knee}}$ and its 95\% parametric-bootstrap interval ($B=200$; the standard error of each tier is $\max(\mathrm{SD}_{\mathrm{seed}},\,\mathrm{SD}_{\mathrm{fold}}/2)/\sqrt3$); ``flat'' marks a trajectory with $\kappa\equiv 0$, for which $\eta_{\mathrm{knee}}$ is undefined. Values are rounded to the nearest of the eleven experimental tiers (spacing $0.05$); the knee is a coarse, secondary population-level descriptor.}
+\label{tab:traj_volkert}
+\begin{tabular}{@{}llrrrrl@{}}
+\toprule
+Condition & Model & $\mathrm{Acc}(0)$ & $\mathrm{Acc}(0.5)$ & AUDC & MRR & $\eta_{\mathrm{knee}}$ [95\% CI] \\
+\midrule
+Symmetric label & CART & 0.459 & 0.255 & 0.351 & 0.766 & 0.20 [0.05, 0.45] \\
+ & RF & 0.597 & 0.552 & 0.583 & 0.978 & 0.35 [0.05, 0.40] \\
+ & XGBoost & 0.621 & 0.547 & 0.591 & 0.951 & 0.40 [0.05, 0.45] \\
+ & LightGBM & 0.626 & 0.524 & 0.586 & 0.936 & 0.40 [0.10, 0.40] \\
+ & CatBoost & 0.585 & 0.561 & 0.575 & 0.982 & 0.45 [0.05, 0.45] \\
+ & MLP & 0.585 & 0.525 & 0.556 & 0.951 & 0.40 [0.05, 0.45] \\
+\midrule
+Class-cond.\ label & CART & 0.459 & 0.262 & 0.356 & 0.776 & 0.10 [0.05, 0.45] \\
+ & RF & 0.597 & 0.340 & 0.543 & 0.910 & 0.30 [0.05, 0.40] \\
+ & XGBoost & 0.621 & 0.341 & 0.544 & 0.876 & 0.15 [0.05, 0.40] \\
+ & LightGBM & 0.626 & 0.336 & 0.540 & 0.861 & 0.15 [0.05, 0.40] \\
+ & CatBoost & 0.585 & 0.346 & 0.545 & 0.932 & 0.35 [0.10, 0.45] \\
+ & MLP & 0.585 & 0.327 & 0.522 & 0.892 & 0.40 [0.05, 0.40] \\
+\midrule
+Gaussian feature & CART & 0.459 & 0.373 & 0.414 & 0.903 & 0.30 [0.05, 0.45] \\
+ & RF & 0.597 & 0.533 & 0.563 & 0.943 & 0.40 [0.05, 0.45] \\
+ & XGBoost & 0.621 & 0.558 & 0.585 & 0.941 & 0.05 [0.05, 0.45] \\
+ & LightGBM & 0.626 & 0.559 & 0.587 & 0.938 & 0.05 [0.05, 0.45] \\
+ & CatBoost & 0.585 & 0.543 & 0.565 & 0.965 & 0.10 [0.05, 0.45] \\
+ & MLP & 0.585 & 0.547 & 0.571 & 0.976 & 0.40 [0.05, 0.45] \\
+\midrule
+MCAR, imputed & CART & 0.459 & 0.357 & 0.400 & 0.871 & 0.35 [0.10, 0.45] \\
+ & RF & 0.597 & 0.517 & 0.553 & 0.927 & 0.30 [0.10, 0.45] \\
+ & XGBoost & 0.621 & 0.541 & 0.574 & 0.924 & 0.05 [0.05, 0.45] \\
+ & LightGBM & 0.626 & 0.540 & 0.580 & 0.925 & 0.45 [0.05, 0.45] \\
+ & CatBoost & 0.585 & 0.517 & 0.552 & 0.943 & 0.25 [0.05, 0.45] \\
+ & MLP & 0.585 & 0.514 & 0.547 & 0.935 & 0.40 [0.10, 0.45] \\
+\midrule
+MCAR, native & CART & 0.459 & 0.352 & 0.394 & 0.859 & 0.45 [0.05, 0.45] \\
+ & RF & 0.597 & 0.507 & 0.547 & 0.917 & 0.35 [0.05, 0.45] \\
+ & XGBoost & 0.621 & 0.536 & 0.572 & 0.921 & 0.05 [0.05, 0.45] \\
+ & LightGBM & 0.626 & 0.538 & 0.575 & 0.918 & 0.30 [0.05, 0.45] \\
+ & CatBoost & 0.585 & 0.506 & 0.544 & 0.929 & 0.15 [0.05, 0.45] \\
+ & MLP & 0.585 & 0.514 & 0.547 & 0.935 & 0.40 [0.05, 0.45] \\
+\bottomrule
+\end{tabular}
+\end{table}

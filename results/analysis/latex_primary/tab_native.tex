@@ -1,0 +1,17 @@
+\begin{table}[t]
+\centering
+\small
+\caption{Native missing-value handling against median imputation under MCAR masking, on seed-averaged trajectories. Differences are native minus imputed, as medians over the 20 datasets; ``better'' counts the datasets on which native handling gives the higher AUDC. $p$: Wilcoxon signed-rank test on AUDC, $p_{\mathrm{Holm}}$ adjusted over the five families.}
+\label{tab:native}
+\begin{tabular}{@{}lrrrrr@{}}
+\toprule
+Model & $\Delta$AUDC & $\Delta$MRR & Better & $p$ & $p_{\mathrm{Holm}}$ \\
+\midrule
+CART & $-0.0030$ & $-0.0037$ & 2/20 & 0.007 & 0.036 \\
+RF & $-0.0023$ & $-0.0025$ & 5/20 & 0.058 & 0.175 \\
+XGBoost & $+0.0001$ & $+0.0002$ & 11/20 & 0.701 & 1.000 \\
+LightGBM & $-0.0001$ & $-0.0001$ & 8/20 & 0.729 & 1.000 \\
+CatBoost & $-0.0029$ & $-0.0031$ & 4/20 & 0.011 & 0.042 \\
+\bottomrule
+\end{tabular}
+\end{table}

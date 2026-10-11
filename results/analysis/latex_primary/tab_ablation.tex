@@ -1,0 +1,16 @@
+\begin{table}[t]
+\centering
+\small
+\caption{Sensitivity of $\eta_{\mathrm{knee}}$ to the estimator, over all 600 seed-averaged trajectories. Each row is compared with the reference estimator (interpolating natural cubic spline, 11 tiers, $\arg\max\kappa$ on a 500-point grid), whose estimates are interior (Supplementary Proposition~S1): 0 of the 591 defined knees lie within $0.01$ of the boundary. ``Edge'' is the share of defined knees within $0.01$ of $0$ or $0.5$; trajectories with $\kappa\equiv0$ have no knee and are left out. The 500-point grid is a numerical search grid, not experimental resolution (11 tiers); read $\eta_{\mathrm{knee}}$ at tier level, as a secondary population-level descriptor.}
+\label{tab:ablation}
+\begin{tabular}{@{}p{4.3cm}rrrr@{}}
+\toprule
+Estimator & med.\ $\lvert\Delta\eta_{\mathrm{knee}}\rvert$ & $\le 0.05$ (\%) & Spearman & Edge (\%) \\
+\midrule
+Smoothing spline, $s=10^{-3}$, $\arg\max\lvert S''\rvert$ (legacy) & 0.200 & 1.5 & 0.22 & 100.0 \\
+Interpolating cubic, not-a-knot ends & 0.014 & 56.7 & 0.73 & 40.6 \\
+Natural cubic on 6 tiers ($\Delta\eta=0.10$) & 0.050 & 32.8 & 0.33 & 0.0 \\
+Penalised cubic smoothing spline, GCV & 0.013 & 53.5 & 0.47 & 0.0 \\
+\bottomrule
+\end{tabular}
+\end{table}

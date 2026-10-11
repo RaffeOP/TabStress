@@ -1,0 +1,39 @@
+\begin{table*}[t]
+\centering
+\footnotesize
+\setlength{\tabcolsep}{2.5pt}
+\caption{Matched budget against library defaults, seed 42, under symmetric label noise, pair-flip label noise applied to all twenty datasets, Gaussian feature noise and median-imputed masking. Top: effect of switching one library to its shipped defaults (default minus matched, medians over the 20 datasets; ``better'' counts datasets with higher AUDC; Wilcoxon $p$, Holm-adjusted over the eight tests). LightGBM, random forest and CART already run at their defaults in the matched grid. Bottom: Friedman leaders with every library at its defaults, Kendall $\tau$ between the matched and the default mean-rank vectors, and the Iman--Davenport $p$ of the default configuration.}
+\label{tab:budget}
+\begin{tabular}{@{}llrrrrr@{}}
+\toprule
+Library & Operator & $\Delta\mathrm{Acc}(0)$ & $\Delta$AUDC & $\Delta$MRR & Better & $p_{\mathrm{Holm}}$ \\
+\midrule
+CatBoost (1{,}000 rounds, automatic rate) & Symmetric label & $+0.0079$ & $-0.0001$ & $-0.0172$ & 10/20 & 1.000 \\
+ & Pair-flip label & $+0.0079$ & $-0.0006$ & $-0.0150$ & 10/20 & 1.000 \\
+ & Gaussian feature & $+0.0079$ & $+0.0033$ & $-0.0023$ & 18/20 & $2.2\times10^{-4}$ \\
+ & MCAR + median imp. & $+0.0079$ & $+0.0063$ & $-0.0022$ & 17/20 & 0.007 \\
+\midrule
+XGBoost (rate 0.3) & Symmetric label & $+0.0010$ & $-0.0248$ & $-0.0375$ & 1/20 & $4.6\times10^{-5}$ \\
+ & Pair-flip label & $+0.0010$ & $-0.0261$ & $-0.0358$ & 2/20 & $9.3\times10^{-5}$ \\
+ & Gaussian feature & $+0.0010$ & $-0.0027$ & $-0.0028$ & 4/20 & 0.017 \\
+ & MCAR + median imp. & $+0.0010$ & $-0.0004$ & $-0.0020$ & 9/20 & 1.000 \\
+\bottomrule
+\end{tabular}
+
+\vspace{6pt}
+\begin{tabular}{@{}llllrrr@{}}
+\toprule
+Metric & Operator & Best (matched) & Best (defaults) & Worst (defaults) & $\tau$ & $p$ \\
+\midrule
+MRR & Symmetric label & CatBoost & MLP & CART & 0.60 & $1.4\times10^{-21}$ \\
+ & Pair-flip label & CatBoost & MLP & CART & 0.60 & $5.2\times10^{-24}$ \\
+ & Gaussian feature & MLP & MLP & CART & 0.73 & $1.9\times10^{-10}$ \\
+ & MCAR + median imp. & XGBoost & LightGBM & CART & 0.07 & $2.0\times10^{-7}$ \\
+\midrule
+AUDC & Symmetric label & CatBoost & CatBoost & CART & 0.41 & $8.8\times10^{-17}$ \\
+ & Pair-flip label & CatBoost & CatBoost & CART & 0.55 & $5.3\times10^{-17}$ \\
+ & Gaussian feature & LightGBM & CatBoost & CART & 0.83 & $2.0\times10^{-21}$ \\
+ & MCAR + median imp. & LightGBM & CatBoost & CART & 0.60 & $3.5\times10^{-21}$ \\
+\bottomrule
+\end{tabular}
+\end{table*}

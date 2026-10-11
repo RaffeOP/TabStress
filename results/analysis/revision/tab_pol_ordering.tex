@@ -1,0 +1,20 @@
+\begin{table}[htbp]
+\centering\small
+\caption{Class-conditional (pair-flip) noise on pol: encoded (lexicographic) versus numeric class order. Scores are means over seeds 42--44; the last two rows give the Iman--Davenport test over all twenty datasets with pol taken from the respective ordering.}\label{tab:pol_ordering}
+\begin{tabular}{@{}lrrrr@{}}
+\toprule
+ & \multicolumn{2}{c}{$\AUDC_{\mathrm{bal}}$} & \multicolumn{2}{c}{$\MRR_{\mathrm{bal}}$} \\
+Model & encoded & numeric & encoded & numeric \\
+\midrule
+cart & 0.386 & 0.392 & 0.830 & 0.843 \\
+randomforest & 0.380 & 0.374 & 0.955 & 0.942 \\
+xgboost & 0.388 & 0.370 & 0.880 & 0.838 \\
+lightgbm & 0.407 & 0.407 & 0.858 & 0.858 \\
+catboost & 0.220 & 0.216 & 0.808 & 0.795 \\
+mlp & 0.513 & 0.555 & 0.767 & 0.830 \\
+\midrule
+$F_{\mathrm{ID}}$ & 8.99 & 8.18 & 0.35 & 0.25 \\
+$p$ & 5.1e-07 & 1.9e-06 & 0.88 & 0.94 \\
+\bottomrule
+\end{tabular}
+\end{table}

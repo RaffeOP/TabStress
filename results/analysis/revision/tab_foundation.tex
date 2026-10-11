@@ -1,0 +1,28 @@
+\begin{table}[t]
+\centering
+\footnotesize
+\caption{A pretrained tabular foundation model (TabICL) among the six classical families under Protocol~B (inference robustness; clean in-context training set, corrupted evaluation, imputed pipeline, seeds 42, 43, 44, $N=19$ datasets). Mean Friedman rank of TabICL among the seven models and the model with the lowest mean rank (rank in parentheses); adj.\ $p$: Iman--Davenport $p$-value of the seven-model comparison, Holm-adjusted over the twelve tests of the block; $\Delta$: median over datasets of TabICL's score minus that of the best classical family. Secondary analysis; TabICL was run under a constrained configuration and the table does not generalise to foundation models as a class.}
+\label{tab:foundation}
+\begin{tabular}{@{}llrlrr@{}}
+\toprule
+Score & Operator & TabICL rank & Leader of seven & adj.\ $p$ & $\Delta$ \\
+\midrule
+Clean accuracy & -- & 2.05 & TabICL (2.05) & -- & $+0.001$ \\
+\midrule
+AUDC$_{\mathrm{bal}}$ & Gaussian & 4.89 & MLP (2.84) & 0.003 & $-0.065$ \\
+ & MCAR & 2.63 & LightGBM (2.61) & $4.6\times10^{-6}$ & $-0.006$ \\
+ & MAR & 2.37 & TabICL (2.37) & $1.3\times10^{-6}$ & $-0.005$ \\
+ & MNAR & 2.95 & LightGBM (2.61) & $6.3\times10^{-6}$ & $-0.006$ \\
+\midrule
+AUDC & Gaussian & 4.00 & CatBoost (2.71) & $9.7\times10^{-7}$ & $-0.032$ \\
+ & MCAR & 2.58 & TabICL (2.58) & $1.1\times10^{-14}$ & $-0.001$ \\
+ & MAR & 2.37 & TabICL (2.37) & $4.5\times10^{-16}$ & $0.000$ \\
+ & MNAR & 3.16 & LightGBM (2.76) & $4.6\times10^{-15}$ & $-0.006$ \\
+\midrule
+MRR & Gaussian & 5.68 & MLP (1.79) & $7.2\times10^{-16}$ & $-0.093$ \\
+ & MCAR & 5.05 & MLP (2.74) & $3.5\times10^{-5}$ & $-0.021$ \\
+ & MAR & 5.05 & CatBoost (2.66) & $3.0\times10^{-4}$ & $-0.019$ \\
+ & MNAR & 5.42 & CatBoost (2.82) & $2.9\times10^{-4}$ & $-0.023$ \\
+\bottomrule
+\end{tabular}
+\end{table}

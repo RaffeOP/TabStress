@@ -1,0 +1,24 @@
+\begin{table*}[t]
+\centering
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\caption{Replication over seeds 42, 43 and 44 (split, corruption and model initialisation all change). Largest Iman--Davenport $p$ over the three seeds; smallest Kendall $\tau$ between the three seeds' mean-rank vectors; the models ranked best and worst in any seed. Seed-to-seed Spearman correlation of the 600 trajectory summaries: MRR 0.98, AUDC 1.00, $\eta_{\mathrm{knee}}$ 0.17--0.26.}
+\label{tab:seeds}
+\begin{tabular}{@{}llrrll@{}}
+\toprule
+Metric & Condition & max $p$ & min $\tau$ & Best in any seed & Worst in any seed \\
+\midrule
+MRR & Symmetric label & $4.9\times10^{-20}$ & 1.00 & CatBoost & CART \\
+ & Class-cond.\ label & 0.039 & 0.87 & MLP & RF \\
+ & Gaussian feature & $1.6\times10^{-9}$ & 1.00 & MLP & CART \\
+ & MCAR, imputed & $2.7\times10^{-7}$ & 0.60 & CatBoost, XGBoost & CART \\
+ & MCAR, native & $1.0\times10^{-8}$ & 1.00 & XGBoost & CART \\
+\midrule
+AUDC & Symmetric label & $1.7\times10^{-11}$ & 0.97 & CatBoost & CART \\
+ & Class-cond.\ label & $1.5\times10^{-12}$ & 0.87 & LightGBM, XGBoost & CART \\
+ & Gaussian feature & $6.6\times10^{-11}$ & 0.97 & LightGBM & CART \\
+ & MCAR, imputed & $1.1\times10^{-17}$ & 1.00 & LightGBM & CART \\
+ & MCAR, native & $4.9\times10^{-25}$ & 1.00 & LightGBM & CART \\
+\bottomrule
+\end{tabular}
+\end{table*}

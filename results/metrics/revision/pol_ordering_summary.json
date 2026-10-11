@@ -1,0 +1,94 @@
+{
+  "encoded": {
+    "audc_bal": {
+      "iman_davenport_F": 8.988215488215483,
+      "friedman_chi2": 32.1142857142857,
+      "p": 5.080348808363479e-07,
+      "mean_rank": {
+        "cart": 4.45,
+        "catboost": 3.6,
+        "lightgbm": 2.15,
+        "mlp": 4.65,
+        "randomforest": 3.85,
+        "xgboost": 2.3
+      },
+      "n_datasets": 20,
+      "pol_values": {
+        "cart": 0.3858,
+        "catboost": 0.2199,
+        "lightgbm": 0.4073,
+        "mlp": 0.5134,
+        "randomforest": 0.3795,
+        "xgboost": 0.3883
+      }
+    },
+    "mrr_bal": {
+      "iman_davenport_F": 0.35389988358556335,
+      "friedman_chi2": 1.828571428571422,
+      "p": 0.8785809375854036,
+      "mean_rank": {
+        "cart": 3.45,
+        "catboost": 3.3,
+        "lightgbm": 3.65,
+        "mlp": 3.6,
+        "randomforest": 3.85,
+        "xgboost": 3.15
+      },
+      "n_datasets": 20,
+      "pol_values": {
+        "cart": 0.8299,
+        "catboost": 0.8076,
+        "lightgbm": 0.8581,
+        "mlp": 0.7675,
+        "randomforest": 0.9551,
+        "xgboost": 0.88
+      }
+    }
+  },
+  "numeric": {
+    "audc_bal": {
+      "iman_davenport_F": 8.176134041683696,
+      "friedman_chi2": 30.08571428571429,
+      "p": 1.8773457503227818e-06,
+      "mean_rank": {
+        "cart": 4.4,
+        "catboost": 3.6,
+        "lightgbm": 2.15,
+        "mlp": 4.65,
+        "randomforest": 3.8,
+        "xgboost": 2.4
+      },
+      "n_datasets": 20,
+      "pol_values": {
+        "cart": 0.3921,
+        "catboost": 0.2164,
+        "lightgbm": 0.4071,
+        "mlp": 0.555,
+        "randomforest": 0.3745,
+        "xgboost": 0.37
+      }
+    },
+    "mrr_bal": {
+      "iman_davenport_F": 0.2530399536768913,
+      "friedman_chi2": 1.3142857142856883,
+      "p": 0.9373258578457351,
+      "mean_rank": {
+        "cart": 3.4,
+        "catboost": 3.35,
+        "lightgbm": 3.6,
+        "mlp": 3.55,
+        "randomforest": 3.85,
+        "xgboost": 3.25
+      },
+      "n_datasets": 20,
+      "pol_values": {
+        "cart": 0.8434,
+        "catboost": 0.795,
+        "lightgbm": 0.8579,
+        "mlp": 0.8297,
+        "randomforest": 0.9424,
+        "xgboost": 0.8383
+      }
+    }
+  }
+}

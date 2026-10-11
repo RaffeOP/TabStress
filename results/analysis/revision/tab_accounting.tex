@@ -1,0 +1,29 @@
+\begin{table}[t]
+\centering
+\footnotesize
+\caption{Derivation of the cell and fit counts. A cell is one dataset, model, operator, intensity and seed evaluated by five-fold cross-validation (five model fits under Protocol~A; under Protocol~B one fit per fold serves all tiers). An evaluation scores one fitted model on one evaluation fold at one tier, so a cell comprises five evaluations; the rows below count cells. The primary grid reuses each clean cell in all five conditions and the imputed MLP rows in the native condition.}
+\label{tab:accounting}
+\begin{tabular}{@{}p{3.3cm}p{5.2cm}r@{}}
+\toprule
+Block & Factors & Cells \\
+\midrule
+Original run, seed 42 & $20\times6\times4$ operators $\times\,11$ tiers & 5{,}280 \\
+Seeds 43, 44 & $2\times20\times6\times(1\text{ clean}+4\times10)$ & 9{,}840 \\
+Minority-to-majority & $3\times14$ binary datasets $\times\,6\times10$ & 2{,}520 \\
+Native handling & $3\times20\times5$ tree families $\times\,10$ & 3{,}000 \\
+Library defaults & $2$ libraries $\times\,20\times(1+4\times10)$, seed 42 & 1{,}640 \\
+\midrule
+Protocol A total & cells / model fits & 22{,}280 / 111{,}400 \\
+\quad of which primary & $3\times(120\text{ clean}+5{,}800\text{ noisy})$ & 17{,}760 \\
+\quad pair-flip on binary & test--retest control, $3\times14\times6\times10$ & 2{,}520 \\
+\quad duplicate clean & seed-42 clean cells of three extra operators & 360 \\
+Primary grid rows & $20\times6\times5\times11\times3$ & 19{,}800 \\
+Protocol B & cells / model fits & 25{,}740 / 3{,}300 \\
+TabICL (B) & cells / model fits, seeds 42--44, 19 datasets & 2{,}508 / 285 \\
+MAR, MNAR (A) & cells, seeds 42--44 & 7{,}200 \\
+Tuned configurations & cells, seed 42 & 3{,}960 \\
+Categorical (B) & cells, seeds 42--44 & 2{,}376 \\
+Categorical (A) & cells, seeds 42--44 & 2{,}160 \\
+\bottomrule
+\end{tabular}
+\end{table}

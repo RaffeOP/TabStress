@@ -1,0 +1,18 @@
+\begin{table}[t]
+\centering
+\footnotesize
+\caption{Search space of the tuned configurations. For each dataset and family, 6 configurations are drawn uniformly (seed 42) and compared by three-fold cross-validated accuracy on the clean training part of the first outer fold; parameters not listed keep the matched-budget value.}
+\label{tab:search}
+\begin{tabular}{@{}lp{9.5cm}@{}}
+\toprule
+Family & Values \\
+\midrule
+CART & \texttt{max\_depth} $\in$ \{None, 4, 8, 12, 16\}; \texttt{min\_samples\_leaf} $\in$ \{1, 2, 5, 10, 20\} \\
+RF & \texttt{max\_features} $\in$ \{sqrt, 0.3, 0.5\}; \texttt{min\_samples\_leaf} $\in$ \{1, 2, 5\}; \texttt{n\_estimators} $\in$ \{100, 200\} \\
+XGBoost & \texttt{max\_depth} $\in$ \{3, 4, 6, 8\}; \texttt{learning\_rate} $\in$ \{0.03, 0.1, 0.2\}; \texttt{n\_estimators} $\in$ \{100, 200\}; \texttt{subsample} $\in$ \{0.7, 1.0\}; \texttt{colsample\_bytree} $\in$ \{0.6, 1.0\} \\
+LightGBM & \texttt{num\_leaves} $\in$ \{15, 31, 63\}; \texttt{learning\_rate} $\in$ \{0.03, 0.1, 0.2\}; \texttt{n\_estimators} $\in$ \{100, 200\}; \texttt{min\_child\_samples} $\in$ \{5, 20, 50\} \\
+CatBoost & \texttt{depth} $\in$ \{4, 6, 8\}; \texttt{learning\_rate} $\in$ \{0.03, 0.1, 0.2\}; \texttt{iterations} $\in$ \{100, 200\}; \texttt{l2\_leaf\_reg} $\in$ \{1, 3, 10\} \\
+MLP & \texttt{hidden\_layer\_sizes} $\in$ \{(64,), (128, 64), (128, 64, 32), (256, 128)\}; \texttt{alpha} $\in$ \{1e-05, 0.0001, 0.001, 0.01\}; \texttt{learning\_rate\_init} $\in$ \{0.001, 0.003\} \\
+\bottomrule
+\end{tabular}
+\end{table}

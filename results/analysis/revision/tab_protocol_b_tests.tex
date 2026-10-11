@@ -1,0 +1,54 @@
+\begin{table}[p]
+\centering
+\footnotesize
+\caption{Protocol~B (clean training, corrupted evaluation, seeds 42--44): Iman--Davenport tests of every condition and score, Holm-adjusted over the whole block; best and worst model by mean rank; W: model pairs separated by Holm-adjusted Wilcoxon tests (of 15).}
+\label{tab:protocolb_tests}
+\begin{tabular}{@{}llllrr@{}}
+\toprule
+Condition & Score & Best & Worst & adj.\ $p$ & W \\
+\midrule
+Gaussian & AMRR & MLP & CART & $2.7\times10^{-11}$ & 11 \\
+Gaussian & AMRR$_{\mathrm{bal}}$ & MLP & CART & $8.4\times10^{-8}$ & 8 \\
+Gaussian & AUDC & RF & CART & $2.1\times10^{-8}$ & 6 \\
+Gaussian & AUDC$_{\mathrm{bal}}$ & MLP & CART & 0.002 & 0 \\
+Gaussian & MRR & MLP & CART & $4.7\times10^{-12}$ & 9 \\
+Gaussian & MRR$_{\mathrm{bal}}$ & MLP & LightGBM & $1.1\times10^{-9}$ & 8 \\
+MAR, imputed & AMRR & CatBoost & CART & $2.5\times10^{-6}$ & 6 \\
+MAR, imputed & AMRR$_{\mathrm{bal}}$ & MLP & CART & 0.240 & 0 \\
+MAR, imputed & AUDC & LightGBM & CART & $1.7\times10^{-14}$ & 10 \\
+MAR, imputed & AUDC$_{\mathrm{bal}}$ & LightGBM & CART & $1.7\times10^{-4}$ & 2 \\
+MAR, imputed & MRR & CatBoost & CART & 0.002 & 6 \\
+MAR, imputed & MRR$_{\mathrm{bal}}$ & MLP & CART & 0.004 & 1 \\
+MAR, native & AMRR & RF & XGBoost & $1.5\times10^{-13}$ & 9 \\
+MAR, native & AMRR$_{\mathrm{bal}}$ & RF & XGBoost & $5.2\times10^{-7}$ & 4 \\
+MAR, native & AUDC & RF & CART & $4.7\times10^{-11}$ & 7 \\
+MAR, native & AUDC$_{\mathrm{bal}}$ & RF & XGBoost & 0.002 & 2 \\
+MAR, native & MRR & RF & XGBoost & $3.1\times10^{-20}$ & 11 \\
+MAR, native & MRR$_{\mathrm{bal}}$ & RF & XGBoost & $3.4\times10^{-9}$ & 7 \\
+MCAR, imputed & AMRR & RF & CART & $2.5\times10^{-6}$ & 9 \\
+MCAR, imputed & AMRR$_{\mathrm{bal}}$ & MLP & CART & 0.378 & 0 \\
+MCAR, imputed & AUDC & RF & CART & $6.7\times10^{-13}$ & 10 \\
+MCAR, imputed & AUDC$_{\mathrm{bal}}$ & LightGBM & CART & $1.0\times10^{-4}$ & 3 \\
+MCAR, imputed & MRR & MLP & CART & $1.0\times10^{-4}$ & 6 \\
+MCAR, imputed & MRR$_{\mathrm{bal}}$ & MLP & LightGBM & 0.005 & 3 \\
+MCAR, native & AMRR & RF & XGBoost & $6.1\times10^{-16}$ & 13 \\
+MCAR, native & AMRR$_{\mathrm{bal}}$ & RF & XGBoost & $5.3\times10^{-10}$ & 7 \\
+MCAR, native & AUDC & RF & XGBoost & $5.3\times10^{-11}$ & 6 \\
+MCAR, native & AUDC$_{\mathrm{bal}}$ & RF & XGBoost & $1.5\times10^{-4}$ & 4 \\
+MCAR, native & MRR & RF & XGBoost & $1.9\times10^{-18}$ & 12 \\
+MCAR, native & MRR$_{\mathrm{bal}}$ & RF & XGBoost & $4.0\times10^{-10}$ & 9 \\
+MNAR, imputed & AMRR & RF & CART & $2.7\times10^{-7}$ & 6 \\
+MNAR, imputed & AMRR$_{\mathrm{bal}}$ & CatBoost & CART & 0.378 & 0 \\
+MNAR, imputed & AUDC & LightGBM & CART & $1.5\times10^{-15}$ & 8 \\
+MNAR, imputed & AUDC$_{\mathrm{bal}}$ & LightGBM & CART & $1.1\times10^{-5}$ & 4 \\
+MNAR, imputed & MRR & CatBoost & CART & 0.026 & 1 \\
+MNAR, imputed & MRR$_{\mathrm{bal}}$ & CatBoost & CART & 0.378 & 0 \\
+MNAR, native & AMRR & RF & CatBoost & $1.4\times10^{-11}$ & 9 \\
+MNAR, native & AMRR$_{\mathrm{bal}}$ & RF & LightGBM & $1.3\times10^{-7}$ & 6 \\
+MNAR, native & AUDC & RF & CatBoost & $6.4\times10^{-11}$ & 4 \\
+MNAR, native & AUDC$_{\mathrm{bal}}$ & RF & CatBoost & $1.5\times10^{-4}$ & 3 \\
+MNAR, native & MRR & RF & LightGBM & $4.1\times10^{-12}$ & 7 \\
+MNAR, native & MRR$_{\mathrm{bal}}$ & RF & LightGBM & $7.3\times10^{-6}$ & 6 \\
+\bottomrule
+\end{tabular}
+\end{table}

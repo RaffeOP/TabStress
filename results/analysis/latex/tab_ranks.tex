@@ -1,0 +1,22 @@
+\begin{table*}[t]
+\centering
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\caption{Mean Friedman ranks over the 20 datasets (1 = best, 6 = worst; bold = best in row). Two models differ significantly at $\alpha=0.05$ under Nemenyi when their ranks differ by more than $1.686$.}
+\label{tab:ranks}
+\begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}llrrrrrr@{}}
+\toprule
+Metric & Condition & CART & RF & XGBoost & LightGBM & CatBoost & MLP \\
+\midrule
+MRR & Symmetric label & 5.75 & 3.65 & 3.30 & 4.65 & \textbf{1.55} & 2.10 \\
+ & Pair-flip label & 5.75 & 3.65 & 3.45 & 4.70 & \textbf{1.65} & 1.80 \\
+ & Gaussian feature & 5.65 & 3.25 & 3.05 & 3.95 & \textbf{2.13} & 2.98 \\
+ & MCAR + median imp. & 5.80 & 3.25 & \textbf{2.65} & 3.45 & 2.68 & 3.18 \\
+\midrule
+AUDC & Symmetric label & 5.85 & 3.50 & 2.80 & 3.50 & \textbf{2.10} & 3.25 \\
+ & Pair-flip label & 5.80 & 3.45 & 3.00 & 3.70 & \textbf{1.85} & 3.20 \\
+ & Gaussian feature & 5.60 & 3.30 & 2.90 & \textbf{2.05} & 2.43 & 4.73 \\
+ & MCAR + median imp. & 5.75 & 3.00 & 2.25 & \textbf{2.05} & 3.23 & 4.73 \\
+\bottomrule
+\end{tabular*}
+\end{table*}
