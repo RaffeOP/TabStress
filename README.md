@@ -137,21 +137,13 @@ python3 experiments/run_extended.py
 
 ---
 
-## 7. Compute Budget
-
-- **Platform:** Experiments were executed on an Apple M3 workstation (8 CPU cores, 8 GB unified memory). TabICL executed via MPS GPU acceleration.
-- **Training Compute:** Approximately 35–40 CPU hours to train all 111,400 Protocol A models from scratch.
-- **Verification & Assembly:** Under 2 minutes using stored evaluation cells.
-
----
-
-## 8. License
+## 7. License
 
 This repository is distributed under the [MIT License](LICENSE).
 
 ---
 
-## 9. Citation
+## 8. Citation
 
 If you use TabStress in your research or benchmarks, please cite:
 
