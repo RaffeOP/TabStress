@@ -7,7 +7,7 @@
 Official code, data, and reproduction package for the empirical benchmark:  
 **"TabStress: Nonparametric Robustness Profiling of Tabular Classifiers under Controlled Data Corruption"**
 
-*Devarsh Patel and Shashank Mouli Satapathy*  
+*Shashank Mouli Satapathy and Devarsh Patel*  
 School of Computer Science and Engineering, Vellore Institute of Technology (VIT), Vellore, India.
 
 ---
