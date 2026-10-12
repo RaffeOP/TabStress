@@ -45,6 +45,13 @@ TIER = 0.05
 MIN_HEADROOM = 0.01
 FLAT = 1e-9
 ARTIFACT_SETS = {"spambase": "spambase_clean", "churn": "churn_clean", "miniboone": "miniboone_clean"}
+DEDUP_SETS = {name: f"{name}_dedup" for name in ["nomao", "pol", "volkert", "phoneme", "ozone_level"]}
+CELLS_PER_DATASET_SEED = 296
+CLEANED_ROWS_PER_SEED = len(ARTIFACT_SETS) * CELLS_PER_DATASET_SEED
+CC_BINARY_CELLS_PER_DATASET_SEED = 60  # minority-to-majority noise exists for binary datasets only
+MULTICLASS_DEDUP = {"pol_dedup", "volkert_dedup"}
+DEDUP_ROWS_PER_SEED = (len(DEDUP_SETS) * CELLS_PER_DATASET_SEED
+                       - len(MULTICLASS_DEDUP) * CC_BINARY_CELLS_PER_DATASET_SEED)
 
 
 def dataset_baselines():
@@ -52,7 +59,7 @@ def dataset_baselines():
     from experiments.run_extended import data
     from src.data_loader import BENCHMARK_SUITE
     out = {}
-    for d in list(BENCHMARK_SUITE) + list(ARTIFACT_SETS.values()):
+    for d in list(BENCHMARK_SUITE) + list(ARTIFACT_SETS.values()) + list(DEDUP_SETS.values()):
         _, y, k = data(d)
         out[d] = {"pi_max": float(np.bincount(y).max() / len(y)), "K": int(k)}
     return out
@@ -645,23 +652,35 @@ def artifacts(primary_traj, bases):
     base_fam = friedman_family(primary_traj, CONFIRMATORY, CONDITIONS)
     excl = friedman_family(primary_traj[~primary_traj.dataset.isin(flagged)], CONFIRMATORY, CONDITIONS)
     out["excluded"] = summarize_change(base_fam, excl, flagged)
-    files = [os.path.join(ART_METRICS, f) for f in os.listdir(ART_METRICS)] if os.path.isdir(ART_METRICS) else []
-    if not files:
-        return out
-    art = pd.concat([pd.read_csv(f) for f in files if f.endswith(".csv")], ignore_index=True)
-    if art.groupby("seed").size().min() < 888 or art.seed.nunique() < 3:
-        out["cleaned_complete"] = False
-        return out
-    cells = artifact_conditions(art)
-    t_clean = trajectories(cells, ["condition", "dataset", "model"], bases)
-    t_clean["dataset"] = t_clean.dataset.map({v: k for k, v in ARTIFACT_SETS.items()})
-    swapped = pd.concat([primary_traj[~primary_traj.dataset.isin(ARTIFACT_SETS)], t_clean], ignore_index=True)
-    out["cleaned"] = summarize_change(base_fam, friedman_family(swapped, CONFIRMATORY, CONDITIONS), list(ARTIFACT_SETS))
-    out["cleaned"]["max_abs_delta_audc"] = float(
-        (t_clean.set_index(["condition", "dataset", "model"]).audc -
-         primary_traj.set_index(["condition", "dataset", "model"]).audc).abs().max())
-    out["cleaned_complete"] = True
+    out["cleaned"] = substitution_block(primary_traj, base_fam, bases, ARTIFACT_SETS, CLEANED_ROWS_PER_SEED)
+    out["dedup"] = substitution_block(primary_traj, base_fam, bases, DEDUP_SETS, DEDUP_ROWS_PER_SEED)
     return out
+
+
+def read_artifact_runs(datasets):
+    """Cleaned-copy cells of the given datasets, read from every artifact file."""
+    files = [os.path.join(ART_METRICS, f) for f in os.listdir(ART_METRICS) if f.endswith(".csv")] \
+        if os.path.isdir(ART_METRICS) else []
+    if not files:
+        return pd.DataFrame()
+    art = pd.concat([pd.read_csv(f) for f in files], ignore_index=True)
+    return art[art.dataset.isin(datasets)]
+
+
+def substitution_block(primary_traj, base_fam, bases, sets, expected_rows):
+    """Rank tests with the cleaned copies in `sets` (name -> variant) substituted for the primary datasets."""
+    art = read_artifact_runs(list(sets.values()))
+    if art.empty or art.groupby("seed").size().min() < expected_rows or art.seed.nunique() < 3:
+        return {"complete": False}
+    t_new = trajectories(artifact_conditions(art), ["condition", "dataset", "model"], bases)
+    t_new["dataset"] = t_new.dataset.map({v: k for k, v in sets.items()})
+    swapped = pd.concat([primary_traj[~primary_traj.dataset.isin(sets)], t_new], ignore_index=True)
+    block = summarize_change(base_fam, friedman_family(swapped, CONFIRMATORY, CONDITIONS), list(sets))
+    block["max_abs_delta_audc"] = float(
+        (t_new.set_index(["condition", "dataset", "model"]).audc -
+         primary_traj.set_index(["condition", "dataset", "model"]).audc).abs().max())
+    block["complete"] = True
+    return block
 
 
 def artifact_conditions(art):
@@ -673,6 +692,9 @@ def artifact_conditions(art):
     parts = []
     for cond, (variant, mod) in m.items():
         g = art[(art.variant == variant) & (art.modality == mod)]
+        if cond == "class_conditional":
+            # binary datasets: minority-to-majority; multiclass datasets: pair-flip (asymmetric_label)
+            g = pd.concat([g, art[(art.variant == "base") & (art.modality == "asymmetric_label")]])
         if cond == "mcar_native":
             g = pd.concat([g, art[(art.variant == "base") & (art.modality == "mcar_missing") & (art.model == "mlp")]])
         parts.append(pd.concat([g, clean]).assign(condition=cond))
@@ -771,7 +793,7 @@ def latex_combined(fam, path):
              "$\\MRR_{\\mathrm{bal}}$, $\\aMRR$ and $\\aMRR_{\\mathrm{bal}}$ are complementary views, not primary outcomes.}",
              "\\label{tab:combined}", "\\setlength{\\tabcolsep}{4pt}",
              "\\begin{tabular}{@{}llllrrr@{}}", "\\toprule",
-             "Metric & Corruption & Best (rank) & Worst (rank) & adj.\\ $p$ & $W$ & Pairs W/N \\\\", "\\midrule"]
+             "Metric & Corruption & Best (rank) & Worst (rank) & adj.\\ $p$ & $W$ & Sep.\\ pairs (W/N) \\\\", "\\midrule"]
     for role, block in [("confirmatory", CONFIRMATORY), ("sensitivity", SENSITIVITY)]:
         if role == "sensitivity":
             lines.append("\\midrule")

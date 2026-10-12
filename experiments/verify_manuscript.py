@@ -255,7 +255,7 @@ def check_claims(tex, prim, extra, orig, t):
           ra["symmetric_label"] > 0.999 and 0.95 < ra["gaussian_feature"] < 0.999, ra)
     gauss_first = [tests[f"{k}|gaussian_feature"]["ranks"]["mlp"] == min(tests[f"{k}|gaussian_feature"]["ranks"].values())
                    for k in ("mrr", "amrr", "amrr_bal")]
-    claim(tex, "the MLP remaining first, or tied for first with CatBoost, so the MLP's lead in retention is not an artefact",
+    claim(tex, "CatBoost is first on aMRR and the MLP on balanced aMRR",
           all(gauss_first) and tests["mrr|gaussian_feature"]["best"] == "mlp", gauss_first)
     claim(tex, "lead disappears once the majority-class baseline is subtracted",
           tests["mrr|class_conditional"]["best"] == "mlp" and tests["amrr|class_conditional"]["best"] != "mlp")
@@ -266,7 +266,7 @@ def check_claims(tex, prim, extra, orig, t):
           not_sig == sorted(["mrr_bal|class_conditional", "mrr_bal|mcar_imputed", "amrr_bal|class_conditional",
                              "mrr|class_conditional"]), not_sig)
     ph = prim["post_hoc_counts"]
-    claim(tex, "Wilcoxon is usually the more liberal",
+    claim(tex, "Wilcoxon separates more pairs than Nemenyi in 25 of the 30 blocks",
           sum(v["wilcoxon"] for v in ph.values()) >= sum(v["nemenyi"] for v in ph.values()))
     kv = rev["knee_validation"]
     claim(tex, "Without noise the spline knee recovers every true knee to within $0.001$",
@@ -348,8 +348,8 @@ REVISION_CLAIMS = [
      lambda r: r["tuned"]["summary"]["max_abs_median_delta"] < 0.01),
     ("The bottom of the ranking is more stable",
      lambda r: r["tuned"]["summary"]["n_cart_worst_both"] > r["tuned"]["summary"]["same_best"]),
-    ("The principal conclusions are therefore not driven by the known dataset artifacts",
-     lambda r: r["artifacts"]["cleaned_complete"] and r["artifacts"]["cleaned"]["tau_min"] > 0.8
+    ("With the cleaned copies the principal conclusions are unchanged",
+     lambda r: r["artifacts"]["cleaned"]["complete"] and r["artifacts"]["cleaned"]["tau_min"] > 0.8
      and r["artifacts"]["cleaned"]["n_sig_holm"] == 15 and r["artifacts"]["excluded"]["n_sig_holm"] >= 14),
     ("the families still differ on balanced AUDC under MAR and MNAR masking",
      lambda r: all(r["mechanisms"]["tests"][f"audc|{c}"]["best"] == "lightgbm"
@@ -369,7 +369,7 @@ REVISION_CLAIMS = [
      lambda r: r["mechanisms"]["n_datasets"] == 20 and set(r["mechanisms"]["seeds"]) <= {42, 43, 44}
      and r["mechanisms"]["n_seeds"] == len(r["mechanisms"]["seeds"]) >= 1
      and 42 in r["mechanisms"]["seeds"]),
-    ("Informative missingness costs more than random missingness at the same mean rate",
+    ("At the same mean rate, self-masking MNAR costs more than MCAR",
      lambda r: r["mechanisms"]["audc_bal_median_a"]["mnar_imputed"] < r["mechanisms"]["audc_bal_median_a"]["mar_imputed"]),
     ("from weak agreement among datasets about the order of the families (MRR under class-conditional noise)",
      lambda r: min(r["confirmatory"]["tests"].items(), key=lambda kv: kv[1]["W"] if kv[0].split("|")[0] in ("audc_bal", "audc", "mrr") else 9)[0] == "mrr|class_conditional"
@@ -394,7 +394,7 @@ def _fb(f, score, cond):
 
 
 FOUNDATION_CLAIMS = [
-    ("TabICL, most accurate on clean data, is among the two least retentive models under every deployment corruption",
+    ("is among the two least retentive; this is a result for one pretrained model",
      lambda f: f["clean_accuracy"]["mean_acc"]["tabicl"] == max(f["clean_accuracy"]["mean_acc"].values())
      and f["headline"]["mrr"]["position_min"] >= 6),
     ("TabICL has the highest mean clean accuracy (",
@@ -434,7 +434,7 @@ FOUNDATION_CLAIMS = [
              for c in ("mcar_imputed", "mar_imputed"))),
     ("One tabular foundation model, TabICL, is covered as a secondary analysis under Protocol~B only",
      lambda f: len(f["pool"]) == 7 and f["pool"][-1] == "tabicl"),
-    ("Bioresponse, with 1,776 columns, is excluded because the column-wise embedding does not fit in memory",
+    ("was excluded to keep the inference setting uniform across the corpus",
      lambda f: f["excluded_datasets"] == ["Bioresponse"] and "Bioresponse" not in f["datasets"]
      and f["n_datasets"] == 19 and "1,776 features" in open(os.path.join(REV_METRICS, "foundation_failures.txt")).read()),
     ("it was not run under corruption-aware training, and no other foundation model was run",
@@ -532,18 +532,18 @@ def check_sensitivity(tex):
     check("supplement Section S9 is generated and wired", "tab:sens_settings" in supp and "tab:sens_bayes" in supp
           and "sup:sens" in supp and os.path.exists(SENS_TABLE))
     check("S9 cites Benavoli et al. for the Bayesian signed-rank test", "cite{benavoli2016should}" in supp)
-    claim(tex, "The MRR rank of TabICL and its clean accuracy",
+    claim(tex, "The MRR mean rank of TabICL and its clean accuracy",
           all(abs(v["main"]["tabicl_rank"] - v["default"]["tabicl_rank"]) < 1e-12
               for k, v in t["ranks"].items() if k.startswith("mrr")), t["ranks"])
     claim(tex, "its balanced-AUDC rank under MNAR masking rises from",
           t["ranks"]["audc_bal|mnar_imputed"]["default"]["tabicl_rank"] < t["ranks"]["audc_bal|mnar_imputed"]["main"]["tabicl_rank"])
-    claim(tex, "so the absolute scores of the main run are conservative for TabICL",
+    claim(tex, "so the absolute scores of the main run may understate TabICL on this subset",
           all(v["default"]["tabicl_rank"] <= v["main"]["tabicl_rank"] + 1e-12 for k, v in t["ranks"].items()
               if k.startswith("audc_bal")))
-    claim(tex, "The MRR rank of TabICL and its clean accuracy (within", t["clean"]["max_abs_diff"] < 0.02, t["clean"]["max_abs_diff"])
+    claim(tex, "The MRR mean rank of TabICL and its clean accuracy (within", t["clean"]["max_abs_diff"] < 0.02, t["clean"]["max_abs_diff"])
     claim(tex, "lie below zero under every operator", g["all_upper_below_zero"] and all(
         v["lo"] <= v["median"] <= v["hi"] for v in g["conditions"].values()), g)
-    claim(tex, "lost less accuracy than the two single operators together",
+    claim(tex, "lost less accuracy than the sum of the two single-operator losses",
           all(v < 0 for v in c["median_additivity_acc"].values()), c["median_additivity_acc"])
     claim(tex, "and kept the MRR order of the noise component",
           c["tau_mrr_dominant_min"] > 0.9 and c["tau_mrr_mcar_min"] < c["tau_mrr_dominant_min"],
@@ -593,7 +593,7 @@ def check_operators(tex):
     ops = load_json(os.path.join(PRIM, "operator_audit.json"))
     check("operator audit passes (rates, targets, uniformity, flat blocks)", ops["all_pass"])
     fb, nest = ops["flat_blocks"], ops["nesting"]
-    claim(tex, "which is what an operator that corrupted nothing would produce",
+    claim(tex, "a corruption operator that changed nothing would produce constant blocks",
           fb is not None and fb["suspect"] == [] and fb["all_at_majority_rate"] == [] and fb["n_blocks"] == 300
           and sorted(fb["no_continuous_attributes"]) == [f"gaussian_feature/amazon_access/seed{s}" for s in (42, 43, 44)], fb)
     claim(tex, "there the corrupted examples are coupled in the first fold only, and their new labels in none",

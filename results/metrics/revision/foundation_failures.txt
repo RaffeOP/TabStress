@@ -1,0 +1,2 @@
+all	Bioresponse	1,776 features: column-wise embedding does not fit the 8 GB unified memory of the machine (MPS out of memory / 5 GB output buffer with 3,000 context rows, 4 estimators); predicting 300 rows took more than 8 minutes, so the 31,000 test rows per fold are infeasible
+all	Bioresponse	1,776 features: column-wise embedding does not fit the 8 GB unified memory of the machine (MPS out of memory / 5 GB output buffer with 3,000 context rows, 4 estimators); predicting 300 rows took more than 8 minutes, so the 31,000 test rows per fold are infeasible

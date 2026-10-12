@@ -91,6 +91,26 @@
   "miniboone_clean": {
    "pi_max": 0.7184,
    "K": 2
+  },
+  "nomao_dedup": {
+   "pi_max": 0.694,
+   "K": 2
+  },
+  "pol_dedup": {
+   "pi_max": 0.6235,
+   "K": 11
+  },
+  "volkert_dedup": {
+   "pi_max": 0.2195,
+   "K": 10
+  },
+  "phoneme_dedup": {
+   "pi_max": 0.7076923076923077,
+   "K": 2
+  },
+  "ozone_level_dedup": {
+   "pi_max": 0.936658749010293,
+   "K": 2
   }
  },
  "confirmatory": {
@@ -1223,9 +1243,43 @@
    "max_p_holm": 0.019375879659919215,
    "tau_min": 0.8666666666666666,
    "n_sig_holm": 15,
-   "max_abs_delta_audc": 0.06545499999999993
+   "max_abs_delta_audc": 0.06545499999999993,
+   "complete": true
   },
-  "cleaned_complete": true
+  "dedup": {
+   "datasets": [
+    "nomao",
+    "pol",
+    "volkert",
+    "phoneme",
+    "ozone_level"
+   ],
+   "same_best": 15,
+   "same_worst": 15,
+   "n_blocks": 15,
+   "taus": [
+    0.9660917830792959,
+    0.9999999999999999,
+    0.9999999999999999,
+    0.9999999999999999,
+    0.9660917830792959,
+    0.9999999999999999,
+    0.8666666666666666,
+    0.9999999999999999,
+    0.9999999999999999,
+    1.0,
+    0.9999999999999999,
+    0.9999999999999999,
+    0.8280786712108251,
+    0.9999999999999999,
+    0.9999999999999999
+   ],
+   "max_p_holm": 0.06827585842124598,
+   "tau_min": 0.8280786712108251,
+   "n_sig_holm": 14,
+   "max_abs_delta_audc": 0.00613666666666679,
+   "complete": true
+  }
  },
  "amrr_zeroed": 65,
  "rerun_audit": {
