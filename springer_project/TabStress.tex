@@ -1,7 +1,3 @@
-%% TabStress manuscript source (revision 1).
-%% Formatted according to the Springer Nature template (sn-jnl.cls, sn-mathphys.bst).
-%% All quantitative values are dynamic tokens resolved by experiments/assemble_manuscript.py.
-
 \RequirePackage{tikz}
 \documentclass[pdflatex,sn-mathphys]{sn-jnl}
 \usetikzlibrary{positioning,arrows.meta,shapes.geometric,fit}
@@ -44,18 +40,32 @@
 \newcommand{\etamax}{\eta_{\max}}
 \newcommand{\etaknee}{\eta_{\mathrm{knee}}}
 
+\setcounter{topnumber}{4}
+\setcounter{bottomnumber}{4}
+\setcounter{totalnumber}{8}
+\renewcommand{\topfraction}{0.95}
+\renewcommand{\bottomfraction}{0.95}
+\renewcommand{\textfraction}{0.05}
+\renewcommand{\floatpagefraction}{0.75}
+
+\setlength{\textfloatsep}{8pt plus 2pt minus 2pt}
+\setlength{\floatsep}{6pt plus 2pt minus 2pt}
+\setlength{\intextsep}{6pt plus 2pt minus 2pt}
+\setlength{\abovecaptionskip}{3pt}
+\setlength{\belowcaptionskip}{2pt}
+
 \raggedbottom
 
 \begin{document}
 
 \title[TabStress: Nonparametric Robustness Profiling of Tabular Classifiers]{TabStress: Nonparametric Robustness Profiling of Tabular Classifiers under Controlled Data Corruption}
 
-\author*[1]{\fnm{Shashank Mouli} \sur{Satapathy}}\email{shashankmouli.s@vit.ac.in}
-\author[1]{\fnm{Devarsh} \sur{Patel}}\email{devarsh.patel2024@vitstudent.ac.in}
+\author*[1]{\fnm{Devarsh} \sur{Patel}}\email{devarsh.patel2024@vitstudent.ac.in}
+\author[1]{\fnm{Shashank Mouli} \sur{Satapathy}}\email{shashankmouli.s@vit.ac.in}
 
 \affil*[1]{\orgdiv{School of Computer Science and Engineering}, \orgname{Vellore Institute of Technology}, \orgaddress{\city{Vellore}, \postcode{632014}, \state{Tamil Nadu}, \country{India}}}
 
-\abstract{Tabular benchmarks rank classifiers by clean accuracy, yet deployed models meet noisy labels, corrupted features and missing values. TabStress treats robustness as a response curve: accuracy across eleven intensities of controlled corruption, summarized by absolute and relative endurance scores and tested across datasets. Six classical families are evaluated on twenty OpenML datasets under label noise, Gaussian and categorical-aware feature noise, and MCAR, MAR and MNAR missingness (stochastic, not adversarial). Protocol~A measures the robustness of a learning procedure trained on corrupted data; Protocol~B measures a trained model scored on corrupted inputs. Balanced area under the degradation curve ($\AUDC_{\mathrm{bal}}$) is the primary score, computed over 22{,}280 Protocol~A cells and 25{,}740 Protocol~B cells. Fifteen confirmatory rank tests reject equal performance after joint Holm adjustment. Clean accuracy does not reliably predict robustness: the most accurate clean model is also the most retentive in 4\% of dataset--condition blocks, and rankings depend on corruption mechanism, metric and protocol. Under the Protocol~B deployment corruptions evaluated here, the TabICL baseline, the most accurate model on clean data, is among the two least retentive; this is a result for one pretrained model under a 3{,}000-row context cap and four ensemble members, not a claim about foundation models. Endurance scores replicate across seeds. These are controlled-benchmark findings, not direct evidence of real-world robustness.}
+\abstract{Tabular benchmarks rank classifiers by clean accuracy, yet deployed models meet noisy labels, corrupted features and missing values. TabStress treats robustness as a response curve: accuracy across eleven intensities of controlled corruption, summarized by absolute and relative endurance scores and tested across datasets. Six classical families are evaluated on twenty OpenML datasets under label noise, Gaussian and categorical-aware feature noise, and MCAR, MAR and MNAR missingness (stochastic, not adversarial). Protocol~A measures the robustness of a learning procedure trained on corrupted data; Protocol~B measures a trained model scored on corrupted inputs. Balanced area under the degradation curve ($\AUDC_{\mathrm{bal}}$) is the primary score, computed over 22{,}280 Protocol~A cells and 25{,}740 Protocol~B cells. Fifteen confirmatory rank tests reject equal performance after joint Holm adjustment. Clean accuracy does not reliably predict robustness: the most accurate clean model also has the highest balanced AUDC in only 46\% of dataset--condition blocks, and rankings depend on corruption mechanism, metric, training budget and protocol. Under a matched 100-round boosting budget LightGBM leads on balanced AUDC under most conditions, but this lead is coupled to the budget: with CatBoost at its library default of 1{,}000 rounds, CatBoost leads under Gaussian feature noise. In a secondary evaluation of one in-context foundation model (TabICL) under a constrained inference budget, higher clean accuracy did not yield higher retention under inference-time corruption. Endurance scores replicate across seeds. These are controlled-benchmark findings, not direct evidence of real-world robustness.}
 
 \keywords{tabular classification, robustness evaluation, data corruption, label noise, missing data, average-case stochastic corruption}
 
@@ -79,7 +89,7 @@ Two design questions must be resolved before such an evaluation measures what pr
 \begin{description}
 \item[RQ1] Does clean-data performance predict robustness under controlled corruption?
 \item[RQ2] How do robustness rankings of tabular model families depend on the corruption mechanism, the robustness metric, the model configuration and the evaluation protocol?
-\item[RQ3] Can the onset of accelerated deterioration be located reliably from a trajectory sampled at eleven intensities? (A negative-result check; see Section~\ref{sec:res:knee}.)
+\item[RQ3] Is a single inflection point (a ``knee'') of a degradation trajectory identifiable from a curve sampled at eleven intensities, as knee and elbow detectors~\cite{satopaa2011finding,salvador2004determining} presuppose? (A methodological audit with a negative answer; see Section~\ref{sec:res:knee}.)
 \end{description}
 
 \subsection{Contributions}\label{sec:intro:contrib}
@@ -89,7 +99,7 @@ We introduce TabStress, a standardized open-source empirical stress-testing suit
 \item \emph{Dual-protocol corruption-response evaluation framework.} Two protocols share one corruption engine, one set of folds and one set of seeds: corruption-aware training robustness (Protocol~A) and deployment inference robustness (Protocol~B). The engine spans nine stochastic operators across label noise, continuous Gaussian and nominal categorical perturbations, and MCAR, MAR, and MNAR missingness, with both median imputation and native tree handling (Section~\ref{sec:problem}).
 \item \emph{Dual absolute and relative endurance measures with explicit baselines.} Balanced AUDC is the designated primary robustness measure, AUDC the capacity-weighted absolute measure, and MRR the relative retention score; an adjusted retention ratio (aMRR) removes the majority-class baseline to prevent weak models from appearing robust (Section~\ref{sec:problem:metrics}).
 \item \emph{Statistically controlled cross-dataset evaluation methodology.} A designated confirmatory hypothesis family with joint Holm error control, Friedman and Iman--Davenport omnibus tests, Nemenyi critical difference, and Holm-adjusted pairwise Wilcoxon tests replicated across three seeds (Section~\ref{sec:method:stats}).
-\item \emph{Negative result on knee estimation.} The maximum-curvature knee $\etaknee$ is boundary-constrained, unstable across seeds, and unreliable on synthetic trajectories with known and absent knees. We report this as a reliability audit, not as a contribution to the robustness measures; the knee is not used in any ranking (Section~\ref{sec:res:knee}).
+\item \emph{Methodological audit of trajectory knees.} We audit the assumption that a degradation trajectory has an identifiable knee and show that, at the sampling resolution of a standard sweep, it does not: the maximum-curvature knee $\etaknee$ is forced into the interior by the spline boundary conditions, unstable across seeds, and reports false knees on knee-free trajectories. This is a cautionary negative result for curve-based robustness reporting, not a proposed robustness measure; the knee is not used in any ranking (Section~\ref{sec:res:knee}).
 \item \emph{Evidence on factors governing robustness rankings.} On twenty OpenML datasets, six classical model families, and one pretrained model, the TabICL baseline, under a standardized inference budget, we find that clean accuracy does not reliably predict robustness, that rankings depend on corruption mechanism, metric, configuration and protocol, and that no single family dominates all conditions (Section~\ref{sec:results}).
 \end{enumerate}
 
@@ -460,21 +470,21 @@ Figure~\ref{fig:curves} shows representative trajectories and Figure~\ref{fig:ov
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=\linewidth]{fig_curves.png}
+\includegraphics[width=0.75\linewidth]{fig_curves.png}
 \caption{Representative degradation curves (plain accuracy averaged over seeds 42--44; the primary measure, balanced AUDC, is shown in Figure~\ref{fig:overall}): phoneme (binary, majority-class rate 0.71), bank-marketing (binary, majority-class rate 0.88) and volkert (ten classes), under symmetric label noise and under Gaussian feature noise, for training robustness (Protocol~A, corrupted training and test data) and inference robustness (Protocol~B, clean training, corrupted test data).}
 \label{fig:curves}
 \end{figure}
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=\linewidth]{fig_overall.png}
+\includegraphics[width=0.75\linewidth]{fig_overall.png}
 \caption{Balanced AUDC, the primary robustness measure, of every model over the twenty datasets. Top: training robustness (Protocol~A) under the five primary conditions. Bottom: inference robustness (Protocol~B) under Gaussian noise and under MCAR (imputed and native handling), MAR and MNAR masking (imputed). Boxes span the interquartile range; whiskers extend to $1.5$ times the interquartile range.}
 \label{fig:overall}
 \end{figure}
 
-On the primary measure the six families differ under every condition (Table~\ref{tab:combined}; largest Holm-adjusted $p=2.1\times10^{-6}$). Three questions are kept apart throughout: whether the mean ranks differ across datasets (omnibus test), which model pairs are separated (pairwise tests), and whether the difference is practically meaningful (Kendall's $W$ and score differences). LightGBM has the best mean rank on balanced AUDC under four of the five conditions and CatBoost under symmetric label noise; CART is last under four conditions and the MLP under class-conditional noise. For the five balanced-AUDC blocks in that sentence (symmetric, class-conditional, Gaussian, MCAR imputed, MCAR native), the Holm-adjusted Wilcoxon and Nemenyi tests separate 5/4, 8/5, 6/5, 8/6 and 9/7 of the fifteen model pairs; the omnibus rejection is not evidence of a complete ordering. Under class-conditional, Gaussian and both MCAR handlings, the Bayesian signed-rank test puts 0.80--0.90 of the posterior mass of LightGBM versus XGBoost inside the practical-equivalence region (ROPE $\pm0.01$ on balanced AUDC; Supplementary Table~S54), and the posterior probability that LightGBM wins is 0.00 in three of these conditions and 0.01 under imputed MCAR. These two families form a statistically equivalent top-performing tier in those conditions; we do not claim that LightGBM dominates XGBoost. Under symmetric label noise the best two families, CatBoost and XGBoost, have a ROPE probability of 0.36, and that condition does not show an equivalent top tier.
+On the primary measure the six families differ under every condition (Table~\ref{tab:combined}; largest Holm-adjusted $p=2.1\times10^{-6}$). Three questions are kept apart throughout: whether the mean ranks differ across datasets (omnibus test), which model pairs are separated (pairwise tests), and whether the difference is practically meaningful (Kendall's $W$ and score differences). Under the matched 100-round budget, LightGBM has the best mean rank on balanced AUDC under four of the five conditions and CatBoost under symmetric label noise. This leadership is a property of the budget as well as of the family: when CatBoost runs at its library default of 1{,}000 rounds, it overtakes LightGBM under Gaussian noise (Section~\ref{sec:res:config}), so the ranking of the boosters is coupled to training budget and is not read as a statement about intrinsic family robustness. At the bottom of the ranking, CART is last under four conditions and the MLP under class-conditional noise. For the five balanced-AUDC blocks in that sentence (symmetric, class-conditional, Gaussian, MCAR imputed, MCAR native), the Holm-adjusted Wilcoxon and Nemenyi tests separate 5/4, 8/5, 6/5, 8/6 and 9/7 of the fifteen model pairs; the omnibus rejection is not evidence of a complete ordering. Under class-conditional, Gaussian and both MCAR handlings, the Bayesian signed-rank test puts 0.80--0.90 of the posterior mass of LightGBM versus XGBoost inside the practical-equivalence region (ROPE $\pm0.01$ on balanced AUDC; Supplementary Table~S54), and the posterior probability that LightGBM wins is 0.00 in three of these conditions and 0.01 under imputed MCAR. These two families form a statistically equivalent top-performing tier in those conditions; we do not claim that LightGBM dominates XGBoost. Under symmetric label noise the best two families, CatBoost and XGBoost, have a ROPE probability of 0.36, and that condition does not show an equivalent top tier.
 
-The answer to RQ1 is negative. Within a dataset and condition, the model with the highest clean accuracy also has the highest balanced AUDC in only 46\% of the hundred dataset--condition blocks, and the highest MRR in 4\%. The median within-dataset Kendall correlation between clean accuracy and MRR is negative under every condition (from $-0.27$ to $-0.13$): the models that are most accurate on clean data tend to lose the largest share of it. Absolute endurance inherits part of the clean ordering, because a model that starts higher has more to spend, but clean accuracy alone does not identify the most robust model.
+The answer to RQ1 is negative. Within a dataset and condition, the model with the highest clean accuracy also has the highest balanced AUDC in only 46\% of the hundred dataset--condition blocks, and the highest MRR in 4\%. The second figure is largely a consequence of the definition of MRR: clean accuracy is its denominator, so a model with high $\Acc(0)$ has more accuracy to lose and is penalized in relative terms (a drop from $0.95$ to $0.70$ gives MRR $0.74$, a drop from $0.52$ to $0.50$ gives $0.96$). We therefore treat the balanced-AUDC figure as the substantive answer to RQ1 and the MRR figure as a description of what relative retention measures. The median within-dataset Kendall correlation between clean accuracy and MRR is negative under every condition (from $-0.27$ to $-0.13$): the models that are most accurate on clean data tend to lose the largest share of it. Absolute endurance inherits part of the clean ordering, because a model that starts higher has more to spend, but clean accuracy alone does not identify the most robust model.
 
 %% ---- begin inlined ../results/analysis/revision/tab_combined.tex ----
 \begin{table*}[t]
@@ -626,7 +636,7 @@ All 15 tests of the confirmatory family reject the hypothesis of equal mean rank
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=\linewidth]{fig_ranking.png}
+\includegraphics[width=0.75\linewidth]{fig_ranking.png}
 \caption{Mean Friedman ranks of the six families under the five primary conditions (training robustness, Protocol~A, $N=20$): (a) MRR, (b) AUDC, (c) balanced MRR and (d) balanced AUDC, the primary measure. The grey bar starts at the best mean rank and has the length of the Nemenyi critical difference ($1.686$); models beyond it differ significantly from the best. $p$: Iman--Davenport, Holm-adjusted over the confirmatory family (a, b, d) or over all thirty tests (c).}
 \label{fig:ranking}
 \end{figure}
@@ -635,9 +645,11 @@ Each seed redraws the folds, the corruption and the model initialisation. Repeat
 
 \subsection{Knee-estimator reliability and sensitivity}\label{sec:res:knee}
 
+Curve-based robustness reporting often presupposes that a degradation trajectory has an operational inflection point that knee and elbow detectors~\cite{satopaa2011finding,salvador2004determining} can locate. This subsection audits that assumption for eleven-tier sweeps (RQ3). The answer is negative: the knee is not identifiable at this resolution, and it is reported as a caution, not as a TabStress measure.
+
 \paragraph{Synthetic trajectories with known knees.} The synthetic results are a warning about the reliability of the estimator, not a validation of it. We sampled smoothed hinge trajectories with a known knee early ($0.10$), in the middle ($0.25$) or late ($0.40$) in the sweep, together with knee-free trajectories (linear, exponential and flat), at the eleven tiers, added Gaussian noise to each tier and applied the estimators 500 times per setting (Figure~\ref{fig:knee}a). Without noise the spline knee recovers every true knee to within $0.001$. At a noise level of $0.005$ per tier, about the standard error of a seed-averaged tier in our data, it recovers the knee within one tier in 89\%, 53\% and 26\% of replicates for early, middle and late knees, with a mean signed error of $-0.147$ for late knees, that is, towards earlier intensities. The reason is the curvature formula: $\kappa$ is damped by $(1+v^2)^{-3/2}$ on the steep segment after a knee, so noise on the flat segment before it wins. The discrete second-difference estimator, which uses the tiers directly, recovers all three within one tier in at least 82\% of replicates. Knee-free trajectories receive an interior knee from the spline estimator in 96\% of linear replicates, with a maximum curvature of the same size as that of true knees; at this noise level the magnitude of $\kappa$ cannot tell a knee from its absence.
 
-\paragraph{Real trajectories.} On the benchmark data, 91\% of the 591 defined knees lie within $0.002$ of a sampled tier, as Supplementary Proposition~S2 predicts. Across seeds, the Spearman correlation of $\etaknee$ between two seeds is at most 0.26, and only 41\% of knees stay within one tier when the seed changes; the discrete estimator does better (Spearman up to 0.44, 46\% within one tier) but remains far from the endurance scores, whose seed-to-seed Spearman correlation is at least 0.98 for MRR and 1.00 for balanced AUDC (Figure~\ref{fig:knee}b). The original seed-42 design, which applied pair-flip noise to the binary datasets as well, produced two realizations of one corruption law on each of them (Proposition~\ref{prop:a_pairflip_binary}) that differ only in the noise draw: MRR replicates almost perfectly (Pearson $r=0.993$ over 84 pairs), the knee does not (Spearman $\rho=0.36$). A parametric bootstrap of the seed-averaged tiers gives a median 95\% interval width of 0.400 for $\etaknee$.
+\paragraph{Real trajectories.} On the benchmark data, 91\% of the 591 defined knees lie within $0.002$ of a sampled tier, as Supplementary Proposition~S2 predicts. Across seeds, the Spearman correlation of $\etaknee$ between two seeds is at most 0.26, and only 41\% of knees stay within one tier when the seed changes; the discrete estimator does better (Spearman up to 0.44, 46\% within one tier) but remains far from the endurance scores, whose seed-to-seed Spearman correlation is at least 0.98 for MRR and 1.00 for balanced AUDC (Figure~\ref{fig:knee}b). The original seed-42 design, which applied pair-flip noise to the binary datasets as well, produced two realizations of one corruption law on each of them (Proposition~\ref{prop:a_pairflip_binary}) that differ only in the noise draw: MRR replicates almost perfectly (Pearson $r=0.993$ over 84 pairs); the knee does not (Spearman $\rho=0.36$). A parametric bootstrap of the seed-averaged tiers gives a median 95\% interval width of 0.400 for $\etaknee$.
 
 %% ---- begin inlined ../results/analysis/latex_primary/tab_ablation.tex ----
 \begin{table}[t]
@@ -662,7 +674,7 @@ Penalised cubic smoothing spline, GCV & 0.013 & 53.5 & 0.47 & 0.0 \\
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=\linewidth]{fig_knee.png}
+\includegraphics[width=0.75\linewidth]{fig_knee.png}
 \caption{Reliability of the knee statistic. (a) Share of synthetic trajectories whose known knee is recovered within one tier, as a function of the noise added to each tier, for the spline estimator $\etaknee$ (solid) and the second-difference estimator (dashed). (b) Smallest seed-to-seed Spearman correlation over the three seed pairs, for the endurance scores and the knee estimators, on the 600 primary trajectories. (c) Distribution of $\etaknee$ at tier resolution over models and datasets, by condition.}
 \label{fig:knee}
 \end{figure}
@@ -736,7 +748,7 @@ MNAR, imputed & AUDC$_{\mathrm{bal}}$ & $-0.0072$ & 62 & $1.7\times10^{-5}$ & Li
 
 \paragraph{Scores are lower and rankings change.} Under clean training the endurance scores are lower than under corruption-aware training in 8 of the 9 matched blocks (Wilcoxon $p<0.05$) and never significantly higher: a learner that is refitted on corrupted data adapts to it, and Protocol~A therefore overstates the robustness of a deployed model. The median losses are small in absolute terms, about one point of accuracy, but the order of the families moves: the leading family is the same under both protocols in only two of the nine blocks, and the median Kendall correlation between the two mean-rank vectors is $0.20$ (minimum $-0.47$). Under Gaussian noise the MLP, whose decision function is smooth in its inputs, leads on balanced AUDC, while the tree ensembles, whose split thresholds were fitted to clean values, lose more; under imputed masking LightGBM keeps the lead on balanced AUDC under MCAR, MAR and MNAR alike.
 
-\paragraph{Native missing-value handling reverses.} The sharpest change concerns missing values. A booster that has never seen a missing value during training has no learned direction for one. Under deployment masking, native handling lowers the AUDC of all three boosters relative to median imputation in 8 of nine family--mechanism tests (Holm-adjusted $p<0.05$); for XGBoost under MCAR the median loss is $-0.051$ and AUDC is lower on 100\% of datasets. CART and the random forest, whose scikit-learn implementation sends missing values to the child that received more training samples, gain instead (median $+0.009$ for the forest under MCAR). As a result the random forest leads on every score under every native-handling condition of Protocol~B, and XGBoost or CatBoost is last on balanced AUDC, whereas under Protocol~A native handling made no material difference (Section~\ref{sec:res:feature}).
+\paragraph{Native missing-value handling reverses.} The sharpest change concerns missing values. Because the boosters are trained on clean folds that contain no missing values, they have no data from which to learn a split-routing direction for one; native handling then acts as an uncalibrated default at deployment, and degrades performance unless it is paired with imputation. This is a finding about deployment pipelines, not about native handling as such: under Protocol~A, where missing values are present during training, native handling made no material difference (Section~\ref{sec:res:feature}). Under deployment masking, native handling lowers the AUDC of all three boosters relative to median imputation in 8 of nine family--mechanism tests (Holm-adjusted $p<0.05$); for XGBoost under MCAR the median loss is $-0.051$ and AUDC is lower on 100\% of datasets. CART and the random forest, whose scikit-learn implementation sends missing values to the child that received more training samples, gain instead (median $+0.009$ for the forest under MCAR). As a result the random forest leads on every score under every native-handling condition of Protocol~B, and XGBoost or CatBoost is last on balanced AUDC, whereas under Protocol~A native handling made no material difference (Section~\ref{sec:res:feature}).
 
 \paragraph{Clean accuracy at deployment.} The negative answer to RQ1 holds under deployment corruption: the most accurate clean model is also the one with the highest MRR in at most 10\% of datasets under any Protocol~B condition.
 
@@ -807,7 +819,7 @@ The answer to the question that motivated Protocol~B is therefore that the two p
 
 \subsection{Main findings}\label{sec:disc:findings}
 
-Three findings carry the article. First, clean-data performance does not reliably predict robustness under data corruption: within a dataset the most accurate clean model is rarely the one that retains the largest share of its accuracy, and only about half the time the one with the highest balanced AUDC (Section~\ref{sec:res:overall}). Second, robustness rankings depend on the corruption mechanism, the evaluation metric, the model configuration and the evaluation protocol (Sections~\ref{sec:res:label} to~\ref{sec:res:deploy}). Third, curve-level endurance scores are reliable descriptors, while the maximum-curvature knee is a secondary, coarse population-level statistic (Section~\ref{sec:res:knee}). Balanced AUDC is the primary outcome; MRR and aMRR are complementary views, and aMRR is uninformative when a model has almost no above-baseline skill.
+Three findings carry the article. First, clean-data performance does not reliably predict robustness under data corruption: within a dataset the most accurate clean model is rarely the one that retains the largest share of its accuracy, and only about half the time the one with the highest balanced AUDC (Section~\ref{sec:res:overall}). Second, robustness rankings depend on the corruption mechanism, the evaluation metric, the model configuration and the evaluation protocol (Sections~\ref{sec:res:label} to~\ref{sec:res:deploy}). Third, curve-level endurance scores are reliable descriptors, whereas the knee of a trajectory is not identifiable at standard sweep resolution, a caution for any robustness study that reports inflection points (Section~\ref{sec:res:knee}). Balanced AUDC is the primary outcome; MRR and aMRR are complementary views, and aMRR is uninformative when a model has almost no above-baseline skill.
 
 The statistical evidence separates three levels. Whether rankings differ across datasets is answered by the omnibus tests: mean ranks differ under all fifteen confirmatory tests after Holm adjustment. Which models differ is answered by the pairwise tests, which separate only some pairs (Table~\ref{tab:combined}, Pairs). How large the differences are in practice is answered by effect sizes: Kendall's $W$ is only $0.12$ to $0.76$, and the two leading families are practically equivalent, with a median gap below one point of balanced AUDC and the $\pm0.01$ region of practical equivalence the most probable outcome in five of five conditions (Supplementary Section~S9). A significant omnibus result is therefore not evidence of a practically meaningful ordering.
 
@@ -845,7 +857,7 @@ Twenty public OpenML datasets, most of them members of curated suites, are not a
 All corruptions are synthetic, stochastic and independent of any causal structure among the features. The all-column Gaussian variant perturbs one-hot indicators and ordinal codes as if they were measurements, so it is not a universal model of sensor degradation; the principal Gaussian condition applies the noise to continuous attributes only (Table~\ref{tab:gaussian_principal}), and the categorical-aware and categorical-only operators treat the nominal attributes recorded in the OpenML metadata on the six datasets that have any. The MAR and MNAR operators are rank-based stylisations of informative missingness, not models of a particular domain. Worst-case and adversarial corruption are outside the design.
 
 \subsection{Hyperparameter sensitivity}\label{sec:threats:hyper}
-The matched budget, the library defaults and a six-trial random search on all twenty datasets are three points in a large configuration space. Section~\ref{sec:res:config} shows that configuration changes the leading booster under feature corruption; a more thorough search, or tuning under corruption, could reorder the families further. Rankings in this article are rankings of configured pipelines, and the distinction between model-family and configuration robustness is drawn only as far as these three regimes allow. TabICL was run with one configuration, the library defaults apart from the ensemble size and context cap, and its ranking relative to the classical families could change with the full ensemble.
+The benchmark compares fixed inductive biases under standardized configurations rather than hyperparameter-optimized frontiers. Bayesian search across all tiers and deep tabular architectures such as FT-Transformer~\cite{gorishniy2021revisiting} are left to future work; the MLP results represent a classical dense baseline, not modern deep architectures. The matched budget, library defaults and a six-trial random search on all twenty datasets are three points in a large configuration space. Section~\ref{sec:res:config} shows that configuration changes the leading booster under feature corruption; a more thorough search, or tuning under corruption, could reorder the families further. Rankings in this article are rankings of configured pipelines, and the distinction between model-family and configuration robustness is drawn only as far as these three regimes allow. TabICL was run with one configuration (defaults apart from ensemble size and context cap); its ranking relative to classical families could change with the full ensemble.
 
 \subsection{Metric-induced ranking bias}\label{sec:threats:metric}
 Every score encodes a question, and the rankings differ between scores (Section~\ref{sec:res:absrel}). Fixing the roles of the scores before the tests, reporting balanced and baseline-adjusted versions and controlling the confirmatory family jointly limit, but do not remove, the influence of the choice of score. Intensities are not comparable across operators, so no statement in this article ranks corruption types by harm.
@@ -854,13 +866,13 @@ Every score encodes a question, and the rankings differ between scores (Section~
 Results are tied to scikit-learn 1.9.1, XGBoost 3.4.1, LightGBM 4.7.0 and CatBoost 1.2.10, and those for the pretrained model to tabicl 2.2.0 with its default checkpoint and torch 2.14.1, whose floating-point arithmetic is subject to standard hardware platform differences. Defaults, histogram binning and missing-value routing change between library versions; the pinned environment in the replication package reproduces stored cells exactly, but a different version can change individual cells and, near ties, mean ranks.
 
 \subsection{Temporal reproducibility of external datasets}\label{sec:threats:temporal}
-OpenML datasets are addressed by stable identifiers, but uploads can be deprecated or re-processed. The replication package caches the exact matrices used, and the ten-thousand-row subsample is fixed by seed, so the experiment does not depend on the future state of the repository.
+OpenML datasets are addressed by stable identifiers, but uploads can be deprecated or re-processed. The replication package caches the exact matrices used, and the ten-thousand-row subsample is fixed by seed, so the experiment does not depend on the future state of the repository. The subsample of the nine datasets with more than 10{,}000 rows was drawn once, with seed 42; alternative subsamples were not evaluated, so subsampling variance is not part of the reported seed variation.
 
 \subsection{Computational-budget bias}\label{sec:threats:budget}
-The matched budget of 100 boosting rounds favors learners that converge quickly; CatBoost in particular gains from its default of 1,000 rounds under feature corruption. The comparison between matched-budget and default-configuration results is therefore confounded with the number of boosting rounds, and we present it as one configuration regime rather than as a measure of family robustness. The ten-thousand-row cap, five folds and three seeds bound the cost of the design and set its resolution: on the smallest dataset a single cell cannot detect an accuracy difference of $0.02$ reliably, and the claims rest on rank tests over twenty datasets. A pretrained tabular foundation model, TabICL, could be included only in constrained form: under Protocol~B alone, with an ensemble of four instead of eight, a context of at most 3{,}000 rows and one dataset (Bioresponse) excluded for memory. Its scores are therefore a lower bound on what the model can attain, corruption-aware training was not run for it, and the findings about it are descriptive rather than confirmatory. The confirmatory conclusions remain those for the six classical supervised families.
+The matched budget of 100 boosting rounds favors learners that converge quickly; CatBoost gains from its default of 1{,}000 rounds under feature corruption. The matched-budget versus default comparison is thus confounded with boosting rounds and serves as a configuration comparison rather than intrinsic family robustness. The ten-thousand-row cap, five folds and three seeds bound compute and resolution: on the smallest dataset a single cell cannot detect an accuracy gap of $0.02$ reliably, and claims rest on cross-dataset rank tests. TabICL was evaluated under constrained settings (Protocol~B only, four estimators, $\le 3{,}000$ context rows, Bioresponse excluded) due to compute limits; its scores describe this configuration, not an attainable bound, and confirmatory conclusions remain those for the six classical families.
 
 \subsection{Internal validity}\label{sec:threats:internal}
-Corruptions are applied inside the cross-validation folds, labels are scored against clean targets, and every random stream is seeded and audited (Section~\ref{sec:method:engine}). Numerical verification confirms exact reproducibility across seeds, with recomputation audits validating the stored evaluation cells. Fold standard deviations understate the variability of cross-validation because folds share training data; the seed replication of Section~\ref{sec:res:stats} addresses this for the endurance scores. Three dataset artifacts are present in the original uploads: duplicate feature rows in spambase (391 duplicate rows plus 6 rows forming 3 conflicting feature vectors, 397 rows in total; exact rules and counts in Supplementary Section~S10), an administrative identifier column in churn and 468 sentinel rows with $-999.0$ values in MiniBooNE; Section~\ref{sec:res:config} re-runs the protocol with them removed. Exact duplicate feature rows also occur in nomao (2,405), volkert (12), phoneme (9), ozone\_level (8) and pol (42). The completed deduplication sensitivity analysis (Section~\ref{sec:res:config}) shows that removing these duplicate rows leaves the best and worst model unchanged in all fifteen confirmatory blocks.
+Corruptions are applied inside the cross-validation folds, labels are scored against clean targets, and every random stream is seeded and audited (Section~\ref{sec:method:engine}). Numerical verification confirms exact reproducibility across seeds, with recomputation audits validating the stored evaluation cells. Fold standard deviations understate the variability of cross-validation because folds share training data; the seed replication of Section~\ref{sec:res:stats} addresses this for the endurance scores. Three dataset artifacts are present in the original uploads: duplicate feature rows in spambase (397 rows; rules and counts in Supplementary Section~S10), an administrative identifier column in churn and 468 sentinel rows in MiniBooNE; Section~\ref{sec:res:config} re-runs without them. Exact duplicate feature rows also occur in nomao (2,405), volkert (12), phoneme (9), ozone\_level (8) and pol (42); the completed deduplication sensitivity analysis (Section~\ref{sec:res:config}) shows that removing them leaves the best and worst model unchanged in all fifteen confirmatory blocks.
 
 %% ===========================================================================
 \section{Conclusion}\label{sec:conclusion}
@@ -878,40 +890,38 @@ These findings come from a controlled synthetic-corruption benchmark on twenty d
 
 \section*{Declarations}\label{sec:declarations}
 
-\subsection*{Ethical Approval}
+\bmhead{Ethical Approval}
 Not applicable. This study does not involve human participants, animal subjects, or sensitive personal data. All experiments were conducted on publicly available OpenML datasets.
 
-\subsection*{Consent to participate}
+\bmhead{Consent to participate and publish}
 Not applicable. This study does not involve human participants.
 
-\subsection*{Consent to publish}
-Not applicable.
-
-\subsection*{Materials availability}
+\bmhead{Materials availability}
 Not applicable. No physical materials were used.
 
-\subsection*{Competing interests}
+\bmhead{Competing interests}
 The authors declare no competing financial or non-financial interests.
 
-\subsection*{Funding}
+\bmhead{Funding}
 No external funding was received for conducting this study.
 
-\subsection*{Authors' contributions}
+\bmhead{Authors' contributions}
 S.M.S. supervised the research, formulated the study scope, and reviewed the manuscript. D.P. designed the benchmarking architecture, implemented the code, conducted the mathematical derivations, analyzed the empirical results, and wrote the manuscript. Both authors reviewed and approved the final manuscript.
 
-\subsection*{Acknowledgments}
+\bmhead{Acknowledgments}
 The authors thank the School of Computer Science and Engineering, Vellore Institute of Technology, and the maintainers of OpenML and of the benchmark datasets. The use of automated language tools is described in Section~\ref{sec:method:protocol}.
 
-\section*{Data Availability}
+\bmhead{Data Availability}
 All datasets are publicly available on OpenML under the identifiers listed in Supplementary Table~S2. The complete pre-computed cell matrices, seed replications, and cached datasets are available to reviewers now in the replication repository \url{https://github.com/RaffeOP/TabStress}, which also contains a manifest mapping each main table and figure to the files that generate it; a Zenodo DOI will be minted for the accepted version.
 
-\section*{Code Availability}
+\bmhead{Code Availability}
 The complete software implementation, including the corruption engine, evaluation harnesses for Protocol~A and Protocol~B, spline and knee estimation routines, statistical testing scripts, and manuscript reproduction pipelines, is available to reviewers now in the replication repository \url{https://github.com/RaffeOP/TabStress}; a Zenodo DOI will be minted for the accepted version.
 
-\section*{Supplementary Material}
+\bmhead{Supplementary Material}
 The label-noise derivations are given in Appendix~\ref{app:math}; the operator and knee-estimator derivations are in Supplementary Section~S1. The Supplementary Material contains detailed corpus, search-space, per-seed, native-handling, library-default and Protocol~B tables (Section~S2), per-condition critical-difference diagrams (Section~S3), per-dataset endurance (Section~S4), trajectory summaries with bootstrap intervals (Section~S5), the complete accuracy grid (Section~S6), the degradation atlas (Section~S7), pairwise Wilcoxon tests (Section~S8), sensitivity runs (Section~S9), and the data-cleaning rules with the pol class-ordering sensitivity analysis (Section~S10).
 
 %% ===========================================================================
+\renewcommand{\bibfont}{\footnotesize}\setlength{\bibsep}{0pt}
 \bibliography{TabStress}
 
 \begin{appendices}

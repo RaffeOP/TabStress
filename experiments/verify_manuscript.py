@@ -394,7 +394,7 @@ def _fb(f, score, cond):
 
 
 FOUNDATION_CLAIMS = [
-    ("is among the two least retentive; this is a result for one pretrained model",
+    ("higher clean accuracy did not yield higher retention under inference-time corruption",
      lambda f: f["clean_accuracy"]["mean_acc"]["tabicl"] == max(f["clean_accuracy"]["mean_acc"].values())
      and f["headline"]["mrr"]["position_min"] >= 6),
     ("TabICL has the highest mean clean accuracy (",
