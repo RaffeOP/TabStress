@@ -1,0 +1,37 @@
+2026-10-10 10:17:16 settings {'model': 'tabicl', 'n_estimators': 8, 'max_train': None, 'device': 'mps', 'batched': True, 'kv_cache': 'kv', 'chunk_rows': 2000, 'memory_safety_factor': 0.05, 'torch': '2.14.1', 'torch_threads': 2, 'tabicl_version': '2.2.0'}; 0 tasks done, 6 pending
+2026-10-10 10:17:28   seed 42 vehicle fold 0 done in 10s (train 676, val 170, d=18, rss 0.7 GB)
+2026-10-10 10:17:36   seed 42 vehicle fold 1 done in 8s (train 677, val 169, d=18, rss 0.7 GB)
+2026-10-10 10:17:44   seed 42 vehicle fold 2 done in 8s (train 677, val 169, d=18, rss 0.8 GB)
+2026-10-10 10:17:52   seed 42 vehicle fold 3 done in 8s (train 677, val 169, d=18, rss 0.8 GB)
+2026-10-10 10:18:01   seed 42 vehicle fold 4 done in 8s (train 677, val 169, d=18, rss 0.9 GB)
+2026-10-10 10:18:01 DONE seed 42 vehicle in 0.8 min; 1/6 tasks, elapsed 0.01 h
+2026-10-10 10:18:22   seed 42 qsar-biodeg fold 0 done in 19s (train 844, val 211, d=41, rss 0.8 GB)
+2026-10-10 10:18:47   seed 42 qsar-biodeg fold 1 done in 25s (train 844, val 211, d=41, rss 0.8 GB)
+2026-10-10 10:19:11   seed 42 qsar-biodeg fold 2 done in 24s (train 844, val 211, d=41, rss 0.8 GB)
+2026-10-10 10:19:35   seed 42 qsar-biodeg fold 3 done in 24s (train 844, val 211, d=41, rss 0.8 GB)
+2026-10-10 10:20:00   seed 42 qsar-biodeg fold 4 done in 25s (train 844, val 211, d=41, rss 0.8 GB)
+2026-10-10 10:20:00 DONE seed 42 qsar-biodeg in 2.0 min; 2/6 tasks, elapsed 0.05 h
+2026-10-10 10:20:40   seed 42 steel-plates-fault fold 0 done in 37s (train 1552, val 389, d=33, rss 0.7 GB)
+2026-10-10 10:21:15   seed 42 steel-plates-fault fold 1 done in 35s (train 1553, val 388, d=33, rss 0.7 GB)
+2026-10-10 10:21:52   seed 42 steel-plates-fault fold 2 done in 37s (train 1553, val 388, d=33, rss 0.7 GB)
+2026-10-10 10:22:29   seed 42 steel-plates-fault fold 3 done in 37s (train 1553, val 388, d=33, rss 0.7 GB)
+2026-10-10 10:23:06   seed 42 steel-plates-fault fold 4 done in 37s (train 1553, val 388, d=33, rss 0.7 GB)
+2026-10-10 10:23:07 DONE seed 42 steel-plates-fault in 3.1 min; 3/6 tasks, elapsed 0.10 h
+2026-10-10 10:24:04   seed 42 phoneme fold 0 done in 54s (train 4323, val 1081, d=5, rss 0.7 GB)
+2026-10-10 10:24:59   seed 42 phoneme fold 1 done in 55s (train 4323, val 1081, d=5, rss 0.7 GB)
+2026-10-10 10:25:53   seed 42 phoneme fold 2 done in 54s (train 4323, val 1081, d=5, rss 0.7 GB)
+2026-10-10 10:26:48   seed 42 phoneme fold 3 done in 55s (train 4323, val 1081, d=5, rss 0.7 GB)
+2026-10-10 10:27:44   seed 42 phoneme fold 4 done in 56s (train 4324, val 1080, d=5, rss 0.7 GB)
+2026-10-10 10:27:45 DONE seed 42 phoneme in 4.6 min; 4/6 tasks, elapsed 0.17 h
+2026-10-10 10:29:38   seed 42 churn fold 0 done in 109s (train 4000, val 1000, d=29, rss 0.7 GB)
+2026-10-10 10:31:25   seed 42 churn fold 1 done in 107s (train 4000, val 1000, d=29, rss 0.7 GB)
+2026-10-10 10:32:43   seed 42 churn fold 2 done in 77s (train 4000, val 1000, d=29, rss 0.7 GB)
+2026-10-10 10:33:57   seed 42 churn fold 3 done in 74s (train 4000, val 1000, d=29, rss 0.7 GB)
+2026-10-10 10:35:09   seed 42 churn fold 4 done in 72s (train 4000, val 1000, d=29, rss 0.7 GB)
+2026-10-10 10:35:09 DONE seed 42 churn in 7.4 min; 5/6 tasks, elapsed 0.30 h
+2026-10-10 10:36:57   seed 42 spambase fold 0 done in 106s (train 3680, val 921, d=57, rss 0.7 GB)
+2026-10-10 10:38:47   seed 42 spambase fold 1 done in 110s (train 3681, val 920, d=57, rss 0.7 GB)
+2026-10-10 10:40:37   seed 42 spambase fold 2 done in 110s (train 3681, val 920, d=57, rss 0.7 GB)
+2026-10-10 10:42:25   seed 42 spambase fold 3 done in 107s (train 3681, val 920, d=57, rss 0.7 GB)
+2026-10-10 10:44:12   seed 42 spambase fold 4 done in 108s (train 3681, val 920, d=57, rss 0.7 GB)
+2026-10-10 10:44:13 DONE seed 42 spambase in 9.1 min; 6/6 tasks, elapsed 0.45 h

@@ -1,0 +1,6 @@
+foundation|42|vehicle|tabicl|imputed
+foundation|42|qsar-biodeg|tabicl|imputed
+foundation|42|steel-plates-fault|tabicl|imputed
+foundation|42|phoneme|tabicl|imputed
+foundation|42|churn|tabicl|imputed
+foundation|42|spambase|tabicl|imputed

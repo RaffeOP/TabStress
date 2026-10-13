@@ -1,0 +1,38 @@
+
+=== 1/10 completeness of the result files ===
+all blocks complete: {'base': 9840, 'catboost_default': 820, 'cc_binary': 2520, 'native_nan': 3000, 'xgb_default': 820} | original grid 5,280 rows, patch applied
+
+=== 2/10 primary grid ===
+seed 42: {'class_conditional': np.int64(1320), 'gaussian_feature': np.int64(1320), 'mcar_imputed': np.int64(1320), 'mcar_native': np.int64(1320), 'symmetric_label': np.int64(1320)} complete=True
+seed 43: {'class_conditional': np.int64(1320), 'gaussian_feature': np.int64(1320), 'mcar_imputed': np.int64(1320), 'mcar_native': np.int64(1320), 'symmetric_label': np.int64(1320)} complete=True
+seed 44: {'class_conditional': np.int64(1320), 'gaussian_feature': np.int64(1320), 'mcar_imputed': np.int64(1320), 'mcar_native': np.int64(1320), 'symmetric_label': np.int64(1320)} complete=True
+seeds used: [42, 43, 44]; 6600 cells over 5 conditions -> results/analysis/primary/cells.csv
+
+=== 3/10 operator audit ===
+
+=== 4/10 forensic audit (primary) ===
+
+=== 5/10 forensic audit (original) ===
+
+=== 6/10 extended analyses ===
+
+=== 6b/10 corrections, data quality, velocity ===
+
+=== 6c/10 revision analyses (protocols, mechanisms, tuning, artifacts, knee validation) ===
+
+=== 7/10 figures ===
+
+=== 8/10 tables and atlas ===
+
+=== 9/10 assemble and compile ===
+springer_project/TabStress.tex: 916 lines, unresolved inputs: 0
+springer_project/TabStress_Supplementary.tex: 2768 lines, unresolved inputs: 0
+springer_project/TabStress.bib: 93 cited entries
+Pages:           42
+Pages:           67
+
+=== 10/10 verification ===
+passed 277, failed 3
+  FAIL data support: 'As under MCAR, LightGBM also leads on AUDC under both mechan': 
+  FAIL data support: 'Under MCAR and MAR masking TabICL has the lowest mean rank o': Under MCAR and MAR masking TabICL has the lowest mean rank of the seven on both balanced AUDC and AUDC
+  FAIL data support: 'Under MNAR masking LightGBM leads on balanced AUDC and the r': Under MNAR masking LightGBM leads on balanced AUDC and the random forest on AUDC

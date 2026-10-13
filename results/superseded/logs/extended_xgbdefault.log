@@ -1,0 +1,14 @@
+6454 cells already done, 820 pending, 2 workers
+50/820 cells, 1.5/min, ETA 525 min
+100/820 cells, 2.9/min, ETA 250 min
+150/820 cells, 4.0/min, ETA 169 min
+200/820 cells, 5.2/min, ETA 120 min
+250/820 cells, 6.4/min, ETA 89 min
+300/820 cells, 7.4/min, ETA 70 min
+350/820 cells, 7.8/min, ETA 60 min
+400/820 cells, 8.7/min, ETA 48 min
+450/820 cells, 9.7/min, ETA 38 min
+500/820 cells, 10.5/min, ETA 31 min
+550/820 cells, 11.2/min, ETA 24 min
+/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/multiprocessing/resource_tracker.py:254: UserWarning: resource_tracker: There appear to be 5 leaked semaphore objects to clean up at shutdown
+  warnings.warn('resource_tracker: There appear to be %d '

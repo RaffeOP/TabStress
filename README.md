@@ -123,13 +123,32 @@ Validate the integrity of all pre-computed cells, figures, and tables against th
 python3 experiments/audit_manifest.py
 ```
 
-### 2. Run the End-to-End Build and Verification
+### 2. Reproduce the Primary Grid and the Statistical Tests
+The committed cell files in `results/metrics/extended/` make the analysis reproducible without recomputing the benchmark:
+```bash
+python3 experiments/build_primary.py          # primary grid -> results/analysis/primary/cells.csv
+python3 experiments/analyze_revision.py       # confirmatory rank tests, Protocol A vs B
+python3 experiments/analyze_sensitivity.py    # artifact, deduplication and Bayesian sensitivity
+```
+Recomputing the cells from scratch is done with `python3 experiments/run_extended.py --help` (heavy; see the notes in each script).
+
+### 3. Verify the 306 Manuscript Assertions
+Requires the packages in `requirements.txt` (the verifier imports `scipy`) and the typeset article in `springer_project/`:
+```bash
+cd springer_project && tectonic -X compile TabStress.tex && cd ..
+python3 experiments/verify_manuscript.py      # expected output: passed 306, failed 0
+```
+
+### 4. Locate Stored Metrics
+`results/metrics/artifact/` holds the artifact-sensitivity cells (`base`, `cc_binary`, `native_nan`, seeds 42–44), including every cell of the three cleaned copies (`*_clean`) and the five deduplicated copies (`*_dedup`), keyed by the `dataset` column. The cleaned copies come from `experiments/run_artifact_sensitivity.py`; the deduplicated copies from `experiments/run_dedup_sensitivity.py`, completed by `experiments/complete_dedup_sensitivity.py` (index: `PIPELINE_MANIFEST.md`, Section 5.4). Every directory under `results/` is labelled CONFIRMATORY, DERIVED, SENSITIVITY, or SUPERSEDED in `results/README.md`. Every table and figure is mapped to its script, input files and configuration in `PIPELINE_MANIFEST.md`, Section 5; `python3 experiments/provenance_map.py --check` regenerates the table map and fails if a label has no generator.
+
+### 5. Run the End-to-End Build and Verification
 To execute the complete statistical analysis, compile the manuscript, and run all 306 verification assertions:
 ```bash
 bash experiments/run_final_pipeline.sh
 ```
 
-### 3. Running Individual Benchmark Cells
+### 6. Running Individual Benchmark Cells
 To run single evaluation cells or test corruption operators:
 ```bash
 python3 experiments/run_extended.py

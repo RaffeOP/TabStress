@@ -1,0 +1,62 @@
+
+=== 1/10 completeness of the result files ===
+all blocks complete: {'base': 9840, 'catboost_default': 820, 'cc_binary': 2520, 'native_nan': 3000, 'xgb_default': 820} | original grid 5,280 rows, patch applied
+
+=== 2/10 primary grid ===
+seed 42: {'class_conditional': np.int64(1320), 'gaussian_feature': np.int64(1320), 'mcar_imputed': np.int64(1320), 'mcar_native': np.int64(1320), 'symmetric_label': np.int64(1320)} complete=True
+seed 43: {'class_conditional': np.int64(1320), 'gaussian_feature': np.int64(1320), 'mcar_imputed': np.int64(1320), 'mcar_native': np.int64(1320), 'symmetric_label': np.int64(1320)} complete=True
+seed 44: {'class_conditional': np.int64(1320), 'gaussian_feature': np.int64(1320), 'mcar_imputed': np.int64(1320), 'mcar_native': np.int64(1320), 'symmetric_label': np.int64(1320)} complete=True
+seeds used: [42, 43, 44]; 6600 cells over 5 conditions -> results/analysis/primary/cells.csv
+
+=== 3/10 operator audit ===
+
+=== 4/10 forensic audit (primary) ===
+
+=== 5/10 forensic audit (original) ===
+
+=== 6/10 extended analyses ===
+
+=== 6b/10 corrections, data quality, velocity ===
+
+=== 6c/10 revision analyses (protocols, mechanisms, tuning, artifacts, knee validation) ===
+/Users/raffe/Downloads/research/experiments/analyze_revision.py:731: SyntaxWarning: invalid escape sequence '\ '
+  "tests (upper block) or over the sensitivity family, i.e.\ jointly over all 30 tests (lower block). $W$: Kendall's coefficient of concordance, the effect size of the Friedman "
+
+=== 7/10 figures ===
+
+=== 8/10 tables and atlas ===
+
+=== 9/10 assemble and compile ===
+springer_project/TabStress.tex: 914 lines, unresolved inputs: 0
+springer_project/TabStress_Supplementary.tex: 2908 lines, unresolved inputs: 0
+springer_project/TabStress.bib: 60 cited entries
+LaTeX Warning: Reference `fig:atlas_g3' on page 46 undefined on input line 2376
+.
+
+
+LaTeX Warning: Reference `fig:atlas_g4' on page 46 undefined on input line 2376
+.
+
+[46] [47] [48] [49] [50] [51] [52] [53] [54] [55] [56] [57] [58]
+
+Package hyperref Warning: Difference (3) between bookmark levels is greater 
+(hyperref)                than one, level fixed on input line 2562.
+
+
+Package natbib Warning: Citation `gardner2023tableshift' on page 59 undefined o
+n input line 2563.
+
+
+Package natbib Warning: Citation `koh2021wilds' on page 59 undefined on input l
+ine 2563.
+
+! Undefined control sequence.
+<recently read> \aMRR 
+                      
+l.2563 ...etention ($\AUDC_{\mathrm{bal}}$, $\aMRR
+                                                  $), and population-level k...
+Output written on TabStress_Supplementary.xdv (58 pages, 1090448 bytes).
+Transcript written on TabStress_Supplementary.log.
+===============================================================================
+error: the XeTeX engine had an unrecoverable error
+caused by: halted on potentially-recoverable error as specified

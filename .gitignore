@@ -1,4 +1,5 @@
 .venv/
+.venv-tabpfn
 .venv-tabpfn/
 catboost_info/
 __pycache__/
@@ -13,7 +14,6 @@ __pycache__/
 *.pdf
 *.zip
 .env*
-results/superseded/
 
 *.md
 !README.md
@@ -21,3 +21,7 @@ results/superseded/
 !springer_project/revision/
 springer_project/revision/*
 !springer_project/revision/references_revised_seminal.bib
+
+# Result logs cited by PIPELINE_MANIFEST.md (Section 5.3) and the README-level results index are versioned
+!results/**/*.log
+!results/README.md

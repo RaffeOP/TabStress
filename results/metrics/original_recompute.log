@@ -1,0 +1,29 @@
+control cells reproduced (max deviation 1.1e-16)
+0 done, 360 pending
+20/360 recomputed
+control cells reproduced (max deviation 1.1e-16)
+22 done, 338 pending
+20/338 recomputed
+40/338 recomputed
+60/338 recomputed
+80/338 recomputed
+100/338 recomputed
+120/338 recomputed
+140/338 recomputed
+160/338 recomputed
+180/338 recomputed
+200/338 recomputed
+220/338 recomputed
+240/338 recomputed
+260/338 recomputed
+280/338 recomputed
+300/338 recomputed
+320/338 recomputed
+338/338 recomputed
+patched 360 rows in results/metrics/benchmark_results.csv
+patched 60 rows in results/metrics/raw/Bioresponse.csv
+patched 60 rows in results/metrics/raw/churn.csv
+patched 60 rows in results/metrics/raw/nomao.csv
+patched 60 rows in results/metrics/raw/pol.csv
+patched 60 rows in results/metrics/raw/qsar-biodeg.csv
+patched 60 rows in results/metrics/raw/volkert.csv
